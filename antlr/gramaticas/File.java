@@ -1,0 +1,32 @@
+import java.util.*;
+import java.io.Serializable;
+
+public class File implements Serializable{
+    private static File instance;
+    TablaSimbolos symbolTable = new TablaSimbolos();
+
+    public static File getInstance()
+    {
+        if(instance == null)
+        {
+            instance = new File();
+        }
+        return instance;
+    }
+
+    public File()
+    {
+        this.symbolTable = new TablaSimbolos();
+    }
+
+    public void printSimbolTable()
+    {
+        symbolTable.printHashMap();
+    }
+    
+    public void addFunction(Funcion function) //Introduce a new function into the symbol table
+    {
+        symbolTable.addFunction(function);
+    }
+
+}
