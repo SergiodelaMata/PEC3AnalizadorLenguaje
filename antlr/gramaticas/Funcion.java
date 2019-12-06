@@ -21,7 +21,7 @@ public class Funcion
         this.numEfectiveLines = 0;
         this.numFunctionPoints = 0; //puntosTotales
     }
-    
+
     public void addParameter(int points)
     {
         this.numParameters += points;
@@ -52,6 +52,11 @@ public class Funcion
         this.name = name;
     }
 
+    public void concatenateName(String name)
+    {
+      this.name += name;
+    }
+
     public String getName()
     {
         return this.name;
@@ -60,6 +65,11 @@ public class Funcion
     public void setFunctionPoints(int points)
     {
         this.numFunctionPoints = points;
+    }
+
+    public int getFunctionPoints()
+    {
+      return this.numFunctionPoints;
     }
 
     public void printAttributes()
