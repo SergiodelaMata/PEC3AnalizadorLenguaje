@@ -34,6 +34,7 @@ expr:	expr (operadoraritmeticoproducto|operadoraritmeticodivision) expr
     |   llamarfuncion
     |	numeros
     |   nombrevariable
+    |   operadoraperturaparentesis (nombrevariable|numeros) (separadoroperadores (nombrevariable|numeros))* operadorcierreparentesis
     |   cadena  (operadoraritmeticosuma expr)*
     |	operadoraperturaparentesis expr operadorcierreparentesis
     ;
@@ -41,7 +42,7 @@ expresionlogica: (expr|palabraclavebooleano) ((operadorlogico|operadorcondiciona
                 | palabraclavebooleano;
 
 nombrefuncion: ID;
-nombrevariable: ID | CASE;
+nombrevariable: ARRAY | ID | CASE;
 nombrepaquete: ID;
 operadorasignacion: ASIGN;
 parametros:  parametro (separadoroperadores parametro)* ;
