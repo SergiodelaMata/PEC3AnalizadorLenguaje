@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class VisitorBasico extends Pl2compilerParserBaseVisitor
 {
     //En principio los visitors de reglas que no suman punto ni hacen nada se pueden dejar sin hacer (si no funciona asi habria que crearlos retornando null o algo asi)
-    private Funcion visitedFunction;
+    private Funcion visitedFunction;                                                                //Si se devuelve un Integer, hay que devolver 0 en todo caso, null da error
     private File file = File.getInstance(); //Contains the symbol table
     private int numFunctionPoints;
     //private String nombreParametro;
@@ -26,7 +26,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
         }
       }
       System.out.println("HOLA");
-        return 1;
+      return 1;
     }
 
     @Override
@@ -181,10 +181,70 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
        return 0;
      }*/
 
+     //"cuerpo" se divide en palabraclaveinicio, codigo y palabraclavefin. Hay tres cuerpos en el Parser ¿Cuál usamos? En principio uso "codigo"
     @Override
     public Integer visitCuerpo(Pl2compilerParser.CuerpoContext ctx)
     {
-        return 0;
+      visitedFunction = new Funcion();
+      int numFunctionPoints = 0;
+      numFunctionPoints = (Integer) visit(ctx.codigo());//Da error
+
+      visitedFunction.setFunctionPoints(numFunctionPoints);
+      file.addFunction(visitedFunction);
+      return numFunctionPoints;
+    }
+
+    //"codigo" se divide en (funcionwhile|funcionfor|operacionswitch|asignacion|llamarfuncion|devolver|cuerpo2)+
+    //Hay que visitarlos todos por lo que tienen que estar los que nos interesen (en principio, si da error por cosas del Visitor pues todos) en el Visitor
+    @Override
+    public Integer visitCodigo(Pl2compilerParser.CodigoContext ctx)
+    {
+      ArrayList<Pl2compilerParser.CodigoContext> listaCodigo = new ArrayList<Pl2compilerParser.CodigoContext>(ctx.codigo());
+      if(listaCodigo.size() != 0)
+      {
+        for(int i = 0; i < listaCodigo.size(); i++)
+        {
+          visit(listaCodigo.get(i));
+        }
+      }      
+      return listaCodigo.size();//En realidad no sé qué retornar               
+    }
+
+    public Integer visitFuncionwhile(Pl2compilerParser.FuncionwhileContext ctx){
+
+    }
+
+    public Integer visitFuncionfor(Pl2compilerParser.FuncionforContext ctx){
+
+    }
+
+    public Integer visitOperacionswitch(Pl2compilerParser.OperacionswitchContext ctx){
+
+    }
+    
+    //((tipovariable? nombrevariable (operadorasignacion expr)?) | (tipovariable nombrevariable (separadoroperadores nombrevariable)*)) separadoroperaciones?;
+    public Integer visitAsignacion(Pl2compilerParser.AsignacionContext ctx){      
+      
+      
+      return 1; //Cada variable declarada es un punto, asumimos que sus hijos están, no habría que visitarlos en pricipio
+    }
+
+    
+    public Integer visitLlamarfuncion(Pl2compilerParser.LlamarfuncionContext ctx){
+      /*
+      Usará visitParametros, pero hay un problema. En el return de visitParametros, según el enunciado sería:
+      Cada función llamada: 2 puntos, +1 punto por cada parámetro pasado. Tal y como está en visitParametros el return no funcionaria
+      */
+      return 2; //Cada función llamada: 2 puntos, +1 punto por cada parámetro pasado
+    }
+
+
+    public Integer visitDevolver(Pl2compilerParser.DevolverContext ctx){
+
+    }
+
+    public Integer visitCuerpo2(Pl2compilerParser.Cuerpo2Context ctx){
+
     }
 
 }
