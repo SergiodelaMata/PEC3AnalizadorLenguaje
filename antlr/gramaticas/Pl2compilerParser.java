@@ -180,12 +180,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_prog; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterProg(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitProg(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitProg(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -271,12 +268,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_libreria; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterLibreria(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitLibreria(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitLibreria(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -354,12 +348,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_asignacion; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterAsignacion(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitAsignacion(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitAsignacion(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -474,12 +465,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_variable; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterVariable(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitVariable(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitVariable(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -534,12 +522,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_condicion; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterCondicion(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitCondicion(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitCondicion(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -580,12 +565,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_operacionswitch; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterOperacionswitch(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitOperacionswitch(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitOperacionswitch(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -630,12 +612,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_cabeceraswitch; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterCabeceraswitch(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitCabeceraswitch(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitCabeceraswitch(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -720,12 +699,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_cuerposwitch; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterCuerposwitch(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitCuerposwitch(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitCuerposwitch(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -864,12 +840,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_condicionales; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterCondicionales(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitCondicionales(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitCondicionales(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -994,12 +967,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_funcionwhile; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterFuncionwhile(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitFuncionwhile(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitFuncionwhile(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1099,12 +1069,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_funcionfor; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterFuncionfor(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitFuncionfor(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitFuncionfor(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1239,12 +1206,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_cuerpo; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterCuerpo(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitCuerpo(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitCuerpo(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1362,12 +1326,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_cuerpo2; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterCuerpo2(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitCuerpo2(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitCuerpo2(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1446,12 +1407,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_cuerpo3; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterCuerpo3(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitCuerpo3(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitCuerpo3(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1567,12 +1525,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_llamarfuncion; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterLlamarfuncion(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitLlamarfuncion(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitLlamarfuncion(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1706,12 +1661,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_codigo; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterCodigo(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitCodigo(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitCodigo(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1812,12 +1764,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_crearfuncion; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterCrearfuncion(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitCrearfuncion(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitCrearfuncion(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1882,12 +1831,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_devolver; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterDevolver(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitDevolver(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitDevolver(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1943,12 +1889,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_retorno; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterRetorno(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitRetorno(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitRetorno(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2003,12 +1946,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_cabecerafuncion; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterCabecerafuncion(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitCabecerafuncion(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitCabecerafuncion(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2127,12 +2067,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_expr; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitExpr(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitExpr(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2396,12 +2333,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_expresionlogica; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterExpresionlogica(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitExpresionlogica(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitExpresionlogica(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2535,12 +2469,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_nombrefuncion; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterNombrefuncion(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitNombrefuncion(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitNombrefuncion(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2574,12 +2505,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_nombrevariable; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterNombrevariable(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitNombrevariable(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitNombrevariable(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2620,12 +2548,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_nombrepaquete; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterNombrepaquete(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitNombrepaquete(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitNombrepaquete(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2657,12 +2582,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_operadorasignacion; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterOperadorasignacion(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitOperadorasignacion(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitOperadorasignacion(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2705,12 +2627,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_parametros; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterParametros(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitParametros(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitParametros(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2764,12 +2683,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_parametro; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterParametro(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitParametro(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitParametro(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2812,12 +2728,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_operadoraritmeticoproducto; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterOperadoraritmeticoproducto(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitOperadoraritmeticoproducto(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitOperadoraritmeticoproducto(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2849,12 +2762,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_operadoraritmeticodivision; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterOperadoraritmeticodivision(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitOperadoraritmeticodivision(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitOperadoraritmeticodivision(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2886,12 +2796,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_operadoraritmeticosuma; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterOperadoraritmeticosuma(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitOperadoraritmeticosuma(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitOperadoraritmeticosuma(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2923,12 +2830,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_operadoraritmeticoresta; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterOperadoraritmeticoresta(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitOperadoraritmeticoresta(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitOperadoraritmeticoresta(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2960,12 +2864,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_operadoraritmeticosuma1; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterOperadoraritmeticosuma1(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitOperadoraritmeticosuma1(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitOperadoraritmeticosuma1(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2997,12 +2898,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_operadoraritmeticoresta1; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterOperadoraritmeticoresta1(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitOperadoraritmeticoresta1(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitOperadoraritmeticoresta1(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3037,12 +2935,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_operadorlogico; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterOperadorlogico(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitOperadorlogico(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitOperadorlogico(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3084,12 +2979,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_operadorcondicionalpuertalogica; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterOperadorcondicionalpuertalogica(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitOperadorcondicionalpuertalogica(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitOperadorcondicionalpuertalogica(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3130,12 +3022,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_cadena; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterCadena(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitCadena(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitCadena(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3167,12 +3056,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_separadoroperaciones; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterSeparadoroperaciones(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitSeparadoroperaciones(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitSeparadoroperaciones(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3204,12 +3090,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_separadoroperadores; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterSeparadoroperadores(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitSeparadoroperadores(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitSeparadoroperadores(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3241,12 +3124,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_separadordospuntos; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterSeparadordospuntos(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitSeparadordospuntos(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitSeparadordospuntos(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3278,12 +3158,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_operadoraperturaparentesis; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterOperadoraperturaparentesis(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitOperadoraperturaparentesis(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitOperadoraperturaparentesis(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3315,12 +3192,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_operadorcierreparentesis; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterOperadorcierreparentesis(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitOperadorcierreparentesis(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitOperadorcierreparentesis(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3354,12 +3228,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_tipovariable; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterTipovariable(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitTipovariable(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitTipovariable(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3403,12 +3274,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_comentarios; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterComentarios(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitComentarios(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitComentarios(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3452,12 +3320,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_entero; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterEntero(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitEntero(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitEntero(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3508,12 +3373,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_flotante; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterFlotante(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitFlotante(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitFlotante(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3550,12 +3412,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_numeros; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterNumeros(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitNumeros(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitNumeros(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3602,12 +3461,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_palabraclavebooleano; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterPalabraclavebooleano(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclavebooleano(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclavebooleano(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3639,12 +3495,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_palabraclavebuclefor; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterPalabraclavebuclefor(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclavebuclefor(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclavebuclefor(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3676,12 +3529,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_palabraclaveendbuclefor; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterPalabraclaveendbuclefor(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclaveendbuclefor(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclaveendbuclefor(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3713,12 +3563,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_palabraclaveinciovalorfor; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterPalabraclaveinciovalorfor(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclaveinciovalorfor(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclaveinciovalorfor(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3750,12 +3597,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_palabraclavesaltoelementofor; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterPalabraclavesaltoelementofor(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclavesaltoelementofor(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclavesaltoelementofor(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3787,12 +3631,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_palabraclavefinvalorfor; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterPalabraclavefinvalorfor(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclavefinvalorfor(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclavefinvalorfor(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3824,12 +3665,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_palabraclavehacerfor; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterPalabraclavehacerfor(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclavehacerfor(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclavehacerfor(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3861,12 +3699,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_palabraclavebuclewhile; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterPalabraclavebuclewhile(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclavebuclewhile(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclavebuclewhile(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3898,12 +3733,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_palabrareservadaaperturaswitch; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterPalabrareservadaaperturaswitch(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabrareservadaaperturaswitch(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabrareservadaaperturaswitch(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3935,12 +3767,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_palabrareservadacierrewitch; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterPalabrareservadacierrewitch(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabrareservadacierrewitch(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabrareservadacierrewitch(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3972,12 +3801,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_palabrareservadacase; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterPalabrareservadacase(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabrareservadacase(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabrareservadacase(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4009,12 +3835,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_palabrareservadabreak; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterPalabrareservadabreak(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabrareservadabreak(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabrareservadabreak(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4046,12 +3869,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_palabrareservadadefault; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterPalabrareservadadefault(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabrareservadadefault(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabrareservadadefault(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4083,12 +3903,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_palabraclavecondiciones; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterPalabraclavecondiciones(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclavecondiciones(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclavecondiciones(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4120,12 +3937,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_palabraclavethen; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterPalabraclavethen(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclavethen(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclavethen(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4157,12 +3971,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_palabraclaveendif; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterPalabraclaveendif(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclaveendif(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclaveendif(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4194,12 +4005,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_palabraclaveincluirlibreria; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterPalabraclaveincluirlibreria(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclaveincluirlibreria(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclaveincluirlibreria(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4231,12 +4039,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_palabraclavecreacionfuncion; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterPalabraclavecreacionfuncion(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclavecreacionfuncion(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclavecreacionfuncion(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4268,12 +4073,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_palabraclavefuncionmain; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterPalabraclavefuncionmain(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclavefuncionmain(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclavefuncionmain(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4305,12 +4107,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_palabraclavefunciondevolver; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterPalabraclavefunciondevolver(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclavefunciondevolver(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclavefunciondevolver(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4342,12 +4141,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_palabraclaveinicio; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterPalabraclaveinicio(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclaveinicio(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclaveinicio(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4379,12 +4175,9 @@ public class Pl2compilerParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_palabraclavefin; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).enterPalabraclavefin(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclavefin(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclavefin(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 

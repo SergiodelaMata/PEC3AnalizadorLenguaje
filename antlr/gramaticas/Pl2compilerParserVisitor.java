@@ -88,6 +88,12 @@ public interface Pl2compilerParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCuerpo2(Pl2compilerParser.Cuerpo2Context ctx);
 	/**
+	 * Visit a parse tree produced by {@link Pl2compilerParser#cuerpo3}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCuerpo3(Pl2compilerParser.Cuerpo3Context ctx);
+	/**
 	 * Visit a parse tree produced by {@link Pl2compilerParser#llamarfuncion}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

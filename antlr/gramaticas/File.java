@@ -19,11 +19,11 @@ public class File implements Serializable{
         this.symbolTable = new TablaSimbolos();
     }
 
-    public void printSimbolTable()
+    public void printSymbolTable()
     {
         symbolTable.printHashMap();
     }
-    
+
     public void addFunction(Funcion function) //Introduce a new function into the symbol table
     {
         symbolTable.addFunction(function);

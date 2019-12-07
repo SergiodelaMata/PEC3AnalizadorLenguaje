@@ -17,12 +17,15 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     @Override
     public Integer visitProg(Pl2compilerParser.ProgContext ctx)
     {
-
-        for (int i=0; i<ctx.getChildCount(); i++) //Se visitan todos los hijos
+      ArrayList<Pl2compilerParser.CrearfuncionContext> listaCrearFuncion = new ArrayList<Pl2compilerParser.CrearfuncionContext>(ctx.crearfuncion());
+      if(listaCrearFuncion.size() != 0)
+      {
+        for(int i = 0; i < listaCrearFuncion.size(); i++)
         {
-            visit(ctx.getChild(i));
-            System.out.println("HOLA");
+          visit(listaCrearFuncion.get(i));
         }
+      }
+      System.out.println("HOLA");
         return 1;
     }
 
@@ -30,13 +33,16 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     public Integer visitCrearfuncion(Pl2compilerParser.CrearfuncionContext ctx)
     {
         visitedFunction = new Funcion();
-        numFunctionPoints = (Integer) visit(ctx.cabecerafuncion()) + (Integer)visit(ctx.cuerpo());
+        int numFunctionPoints = 0;
+        numFunctionPoints = (Integer) visit(ctx.cabecerafuncion());
+        numFunctionPoints += (Integer) visit(ctx.cuerpo());
 
-        System.out.println(numFunctionPoints);
+        System.out.println("Hola nueva funcion");
+        //System.out.println(numFunctionPoints);
 
         visitedFunction.setFunctionPoints(numFunctionPoints);
         file.addFunction(visitedFunction);
-        //return numFunctionPoints;
+        return numFunctionPoints;
     }
 
     @Override
@@ -57,28 +63,19 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
         if(ctx.parametros() == null)
         {
           visitedFunction.addParameter(0);
+          System.out.println(0);
+          System.out.println(nombre + " ");
         }
         else
         {
           //numParameters += (Integer) ctx.visitParametros();
-          ctx.visit(ctx.parametros());
+          visit(ctx.parametros());
+          System.out.println(nombre + " ");
         }
         visitedFunction.concatenateName("):");
         if(ctx.retorno() != null)
         {
-          //ctx.visit(ctx.retorno());
-          if(ctx.retorno().tipovariable().STRING() != null)
-          {
-            visitedFunction.concatenateName(ctx.retorno().tipovariable().STRING().getText());
-          }
-          else if(ctx.retorno().tipovariable().NUMERO() != null)
-          {
-            visitedFunction.concatenateName(ctx.retorno().tipovariable().NUMERO().getText());
-          }
-          else if(ctx.retorno().tipovariable().VOID() != null)
-          {
-            visitedFunction.concatenateName(ctx.retorno().tipovariable().VOID().getText());
-          }
+          visit(ctx.retorno());
         }
         //numParameters += ctx.parametros();
         //falta añadir nombre funcion (hijo 1)
@@ -125,8 +122,6 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     @Override public Integer visitExpr(Pl2compilerParser.ExprContext ctx)
     {
       ArrayList<Pl2compilerParser.NombrevariableContext> listaNombreVariables = new ArrayList<Pl2compilerParser.NombrevariableContext>(ctx.nombrevariable());
-      //ArrayList<Pl2compilerParser.ParametroContext> listaParametros = new ArrayList<Pl2compilerParser.ParametroContext>(ctx.parametro());
-      //ArrayList<Pl2compilerParser.ParametroContext> listaParametros = new ArrayList<Pl2compilerParser.ParametroContext>(ctx.parametro());
       if(listaNombreVariables.size() != 0)
       {
         for(int i = 0; i < listaNombreVariables.size(); i++)
@@ -189,7 +184,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     @Override
     public Integer visitCuerpo(Pl2compilerParser.CuerpoContext ctx)
     {
-        return null;
+        return 0;
     }
 
 }

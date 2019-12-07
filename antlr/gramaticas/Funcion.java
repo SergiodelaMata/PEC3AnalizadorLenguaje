@@ -79,7 +79,7 @@ public class Funcion
         System.out.println("Nº de declaraciones: " + this.numDeclaraciones);
         System.out.println("Nº de llamadas a función: " + this.numFunctionCall);
         System.out.println("Nº de operadores simples: " + this.numSimpleOperators);
-        System.out.println("Nº points función: " + this.numFunctionPoints);
+        System.out.println("Nº puntos función: " + this.numFunctionPoints);
         System.out.println("Nº líneas efectivas: " + this.numEfectiveLines);
     }
 }

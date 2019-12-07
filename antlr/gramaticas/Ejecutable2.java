@@ -6,8 +6,8 @@ import org.antlr.v4.runtime.tree.*;
 public class Ejecutable2{
     public static void main(String[] args) throws Exception {
         String inputFile = "Pl2-fibonacci.prog";
-        Fichero fichero = Fichero.getInstance();
-       
+        File file = File.getInstance();
+
         //ObjectOutputStream oos;
         InputStream is = System.in;
         if(inputFile!=null)
@@ -24,8 +24,9 @@ public class Ejecutable2{
         VisitorBasico basicVisitor = new VisitorBasico();
         basicVisitor.visit(tree);
         System.out.println("Visitado árbol");
+        file.printSymbolTable();
         //ListenerBasico LB = new ListenerBasico();
-        //ParseTreeWalker walker = new ParseTreeWalker(); 
+        //ParseTreeWalker walker = new ParseTreeWalker();
         //walker.walk(LB, tree);
 
 /*        try{
