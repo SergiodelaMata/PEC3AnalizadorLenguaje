@@ -6,7 +6,7 @@ public class TablaSimbolos
 
     public TablaSimbolos()
     {
-        symbolTable = new Hashtable<String, Funcion>();
+        this.symbolTable = new Hashtable<String, Funcion>();
     }
 
     public void addFunction(Funcion function)

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.lang.Math;
 
 public class VisitorBasico extends Pl2compilerParserBaseVisitor
 {
@@ -176,10 +177,10 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
      public Integer visitTipovariable(Pl2compilerParser.TipovariableContext ctx)
      {
 
-
-
        return 0;
      }*/
+
+     //---------------------------------------------------------------------------------------------------------------------------------
 
      //"cuerpo" se divide en palabraclaveinicio, codigo y palabraclavefin. Hay tres cuerpos en el Parser ¿Cuál usamos? En principio uso "codigo"
     @Override
@@ -187,7 +188,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     {
       visitedFunction = new Funcion();
       int numFunctionPoints = 0;
-      numFunctionPoints = (Integer) visit(ctx.codigo());//Da error
+      numFunctionPoints = (Integer) visit(ctx.codigo()); //Da error aquí al ejecutar
 
       visitedFunction.setFunctionPoints(numFunctionPoints);
       file.addFunction(visitedFunction);
@@ -195,7 +196,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     }
 
     //"codigo" se divide en (funcionwhile|funcionfor|operacionswitch|asignacion|llamarfuncion|devolver|cuerpo2)+
-    //Hay que visitarlos todos por lo que tienen que estar los que nos interesen (en principio, si da error por cosas del Visitor pues todos) en el Visitor
+    //Hay que visitar a los hijos por lo que tienen que estar los que nos interesen en el Visitor (en principio, si da error por cosas del Visitor pues todos) 
     @Override
     public Integer visitCodigo(Pl2compilerParser.CodigoContext ctx)
     {
@@ -210,26 +211,67 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       return listaCodigo.size();//En realidad no sé qué retornar               
     }
 
+    //While
     public Integer visitFuncionwhile(Pl2compilerParser.FuncionwhileContext ctx){
+      int puntosWhile = 0;
 
+      if (ctx.expr() != null) puntosWhile += (int) Math.pow((Integer)visit(ctx.expr()), 2);
+      else if (ctx.expresionlogica() != null) puntosWhile += (int) Math.pow((Integer)visit(ctx.expresionlogica()), 2); //Este no está creado aún en este Visitor
+      
+      if(ctx.cuerpo() != null) puntosWhile += (Integer)visit(ctx.cuerpo());
+      else if(ctx.cuerpo3() != null) puntosWhile += (Integer)visit(ctx.cuerpo3()); //Este no está creado aún en este Visitor
+
+      puntosWhile = (int) Math.pow(puntosWhile, 2);      
+      
+      return puntosWhile;
     }
 
+    //For
     public Integer visitFuncionfor(Pl2compilerParser.FuncionforContext ctx){
+      int puntosFor = 0;
 
+      if(ctx.cuerpo() != null) puntosFor += (Integer) visit(ctx.cuerpo());
+
+      puntosFor = (int) Math.pow(puntosFor, 2);
+
+      return puntosFor;
     }
 
+
+    //Switch 
+    //tiene Operacionswitch, que se compone de "cabeceraswitch cuerposwitch"  No sé si solo con el cuerposwitch valdría
     public Integer visitOperacionswitch(Pl2compilerParser.OperacionswitchContext ctx){
-
+            
     }
+
+    //Habría que tener en cuenta también "cuerpo3" o cambiarlo en el Parser (creo que la segunda opción es más fácil)
+    public Integer visitCuerposwitch(Pl2compilerParser.CuerposwitchContext ctx){
+      
+      int puntosSwitch = 0;
+      puntosSwitch += (int) Math.pow((Integer)visit(ctx.expr()), 2);
+
+      if(ctx.cuerpo() != null){
+        ArrayList<Pl2compilerParser.CuerpoContext> codigo_bloques = new ArrayList<Pl2compilerParser.CuerpoContext>(ctx.cuerpo());
+        for (Pl2compilerParser.CuerpoContext i: codigo_bloques){
+          puntosSwitch += Math.pow((Integer)visit(i), 2);
+        }
+      }
+    }
+
+    public Integer visitCabeceraswitch(Pl2compilerParser.CabeceraswitchContext ctx){
+            
+    }
+
     
     //((tipovariable? nombrevariable (operadorasignacion expr)?) | (tipovariable nombrevariable (separadoroperadores nombrevariable)*)) separadoroperaciones?;
-    public Integer visitAsignacion(Pl2compilerParser.AsignacionContext ctx){      
-      
-      
-      return 1; //Cada variable declarada es un punto, asumimos que sus hijos están, no habría que visitarlos en pricipio
+    public Integer visitAsignacion(Pl2compilerParser.AsignacionContext ctx){            
+      int puntosAsignacion = 0;
+      //puntosAsignacion = (Integer)visit(ctx.expr()) + (Integer)visit(ctx.); //Hay que mirar mejor el parser; no entiendo bien la asignacion en el parser
+      return puntosAsignacion; //Cada variable declarada es un punto, asumimos que sus hijos están
     }
 
     
+    //llamarfuncion: ((nombrefuncion operadoraperturaparentesis parametros? operadorcierreparentesis separadoroperaciones?) | funcionfor | funcionwhile | condicionales| operacionswitch);
     public Integer visitLlamarfuncion(Pl2compilerParser.LlamarfuncionContext ctx){
       /*
       Usará visitParametros, pero hay un problema. En el return de visitParametros, según el enunciado sería:
@@ -239,12 +281,52 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     }
 
 
+    //(llamarfuncion|expr)?
     public Integer visitDevolver(Pl2compilerParser.DevolverContext ctx){
+      int puntosDevolver = 0;
 
+      if(ctx.llamarfuncion() != null) puntosDevolver += (Integer)visit(ctx.llamarfuncion());
+      else if(ctx.expr() != null) puntosDevolver += (Integer)visit(ctx.expr());
+
+      return puntosDevolver;
     }
+
 
     public Integer visitCuerpo2(Pl2compilerParser.Cuerpo2Context ctx){
 
     }
+
+//---------------------------------------------------------------------------------------------------------------------------------
+
+//No se por qué dan error todos cuando hago ctx.expr
+/*
+    @Override
+    public Integer visitOperadoraritmeticosuma(Pl2compilerParser.OperadoraritmeticosumaContext ctx){
+      visitedFunction.addSimpleOperator(1);
+
+      return 1 + ((Integer)visit(ctx.expr(0)) + (Integer)visit(ctx.expr(1)));
+    }
+
+    @Override
+    public Integer visitOperadoraritmeticoresta(Pl2compilerParser.OperadoraritmeticorestaContext ctx){
+      visitedFunction.addSimpleOperator(1);
+
+      return 1 + ((Integer)visit(ctx.expr(0)) + (Integer)visit(ctx.expr(1)));
+    }
+
+    @Override
+    public Integer visitOperadoraritmeticoproducto(Pl2compilerParser.OperadoraritmeticoproductoContext ctx){
+      visitedFunction.addSimpleOperator(1);
+
+      return 1 + ((Integer)visit(ctx.expr(0)) + (Integer)visit(ctx.expr(1)));
+    }
+
+    @Override
+    public Integer visitOperadoraritmeticodivision(Pl2compilerParser.OperadoraritmeticodivisionContext ctx){
+      visitedFunction.addSimpleOperator(1);
+
+      return 1 + ((Integer)visit(ctx.expr(0)) + (Integer)visit(ctx.expr(1)));
+    }
+*/
 
 }

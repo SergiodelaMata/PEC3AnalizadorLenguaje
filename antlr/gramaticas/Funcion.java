@@ -9,7 +9,7 @@ public class Funcion
     private int numFunctionCall;
     private int numSimpleOperators;
     private int numEfectiveLines;
-    private int numFunctionPoints;
+    private int numFunctionPoints; //puntosTotales
 
     public Funcion()
     {
@@ -83,3 +83,5 @@ public class Funcion
         System.out.println("Nº líneas efectivas: " + this.numEfectiveLines);
     }
 }
+
+

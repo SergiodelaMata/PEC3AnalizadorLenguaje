@@ -1,0 +1,29 @@
+//Nuevas estructuras y valores de tipos
+function estructura_if ():void
+begin
+    while(true)
+        if(x<4) then
+            while(x<4)
+                imprimir("soy menor que 4");
+            imprimir("fuera del bucle");
+        else
+        
+            imprimir("no soy menor que 4");
+        endif
+    
+end
+
+function ejemplo_if():void
+begin   
+    if (false) then
+        imprimir ("verdad");
+    else
+        imprimir ("falso");
+    endif
+
+    if (true) then  
+        imprimir ("verdad");
+        imprimir ("verdadera");
+    endif
+end    
+    

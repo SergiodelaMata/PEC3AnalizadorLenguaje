@@ -1,0 +1,44 @@
+// Prueba 2A: movilidad de comentarios y terminadores
+include printflib; include testsim; include /****comt***/ libreria;
+include
+//algo
+
+libreria2;
+
+function /*declaracion*/ miFuncion01x /*parametros*/ /*par1, par2*/ 
+(numero param1
+,numero param2
+,numero param3 ,
+cadena valores)
+: void
+begin
+  texto:=222;
+  numeros:="hola //que cosas eh? ";
+  numero /* */ cosas :=" /* comentario */ en este lenguaje"
+  ;
+end
+
+/* Prueba 2B: bloques de código */
+
+//Esto debe funcionar///////
+function  miFuncion01x ():cadena
+begin
+  begin
+    //comentario
+  end
+  while(condicion<0)
+    imprimir("estoy en el bucle while");
+
+  begin
+  end
+
+  while (1<1)
+  begin
+    while (2<2)
+    begin
+        imprimir("anidado");
+    end
+  end
+end
+
+

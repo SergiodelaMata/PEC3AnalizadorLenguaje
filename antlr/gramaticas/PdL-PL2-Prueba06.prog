@@ -1,0 +1,30 @@
+//Nuevas estructuras y valores de tipos
+function estructura_for ():void
+begin
+
+    for x from 1 to 10 step 2 do
+                while(x<4)
+                    imprimir("soy menor que 4");
+                imprimir("fuera del bucle while");
+    enddo  
+end
+
+function ejemplo_for():void
+begin   
+    numero beginer;
+    beginer:=1;
+    ender:=333;
+    paso:=10
+    for caso from 30 to 1 step -1 do
+        begin
+            for caso from beginer to 45 do
+                for casa from 43 to ender step paso do
+                    while(casa<50)
+                        imprimir("casa menor que 50");
+                enddo
+            enddo
+        end
+    enddo
+    forty:=40;
+end    
+    

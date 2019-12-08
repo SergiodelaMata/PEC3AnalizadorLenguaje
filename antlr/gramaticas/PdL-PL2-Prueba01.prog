@@ -1,0 +1,52 @@
+// Prueba 1: construcciones sencillas, derivación directa
+/****
+variable:=2;
+while (x>0)
+begin
+    imprimir("no debería funcionar como código");
+    //no es un comentario
+end
+    ****/
+include printflib;
+include testsim;
+function imprimir(cadena texto):void
+begin
+    printf(texto);
+end
+function aCadena(numero x):cadena
+begin
+    devolver ( sprintf("%d",x));
+end
+function test():void
+begin
+    numero umbral:=100;  //establecemos el umbral hasta el que calcularemos fibonacci
+    imprimir ("Iniciando el cálculo de Fibonacci");
+    cadena valores := fibonacci(umbral);  /*llamamos a la función, y a ver si explota...*/
+    imprimir (valores + "\nFin de fibonacci.");
+    //fin del /*programa*/ y esas cosas
+end
+/**    Función iterativa que se encarga de calcular fibonacci y generar el texto asociado **/
+function fibonacci(numero umbral/*Un comentario*/):cadena //hasta el final
+begin
+    numero numeroFibonacciInicio:=0;
+    numero numeroFibonacciSegundo:=1;
+    numero ResultadoFibonacci:=0;
+
+    cadena temporal := "Serie Fibonacci: " 
+                        + aCadena(numeroFibonacciInicio) 
+                        + ", "  //Comentario
+                        + aCadena(numeroFibonacciSegundo);
+
+    while (ResultadoFibonacci<umbral)
+    begin
+        ResultadoFibonacci:=numeroFibonacciInicio
+                            + numeroFibonacciSegundo;
+        temporal := temporal + ", " + aCadena(ResultadoFibonacci);
+        numeroFibonacciInicio := numeroFibonacciSegundo;  //actualizo en cada iteración
+        numeroFibonacciSegundo := ResultadoFibonacci;
+    end
+
+    devolver(temporal); //devolvemos el resultado.
+end
+
+

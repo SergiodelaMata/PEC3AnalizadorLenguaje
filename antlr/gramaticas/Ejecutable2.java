@@ -5,15 +5,23 @@ import org.antlr.v4.runtime.tree.*;
 
 public class Ejecutable2{
     public static void main(String[] args) throws Exception {
-        String inputFile = "Pl2-fibonacci.prog";
-        File file = File.getInstance();
-
-        //ObjectOutputStream oos;
+        File file = new File();
+        TablaSimbolos tabla_simbolos = new TablaSimbolos();
+        int total_puntos;
+        String inputFile = null;
+        
+        
+        if(args.length > 0){
+            inputFile=args[0];
+        }
+        
         InputStream is = System.in;
-        if(inputFile!=null)
+
+        if(inputFile != null)
         {
             is = new FileInputStream(inputFile);
         }
+
         CharStream input = CharStreams.fromStream(is);
         Pl2compilerLexer lexer = new Pl2compilerLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -23,23 +31,9 @@ public class Ejecutable2{
 
         VisitorBasico basicVisitor = new VisitorBasico();
         basicVisitor.visit(tree);
-        System.out.println("Visitado árbol");
+        System.out.println("Visitando árbol");
         file.printSymbolTable();
-        //ListenerBasico LB = new ListenerBasico();
-        //ParseTreeWalker walker = new ParseTreeWalker();
-        //walker.walk(LB, tree);
-
-/*        try{
-            PrintWriter outputStream = new PrintWriter("prueba.txt");
-            List<String> informacionArchivo = fichero.getTramosrama();
-            for(int i = 0; i < informacionArchivo.size(); i++)
-            {
-                outputStream.println(informacionArchivo.get(i));
-            }
-            outputStream.flush();
-            outputStream.close();
-        }
-        catch(IOException e){
-        }*/
+        tabla_simbolos.printHashMap();
+        
     }
 }
