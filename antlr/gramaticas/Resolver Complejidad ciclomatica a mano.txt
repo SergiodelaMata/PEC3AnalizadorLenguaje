@@ -1,0 +1,9 @@
+1º
+Dibujar grafo
+
+2º
+Complejidad ciclomática = Aristas - Nodos + 2
+ó
+Complejidad ciclomática = Nodos predicado (nodos donde se toma una decisión) + 1
+ó
+Complejidad ciclomática = Regiones internas
