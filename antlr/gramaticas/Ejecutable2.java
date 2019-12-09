@@ -34,6 +34,6 @@ public class Ejecutable2{
         System.out.println("Visitando árbol");
         file.printSymbolTable();
         tabla_simbolos.printHashMap();
-        
+        System.out.println("FIN");        
     }
 }

@@ -36,8 +36,14 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
         visitedFunction = new Funcion();
         int numFunctionPoints = 0;
         numFunctionPoints = (Integer) visit(ctx.cabecerafuncion());
-        numFunctionPoints += (Integer) visit(ctx.cuerpo());
-
+        if (ctx.cuerpo() != null)
+        {
+          numFunctionPoints += (Integer) visit(ctx.cuerpo());
+        }
+        if (ctx.cuerpo3() != null)
+        {
+          numFunctionPoints += (Integer) visit(ctx.cuerpo3());
+        }
         System.out.println("Hola nueva funcion");
         //System.out.println(numFunctionPoints);
 
@@ -186,21 +192,41 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     @Override
     public Integer visitCuerpo(Pl2compilerParser.CuerpoContext ctx)
     {
-      visitedFunction = new Funcion();
+      /*visitedFunction = new Funcion(); //no hay que ponerlo aqui creo
       int numFunctionPoints = 0;
       numFunctionPoints = (Integer) visit(ctx.codigo()); //Da error aquí al ejecutar
 
       visitedFunction.setFunctionPoints(numFunctionPoints);
       file.addFunction(visitedFunction);
+      return numFunctionPoints;*/
+      
+      int numFunctionPoints = 0;
+      ArrayList<Pl2compilerParser.CodigoContext> listaCodigo = new ArrayList<Pl2compilerParser.CodigoContext>(ctx.codigo()); //puede haber mas de 1 codigo
+      if(listaCodigo.size() != 0)
+      {
+        for (int i=0; i<listaCodigo.size(); i++)
+        {
+            numFunctionPoints += (Integer) visit(listaCodigo.get(i));
+        }
+      }
+      System.out.println("PUNTOS CUERPO: " + numFunctionPoints);
+      
       return numFunctionPoints;
     }
+
+    @Override 
+    public Integer visitCuerpo3(Pl2compilerParser.Cuerpo3Context ctx) 
+    { 
+      return 0; //TODO 
+    }
+	
 
     //"codigo" se divide en (funcionwhile|funcionfor|operacionswitch|asignacion|llamarfuncion|devolver|cuerpo2)+
     //Hay que visitar a los hijos por lo que tienen que estar los que nos interesen en el Visitor (en principio, si da error por cosas del Visitor pues todos) 
     @Override
     public Integer visitCodigo(Pl2compilerParser.CodigoContext ctx)
     {
-      ArrayList<Pl2compilerParser.CodigoContext> listaCodigo = new ArrayList<Pl2compilerParser.CodigoContext>(ctx.codigo());
+      /*ArrayList<Pl2compilerParser.CodigoContext> listaCodigo = new ArrayList<Pl2compilerParser.CodigoContext>(ctx.codigo());
       if(listaCodigo.size() != 0)
       {
         for(int i = 0; i < listaCodigo.size(); i++)
@@ -208,11 +234,22 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
           visit(listaCodigo.get(i));
         }
       }      
-      return listaCodigo.size();//En realidad no sé qué retornar               
-    }
+      return listaCodigo.size();//En realidad no sé qué retornar  */ 
+
+      //no habria que visitar funcionwhile|funcionfor|operacionswitch|asignacion|llamarfuncion|devolver|cuerpo2 en vez de codigo??
+      int numHijos = ctx.getChildCount();
+      Integer numFunctionPoints = 0;
+      for (int i=0; i<numHijos; i++) //en este caso se puede hacer asi porque va a visitar todos los hijos
+      {
+        numFunctionPoints += (Integer) visit(ctx.getChild(i));
+      }
+      return numFunctionPoints;
+     }
 
     //While
-    public Integer visitFuncionwhile(Pl2compilerParser.FuncionwhileContext ctx){
+    @Override 
+    public Integer visitFuncionwhile(Pl2compilerParser.FuncionwhileContext ctx) 
+    { 
       int puntosWhile = 0;
 
       if (ctx.expr() != null) puntosWhile += (int) Math.pow((Integer)visit(ctx.expr()), 2);
@@ -227,7 +264,8 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     }
 
     //For
-    public Integer visitFuncionfor(Pl2compilerParser.FuncionforContext ctx){
+    @Override public Integer visitFuncionfor(Pl2compilerParser.FuncionforContext ctx) 
+    { 
       int puntosFor = 0;
 
       if(ctx.cuerpo() != null) puntosFor += (Integer) visit(ctx.cuerpo());
@@ -240,39 +278,58 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
 
     //Switch 
     //tiene Operacionswitch, que se compone de "cabeceraswitch cuerposwitch"  No sé si solo con el cuerposwitch valdría
-    public Integer visitOperacionswitch(Pl2compilerParser.OperacionswitchContext ctx){
-            
+    @Override 
+    public Integer visitOperacionswitch(Pl2compilerParser.OperacionswitchContext ctx) 
+    { 
+      return 0; //TODO
     }
+	
 
     //Habría que tener en cuenta también "cuerpo3" o cambiarlo en el Parser (creo que la segunda opción es más fácil)
-    public Integer visitCuerposwitch(Pl2compilerParser.CuerposwitchContext ctx){
-      
-      int puntosSwitch = 0;
+    @Override 
+    public Integer visitCuerposwitch(Pl2compilerParser.CuerposwitchContext ctx) 
+    { 
+      /*int puntosSwitch = 0;
       puntosSwitch += (int) Math.pow((Integer)visit(ctx.expr()), 2);
-
+      */
+      //esto igual no sirve a la hora de hacer el grafo
+      ArrayList<Pl2compilerParser.ExprContext> listaExpr = new ArrayList<Pl2compilerParser.ExprContext>(ctx.expr());
+      int puntosSwitch = 0;
+      if (listaExpr.size() != 0)
+      {
+        for (int i=0; i<listaExpr.size(); i++)
+        {
+          puntosSwitch += Math.pow((Integer)visit(listaExpr.get(i)), 2);
+        }
+      }
       if(ctx.cuerpo() != null){
         ArrayList<Pl2compilerParser.CuerpoContext> codigo_bloques = new ArrayList<Pl2compilerParser.CuerpoContext>(ctx.cuerpo());
         for (Pl2compilerParser.CuerpoContext i: codigo_bloques){
           puntosSwitch += Math.pow((Integer)visit(i), 2);
         }
       }
+      return puntosSwitch;
     }
 
-    public Integer visitCabeceraswitch(Pl2compilerParser.CabeceraswitchContext ctx){
-            
+    @Override 
+    public Integer visitCabeceraswitch(Pl2compilerParser.CabeceraswitchContext ctx) 
+    { 
+      return 0; //TODO
     }
-
-    
+	
     //((tipovariable? nombrevariable (operadorasignacion expr)?) | (tipovariable nombrevariable (separadoroperadores nombrevariable)*)) separadoroperaciones?;
-    public Integer visitAsignacion(Pl2compilerParser.AsignacionContext ctx){            
+    @Override 
+    public Integer visitAsignacion(Pl2compilerParser.AsignacionContext ctx) 
+    {
       int puntosAsignacion = 0;
       //puntosAsignacion = (Integer)visit(ctx.expr()) + (Integer)visit(ctx.); //Hay que mirar mejor el parser; no entiendo bien la asignacion en el parser
       return puntosAsignacion; //Cada variable declarada es un punto, asumimos que sus hijos están
     }
 
-    
     //llamarfuncion: ((nombrefuncion operadoraperturaparentesis parametros? operadorcierreparentesis separadoroperaciones?) | funcionfor | funcionwhile | condicionales| operacionswitch);
-    public Integer visitLlamarfuncion(Pl2compilerParser.LlamarfuncionContext ctx){
+    @Override 
+    public Integer visitLlamarfuncion(Pl2compilerParser.LlamarfuncionContext ctx) 
+    { 
       /*
       Usará visitParametros, pero hay un problema. En el return de visitParametros, según el enunciado sería:
       Cada función llamada: 2 puntos, +1 punto por cada parámetro pasado. Tal y como está en visitParametros el return no funcionaria
@@ -282,7 +339,9 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
 
 
     //(llamarfuncion|expr)?
-    public Integer visitDevolver(Pl2compilerParser.DevolverContext ctx){
+    @Override 
+    public Integer visitDevolver(Pl2compilerParser.DevolverContext ctx) 
+    {
       int puntosDevolver = 0;
 
       if(ctx.llamarfuncion() != null) puntosDevolver += (Integer)visit(ctx.llamarfuncion());
@@ -291,10 +350,12 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       return puntosDevolver;
     }
 
-
-    public Integer visitCuerpo2(Pl2compilerParser.Cuerpo2Context ctx){
-
+    @Override 
+    public Integer visitCuerpo2(Pl2compilerParser.Cuerpo2Context ctx) 
+    { 
+      return 0; //TODO
     }
+	
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
