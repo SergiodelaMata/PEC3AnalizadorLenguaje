@@ -12,7 +12,7 @@ public class TablaSimbolos
     public void addFunction(Funcion function)
     {
         symbolTable.put(function.getName(), function);
-    }
+    }  
 
     public void printHashMap()
     {
@@ -23,5 +23,9 @@ public class TablaSimbolos
         }
     }
 
+    public void removeFunction(Funcion function)
+    {
+        symbolTable.remove(function.getName, function);
+    }
     
 }
