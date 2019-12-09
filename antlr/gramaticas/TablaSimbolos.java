@@ -25,7 +25,7 @@ public class TablaSimbolos
 
     public void removeFunction(Funcion function)
     {
-        symbolTable.remove(function.getName, function);
+        symbolTable.remove(function.getName(), function);
     }
     
 }
