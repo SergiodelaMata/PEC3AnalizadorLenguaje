@@ -27,5 +27,11 @@ public class TablaSimbolos
     {
         symbolTable.remove(function.getName, function);
     }
+
+    /* Deberíamos tener esto en cuenta
+– LaoperaciónInsertarnodebesobrescribirdeclaracionesanteriores. 
+– La operación Buscar debe encontrar siempre la declaración más reciente. 
+– La operación Eliminar sólo elimina la declaración más reciente de un nombre
+    */
     
 }
