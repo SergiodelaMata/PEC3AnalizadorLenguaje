@@ -126,7 +126,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
         return listaParametros.size() * 2;
     }
 
-    @Override public Integer visitExpr(Pl2compilerParser.ExprContext ctx)
+    @Override public Integer visitExpr(Pl2compilerParser.ExprContext ctx) //TODO: calcular lo que tiene dentro para sumarlo
     {
       ArrayList<Pl2compilerParser.NombrevariableContext> listaNombreVariables = new ArrayList<Pl2compilerParser.NombrevariableContext>(ctx.nombrevariable());
       if(listaNombreVariables.size() != 0)
@@ -321,8 +321,20 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     @Override 
     public Integer visitAsignacion(Pl2compilerParser.AsignacionContext ctx) 
     {
-      int puntosAsignacion = 0;
+      /*int puntosAsignacion = 0;
       //puntosAsignacion = (Integer)visit(ctx.expr()) + (Integer)visit(ctx.); //Hay que mirar mejor el parser; no entiendo bien la asignacion en el parser
+      return puntosAsignacion;*/
+
+      /*asignacion: (tipo? nombre (:= expr)?) | (tipo nombre (, nombre)*) ;?
+      int num := 3;
+      int num;
+      int num, num2;*/
+      int puntosAsignacion = 1; //suma 1
+      if (ctx.expr() != null) //hay que mirar lo que tiene dentro
+      {
+        puntosAsignacion += (Integer) visit(ctx.expr());
+      }
+      System.out.println("Puntos asignacion: " + puntosAsignacion);
       return puntosAsignacion; //Cada variable declarada es un punto, asumimos que sus hijos están
     }
 
