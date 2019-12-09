@@ -264,7 +264,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       Integer puntosCuerpo = 0;
       if (ctx.llamarfuncion() != null) puntosCuerpo += (Integer) visit(ctx.llamarfuncion());
       else if (ctx.asignacion() != null) puntosCuerpo += (Integer) visit(ctx.asignacion());
-      System.out.println("puntos cuerpo3: " + puntosCuerpo);
+      //System.out.println("puntos cuerpo3: " + puntosCuerpo);
       return puntosCuerpo;
     }
 	
@@ -440,25 +440,48 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     }
 
     @Override 
-    public Integer visitExpresionlogica(Pl2compilerParser.ExpresionlogicaContext ctx)
+    public Integer visitExpresionlogica(Pl2compilerParser.ExpresionlogicaContext ctx) //ESTA MAL
     { 
       Integer puntosExprLogica = 0;
-      if ((ctx.operadorlogico() != null) || ctx.operadorcondicionalpuertalogica() != null)
+      if ((ctx.operadorlogico() != null) || ctx.operadorcondicionalpuertalogica() != null) //si es una expresion compleja
       {
-        ArrayList<Pl2compilerParser.ExprContext> listaExprs = new ArrayList<Pl2compilerParser.ExprContext>(ctx.expr());
+        /*ArrayList<Pl2compilerParser.ExprContext> listaExprs = new ArrayList<Pl2compilerParser.ExprContext>(ctx.expr());
+        
         puntosExprLogica += listaExprs.size() - 1; //suma uno por operador (operacion simple)
         for (int i=0; i<listaExprs.size(); i++)
         {
           puntosExprLogica += (Integer) visit(listaExprs.get(i));
         }
+        if (ctx.expresionlogica() != null)
+        {
+          puntosExprLogica++; //suma 1 operacion simple
+          puntosExprLogica += (Integer) visit(ctx.expresionlogica());
+        }
+        */
+        int numHijos = ctx.getChildCount();
+        int numExprs = (numHijos - 1) / 2; //numero de expresiones - 1
+        puntosExprLogica += numExprs; //suma 1 por operador (operacion simple)
+        for (int i=0; i<=numHijos; i+=2) //recorre todas las expresiones
+        { 
+          puntosExprLogica += (Integer)visit(ctx.getChild(i)); //si conseguimos poner que solo haga esto cuando no sea una palabraclavebooleano quitar ese visit
+        }
       }
-      else
+      else //si es un booleano simple
       {
         puntosExprLogica += 1; //suma 1 operacion simple
       }
-      //System.out.println("puntos expresion logica: " + puntosExprLogica);
+
+      
+      System.out.println("puntos expresion logica: " + puntosExprLogica);
       return puntosExprLogica; 
     }
+
+    @Override 
+    public Integer visitPalabraclavebooleano(Pl2compilerParser.PalabraclavebooleanoContext ctx) 
+    { 
+      return 0; //si es operacion simple cambiar por 1
+    }
+	
 	
 
 //---------------------------------------------------------------------------------------------------------------------------------
