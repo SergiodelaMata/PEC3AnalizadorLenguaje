@@ -320,7 +320,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     }
 
     //For
-    @Override public Integer visitFuncionfor(Pl2compilerParser.FuncionforContext ctx) 
+    @Override public Integer visitFuncionfor(Pl2compilerParser.FuncionforContext ctx)  //hay que tener en cuenta los incremetos de i para sumarlos a operaciones basicas??
     { 
       int puntosFor = 0;
 
@@ -337,9 +337,17 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     @Override 
     public Integer visitOperacionswitch(Pl2compilerParser.OperacionswitchContext ctx) 
     { 
-      return 0; //TODO
+      int puntosSwitch = 0;
+      puntosSwitch += (Integer) visit(ctx.cabeceraswitch());
+      puntosSwitch += (Integer) visit(ctx.cuerposwitch());
+      return puntosSwitch;
     }
 	
+    @Override 
+    public Integer visitCabeceraswitch(Pl2compilerParser.CabeceraswitchContext ctx)
+    { 
+      return (Integer) visit(ctx.expr()); 
+    }
 
     //Habría que tener en cuenta también "cuerpo3" o cambiarlo en el Parser (creo que la segunda opción es más fácil)
     @Override 
@@ -365,12 +373,6 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
         }
       }
       return puntosSwitch;
-    }
-
-    @Override 
-    public Integer visitCabeceraswitch(Pl2compilerParser.CabeceraswitchContext ctx) 
-    { 
-      return 0; //TODO
     }
 	
     //((tipovariable? nombrevariable (operadorasignacion expr)?) | (tipovariable nombrevariable (separadoroperadores nombrevariable)*)) separadoroperaciones?;
@@ -403,17 +405,68 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       Cada función llamada: 2 puntos, +1 punto por cada parámetro pasado. Tal y como está en visitParametros el return no funcionaria
       */
       //return 2;
-      int puntosLlamada = 2; //suma 2
-      if (ctx.parametros() != null) //cada parametros suma 1
+      Integer puntosLlamada= 0; 
+      if(ctx.funcionfor() != null)
       {
-        ArrayList<Pl2compilerParser.ParametroContext> listaParametros = new ArrayList<Pl2compilerParser.ParametroContext>(ctx.parametros().parametro());
-        puntosLlamada += listaParametros.size(); //suma 1 por parametro
-        puntosLlamada += (Integer) visit(ctx.parametros());
+        puntosLlamada = (Integer) visit(ctx.funcionfor());
       }
+      else if(ctx.funcionwhile() != null)
+      {
+        puntosLlamada = (Integer) visit(ctx.funcionwhile());
+      }
+      else if(ctx.condicionales() != null)
+      {
+        puntosLlamada = (Integer) visit(ctx.condicionales());
+      }
+      else if(ctx.operacionswitch() != null)
+      {
+        puntosLlamada = (Integer) visit(ctx.operacionswitch());
+      }
+      else
+      {
+        puntosLlamada = 2; //suma 2
+        if (ctx.parametros() != null) //cada parametros suma 1
+        {
+          ArrayList<Pl2compilerParser.ParametroContext> listaParametros = new ArrayList<Pl2compilerParser.ParametroContext>(ctx.parametros().parametro());
+          puntosLlamada += listaParametros.size(); //suma 1 por parametro
+          puntosLlamada += (Integer) visit(ctx.parametros());
+        }
+      } 
       //System.out.println("Puntos llamar funcion: " + puntosLlamada);
       return puntosLlamada; //Cada función llamada: 2 puntos, +1 punto por cada parámetro pasado
     }
 
+
+    @Override public Integer visitCondicionales(Pl2compilerParser.CondicionalesContext ctx) 
+    { 
+      //Una o muchas condiciones separadas por operadorcondicionalpuertalogica y un cuerpo o cuerpo3
+      Integer puntosCondicionales = 0;
+      ArrayList<Pl2compilerParser.CondicionContext> listaCondiciones = new ArrayList<Pl2compilerParser.CondicionContext>(ctx.condicion());
+      if(listaCondiciones.size() != 0)
+      {
+        for (int i=0; i<listaCondiciones.size(); i++)
+        {
+          puntosCondicionales += (Integer) visit(listaCondiciones.get(i));
+        }
+      }
+      if(ctx.cuerpo() != null)
+      {
+        puntosCondicionales += (Integer) visit(ctx.cuerpo());
+      }
+      else if(ctx.cuerpo3() != null)
+      {
+        puntosCondicionales += (Integer) visit(ctx.cuerpo3());
+      }
+      return puntosCondicionales;
+    }
+	
+    @Override 
+    public Integer visitCondicion(Pl2compilerParser.CondicionContext ctx) 
+    {
+      Integer puntosCondicion = (Integer) visit(ctx.expresionlogica());
+      return puntosCondicion;
+    }
+	
 
     //(llamarfuncion|expr)?
     @Override 
