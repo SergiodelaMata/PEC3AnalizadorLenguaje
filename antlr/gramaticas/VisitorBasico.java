@@ -298,7 +298,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     @Override 
     public Integer visitFuncionwhile(Pl2compilerParser.FuncionwhileContext ctx) 
     { 
-      int puntosWhile = 0;
+      /*int puntosWhile = 0;
 
       if (ctx.expr() != null) puntosWhile += (int) Math.pow((Integer)visit(ctx.expr()), 2);
       else if (ctx.expresionlogica() != null) puntosWhile += (int) Math.pow((Integer)visit(ctx.expresionlogica()), 2);
@@ -307,7 +307,15 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       else if(ctx.cuerpo3() != null) puntosWhile += (Integer)visit(ctx.cuerpo3()); 
 
       puntosWhile = (int) Math.pow(puntosWhile, 2); //si hacemos aqui el ^2 no habria que quitarlo de arriba??
+      return puntosWhile;*/
+      int puntosWhile = 0;
+
+      if (ctx.expr() != null) puntosWhile += (Integer)visit(ctx.expr());
+      else if (ctx.expresionlogica() != null) puntosWhile += (Integer)visit(ctx.expresionlogica());
       
+      if(ctx.cuerpo() != null) puntosWhile += (int) Math.pow((Integer)visit(ctx.cuerpo()) ,2);
+      else if(ctx.cuerpo3() != null) puntosWhile += (int) Math.pow((Integer)visit(ctx.cuerpo3()), 2); 
+
       return puntosWhile;
     }
 
@@ -469,10 +477,8 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       else //si es un booleano simple
       {
         puntosExprLogica += 1; //suma 1 operacion simple
-      }
-
-      
-      System.out.println("puntos expresion logica: " + puntosExprLogica);
+      }      
+      //System.out.println("puntos expresion logica: " + puntosExprLogica);
       return puntosExprLogica; 
     }
 
