@@ -162,7 +162,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
         }
       }
 
-       return 0; //TODO: calcular lo que tiene dentro para sumarlo
+       return 1; //TODO: calcular lo que tiene dentro para sumarlo
 
      }
 
