@@ -1,6 +1,13 @@
 import java.util.ArrayList;
 import java.lang.Math;
 
+/*visitors/cosas que funcionan:
+-sumar punto parametro crear funcion
+-asignacion
+-llamarfuncion (contando parametros)
+-cabecera*/
+
+
 public class VisitorBasico extends Pl2compilerParserBaseVisitor
 {
     //En principio los visitors de reglas que no suman punto ni hacen nada se pueden dejar sin hacer (si no funciona asi habria que crearlos retornando null o algo asi)
@@ -26,7 +33,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
           visit(listaCrearFuncion.get(i));
         }
       }
-      System.out.println("HOLA");
+      //System.out.println("HOLA");
       return 1;
     }
 
@@ -44,8 +51,8 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
         {
           numFunctionPoints += (Integer) visit(ctx.cuerpo3());
         }
-        System.out.println("Hola nueva funcion");
-        //System.out.println(numFunctionPoints);
+        //System.out.println("Hola nueva funcion");
+        System.out.println("PUNTOS FUNCION: "+ numFunctionPoints);
 
         visitedFunction.setFunctionPoints(numFunctionPoints);
         file.addFunction(visitedFunction);
@@ -67,17 +74,19 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
           nombre += ctx.palabraclavefuncionmain().MAIN().getText() + "(";
         }
         visitedFunction.concatenateName(nombre);
+
+        Integer puntosCabecera = 0;
         if(ctx.parametros() == null)
         {
-          visitedFunction.addParameter(0);
-          System.out.println(0);
-          System.out.println(nombre + " ");
+          visitedFunction.addParameter(0); //esto no sobra? añadir 0 = no hacer nada!
+          //System.out.println(0);
+          //System.out.println(nombre + " ");
         }
         else
         {
           //numParameters += (Integer) ctx.visitParametros();
-          visit(ctx.parametros());
-          System.out.println(nombre + " ");
+          puntosCabecera += (Integer) visit(ctx.parametros());
+          //System.out.println(nombre + " ");
         }
         visitedFunction.concatenateName("):");
         if(ctx.retorno() != null)
@@ -91,8 +100,9 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
             numFunctionPoints += (int) visit(ctx.getChild(i));
         }*/
         //cabecerafuncion:  palabraclavecreacionfuncion (nombrefuncion|palabraclavefuncionmain) operadoraperturaparentesis parametros? operadorcierreparentesis separadordospuntos retorno;
-
-        return visitedFunction.getFunctionPoints();
+        //System.out.println("puntos cabecera: " + puntosCabecera);
+        //return visitedFunction.getFunctionPoints();
+        return puntosCabecera;
     }
 
     @Override
@@ -107,7 +117,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
         return numFunctionPoints;*/
         ArrayList<Pl2compilerParser.ParametroContext> listaParametros = new ArrayList<Pl2compilerParser.ParametroContext>(ctx.parametro());
         visitedFunction.addParameter(listaParametros.size());
-        System.out.println("Nº Parámetros: " + listaParametros.size());
+        //System.out.println("Nº Parámetros: " + listaParametros.size());
         visitedFunction.addParameter(listaParametros.size() * 2);
         for(int i = 0; i < listaParametros.size(); i++)
         {
@@ -123,10 +133,11 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
           }
 
         }
+        //System.out.println("PUNTOS PARAMETROS: " + listaParametros.size() * 2);
         return listaParametros.size() * 2;
     }
 
-    @Override public Integer visitExpr(Pl2compilerParser.ExprContext ctx) //TODO: calcular lo que tiene dentro para sumarlo
+    @Override public Integer visitExpr(Pl2compilerParser.ExprContext ctx) 
     {
       ArrayList<Pl2compilerParser.NombrevariableContext> listaNombreVariables = new ArrayList<Pl2compilerParser.NombrevariableContext>(ctx.nombrevariable());
       if(listaNombreVariables.size() != 0)
@@ -151,7 +162,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
         }
       }
 
-       return 1;
+       return 0; //TODO: calcular lo que tiene dentro para sumarlo
 
      }
 
@@ -209,7 +220,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
             numFunctionPoints += (Integer) visit(listaCodigo.get(i));
         }
       }
-      System.out.println("PUNTOS CUERPO: " + numFunctionPoints);
+      //System.out.println("PUNTOS CUERPO: " + numFunctionPoints);
       
       return numFunctionPoints;
     }
@@ -334,7 +345,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       {
         puntosAsignacion += (Integer) visit(ctx.expr());
       }
-      System.out.println("Puntos asignacion: " + puntosAsignacion);
+      //System.out.println("Puntos asignacion: " + puntosAsignacion);
       return puntosAsignacion; //Cada variable declarada es un punto, asumimos que sus hijos están
     }
 
@@ -347,13 +358,14 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       Cada función llamada: 2 puntos, +1 punto por cada parámetro pasado. Tal y como está en visitParametros el return no funcionaria
       */
       //return 2;
-      int puntosLLamada = 2; //suma 2
+      int puntosLlamada = 2; //suma 2
       if (ctx.parametros() != null) //cada parametros suma 1
       {
         ArrayList<Pl2compilerParser.ParametroContext> listaParametros = new ArrayList<Pl2compilerParser.ParametroContext>(ctx.parametros().parametro());
-        puntosLLamada += listaParametros.size();
+        puntosLlamada += listaParametros.size();
       }
-      return puntosLLamada; //Cada función llamada: 2 puntos, +1 punto por cada parámetro pasado
+      //System.out.println("Puntos llamar funcion: " + puntosLlamada);
+      return puntosLlamada; //Cada función llamada: 2 puntos, +1 punto por cada parámetro pasado
     }
 
 
