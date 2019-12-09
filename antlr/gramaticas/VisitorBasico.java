@@ -258,7 +258,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       if(ctx.cuerpo() != null) puntosWhile += (Integer)visit(ctx.cuerpo());
       else if(ctx.cuerpo3() != null) puntosWhile += (Integer)visit(ctx.cuerpo3()); //Este no está creado aún en este Visitor
 
-      puntosWhile = (int) Math.pow(puntosWhile, 2);      
+      puntosWhile = (int) Math.pow(puntosWhile, 2); //si hacemos aqui el ^2 no habria que quitarlo de arriba??
       
       return puntosWhile;
     }
@@ -346,7 +346,14 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       Usará visitParametros, pero hay un problema. En el return de visitParametros, según el enunciado sería:
       Cada función llamada: 2 puntos, +1 punto por cada parámetro pasado. Tal y como está en visitParametros el return no funcionaria
       */
-      return 2; //Cada función llamada: 2 puntos, +1 punto por cada parámetro pasado
+      //return 2;
+      int puntosLLamada = 2; //suma 2
+      if (ctx.parametros() != null) //cada parametros suma 1
+      {
+        ArrayList<Pl2compilerParser.ParametroContext> listaParametros = new ArrayList<Pl2compilerParser.ParametroContext>(ctx.parametros().parametro());
+        puntosLLamada += listaParametros.size();
+      }
+      return puntosLLamada; //Cada función llamada: 2 puntos, +1 punto por cada parámetro pasado
     }
 
 
@@ -362,10 +369,24 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       return puntosDevolver;
     }
 
+    //cuerpo2: (palabraclaveinicio codigo* palabraclavefin)+;
     @Override 
     public Integer visitCuerpo2(Pl2compilerParser.Cuerpo2Context ctx) 
     { 
-      return 0; //TODO
+      int numFunctionPoints = 0;
+      if (ctx.codigo() != null) //puede no tener codigo
+      {
+        ArrayList<Pl2compilerParser.CodigoContext> listaCodigo = new ArrayList<Pl2compilerParser.CodigoContext>(ctx.codigo()); //puede haber mas de 1 codigo
+        if(listaCodigo.size() != 0)
+        {
+          for (int i=0; i<listaCodigo.size(); i++)
+          {
+              numFunctionPoints += (Integer) visit(listaCodigo.get(i));
+          }
+        }
+      }
+      //System.out.println("PUNTOS CUERPO2: " + numFunctionPoints);
+      return numFunctionPoints;
     }
 	
 
