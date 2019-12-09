@@ -261,7 +261,11 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     @Override 
     public Integer visitCuerpo3(Pl2compilerParser.Cuerpo3Context ctx) 
     { 
-      return 0; //TODO 
+      Integer puntosCuerpo = 0;
+      if (ctx.llamarfuncion() != null) puntosCuerpo += (Integer) visit(ctx.llamarfuncion());
+      else if (ctx.asignacion() != null) puntosCuerpo += (Integer) visit(ctx.asignacion());
+      System.out.println("puntos cuerpo3: " + puntosCuerpo);
+      return puntosCuerpo;
     }
 	
 
@@ -297,10 +301,10 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       int puntosWhile = 0;
 
       if (ctx.expr() != null) puntosWhile += (int) Math.pow((Integer)visit(ctx.expr()), 2);
-      else if (ctx.expresionlogica() != null) puntosWhile += (int) Math.pow((Integer)visit(ctx.expresionlogica()), 2); //Este no está creado aún en este Visitor
+      else if (ctx.expresionlogica() != null) puntosWhile += (int) Math.pow((Integer)visit(ctx.expresionlogica()), 2);
       
       if(ctx.cuerpo() != null) puntosWhile += (Integer)visit(ctx.cuerpo());
-      else if(ctx.cuerpo3() != null) puntosWhile += (Integer)visit(ctx.cuerpo3()); //Este no está creado aún en este Visitor
+      else if(ctx.cuerpo3() != null) puntosWhile += (Integer)visit(ctx.cuerpo3()); 
 
       puntosWhile = (int) Math.pow(puntosWhile, 2); //si hacemos aqui el ^2 no habria que quitarlo de arriba??
       
@@ -435,6 +439,27 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       return numFunctionPoints;
     }
 
+    @Override 
+    public Integer visitExpresionlogica(Pl2compilerParser.ExpresionlogicaContext ctx)
+    { 
+      Integer puntosExprLogica = 0;
+      if ((ctx.operadorlogico() != null) || ctx.operadorcondicionalpuertalogica() != null)
+      {
+        ArrayList<Pl2compilerParser.ExprContext> listaExprs = new ArrayList<Pl2compilerParser.ExprContext>(ctx.expr());
+        puntosExprLogica += listaExprs.size() - 1; //suma uno por operador (operacion simple)
+        for (int i=0; i<listaExprs.size(); i++)
+        {
+          puntosExprLogica += (Integer) visit(listaExprs.get(i));
+        }
+      }
+      else
+      {
+        puntosExprLogica += 1; //suma 1 operacion simple
+      }
+      //System.out.println("puntos expresion logica: " + puntosExprLogica);
+      return puntosExprLogica; 
+    }
+	
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
