@@ -7,6 +7,42 @@ import java.lang.Math;
 -llamarfuncion (contando parametros)
 -cabecera*/
 
+//en la gramatica creo que hay un problema con el while y al ejecutar el fibonacci.prog coge devolver() dentro del while, por lo que los puntos se cuentan mal (Creo que se puede arreglar poniendo begin? y end? en funcionwhile)
+
+/*
+  VISITORS CREADOS PARA LOS PUNTOS:
+  prog 
+  asignacion 
+  crearfuncion 
+  variable (SOBRA EN EL PARSER!!)
+  condicion 
+  operacionswitch 
+  cabeceraswitch 
+  cuerposwtich 
+  condicionales 
+  funcionwhile 
+  funcionfor 
+  cuerpo 
+  cuerpo2 
+  cuerpo3 
+  llamarfuncion 
+  codigo 
+  crearfuncion 
+  devolver 
+  cabecerafuncion 
+  expr 
+  expresionlogica 
+  parametros 
+  parametro 
+
+  VISITORS EXTRA:
+  cadena
+  retorno
+  palabraclavebooleano
+
+  no se si hay que crear el de libreria para que sume como operacion basica y para las lineas efectivas
+*/
+
 
 public class VisitorBasico extends Pl2compilerParserBaseVisitor
 {
@@ -387,6 +423,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       int num := 3;
       int num;
       int num, num2;*/
+      visitedFunction.addDeclaration(1); //suma 1 declaracion
       int puntosAsignacion = 1; //suma 1
       if (ctx.expr() != null) //hay que mirar lo que tiene dentro
       {
@@ -405,6 +442,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       Cada función llamada: 2 puntos, +1 punto por cada parámetro pasado. Tal y como está en visitParametros el return no funcionaria
       */
       //return 2;
+      visitedFunction.addFunctionCall(1); //suma 1 llamada de funcion
       Integer puntosLlamada= 0; 
       if(ctx.funcionfor() != null)
       {
