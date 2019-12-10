@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.lang.Math;
 
 //en la gramatica creo que hay un problema con el while y al ejecutar el fibonacci.prog coge devolver() dentro del while, por lo que los puntos se cuentan mal (Creo que se puede arreglar poniendo begin? y end? en funcionwhile)
+//hay problemas con las limitaciones de los bloques (begin-end)
 
 /*
   VISITORS CREADOS PARA LOS PUNTOS:
@@ -35,6 +36,7 @@ import java.lang.Math;
   palabraclavebooleano
 
   no se si hay que crear el de libreria para que sume como operacion basica y para las lineas efectivas
+  para las lineas efectivas crear separadoroperaciones y en cada ; que visite suma 1
 */
 
 
