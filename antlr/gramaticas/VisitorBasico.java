@@ -1,12 +1,6 @@
 import java.util.ArrayList;
 import java.lang.Math;
 
-/*visitors/cosas que funcionan:
--sumar punto parametro crear funcion
--asignacion
--llamarfuncion (contando parametros)
--cabecera*/
-
 //en la gramatica creo que hay un problema con el while y al ejecutar el fibonacci.prog coge devolver() dentro del while, por lo que los puntos se cuentan mal (Creo que se puede arreglar poniendo begin? y end? en funcionwhile)
 
 /*
@@ -348,10 +342,10 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
 
       if (ctx.expr() != null) puntosWhile += (Integer)visit(ctx.expr());
       else if (ctx.expresionlogica() != null) puntosWhile += (Integer)visit(ctx.expresionlogica());
-      
+
       if(ctx.cuerpo() != null) puntosWhile += (int) Math.pow((Integer)visit(ctx.cuerpo()) ,2);
       else if(ctx.cuerpo3() != null) puntosWhile += (int) Math.pow((Integer)visit(ctx.cuerpo3()), 2); 
-
+      System.out.println("puntos while: " + puntosWhile);
       return puntosWhile;
     }
 
