@@ -489,12 +489,13 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       }
       if(ctx.cuerpo() != null)
       {
-        puntosCondicionales += (Integer) visit(ctx.cuerpo());
+        puntosCondicionales += (int) Math.pow((Integer) visit(ctx.cuerpo()), 2);
       }
       else if(ctx.cuerpo3() != null)
       {
-        puntosCondicionales += (Integer) visit(ctx.cuerpo3());
+        puntosCondicionales += (int) Math.pow((Integer) visit(ctx.cuerpo3()), 2);
       }
+      //puntosCondicionales = (int) Math.pow(puntosCondicionales, 2);
       return puntosCondicionales;
     }
 	
