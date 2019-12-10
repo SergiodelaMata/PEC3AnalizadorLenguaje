@@ -118,6 +118,8 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
         {
           //numParameters += (Integer) ctx.visitParametros();
           puntosCabecera += (Integer) visit(ctx.parametros());
+          ArrayList<Pl2compilerParser.ParametroContext> listaParametros = new ArrayList<Pl2compilerParser.ParametroContext>(ctx.parametros().parametro());
+          puntosCabecera += listaParametros.size() * 2; //suma 2 puntos por parametro recibido
           //System.out.println(nombre + " ");
         }
         visitedFunction.concatenateName("):");
@@ -126,11 +128,6 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
           visit(ctx.retorno());
         }
         
-        if (ctx.parametros() != null)
-        {
-          ArrayList<Pl2compilerParser.ParametroContext> listaParametros = new ArrayList<Pl2compilerParser.ParametroContext>(ctx.parametros().parametro());
-          puntosCabecera += listaParametros.size() * 2; //suma 2 puntos por parametro recibido
-        }
         //numParameters += ctx.parametros();
         //falta añadir nombre funcion (hijo 1)
         /*for (int i=0; i<ctx.getChildCount(); i++)
@@ -347,7 +344,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
 
       if(ctx.cuerpo() != null) puntosWhile += (int) Math.pow((Integer)visit(ctx.cuerpo()) ,2);
       else if(ctx.cuerpo3() != null) puntosWhile += (int) Math.pow((Integer)visit(ctx.cuerpo3()), 2); 
-      System.out.println("puntos while: " + puntosWhile);
+      //System.out.println("puntos while: " + puntosWhile);
       return puntosWhile;
     }
 
@@ -371,7 +368,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     { 
       int puntosSwitch = 0;
       puntosSwitch += (Integer) visit(ctx.cabeceraswitch());
-      puntosSwitch += (Integer) visit(ctx.cuerposwitch());
+      puntosSwitch += (Integer) visit(ctx.cuerposwitch()); //el ^2 iria aqui?????
       return puntosSwitch;
     }
 	
