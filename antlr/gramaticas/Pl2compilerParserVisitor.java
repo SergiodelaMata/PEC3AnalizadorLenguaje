@@ -28,35 +28,11 @@ public interface Pl2compilerParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAsignacion(Pl2compilerParser.AsignacionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link Pl2compilerParser#variable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitVariable(Pl2compilerParser.VariableContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link Pl2compilerParser#condicion}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitCondicion(Pl2compilerParser.CondicionContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link Pl2compilerParser#operacionswitch}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitOperacionswitch(Pl2compilerParser.OperacionswitchContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link Pl2compilerParser#cabeceraswitch}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCabeceraswitch(Pl2compilerParser.CabeceraswitchContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link Pl2compilerParser#cuerposwitch}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCuerposwitch(Pl2compilerParser.CuerposwitchContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link Pl2compilerParser#condicional}.
 	 * @param ctx the parse tree
@@ -351,18 +327,6 @@ public interface Pl2compilerParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitPalabraclavebuclewhile(Pl2compilerParser.PalabraclavebuclewhileContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link Pl2compilerParser#palabrareservadaaperturaswitch}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPalabrareservadaaperturaswitch(Pl2compilerParser.PalabrareservadaaperturaswitchContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link Pl2compilerParser#palabrareservadacierrewitch}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPalabrareservadacierrewitch(Pl2compilerParser.PalabrareservadacierrewitchContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link Pl2compilerParser#palabrareservadacase}.
 	 * @param ctx the parse tree
