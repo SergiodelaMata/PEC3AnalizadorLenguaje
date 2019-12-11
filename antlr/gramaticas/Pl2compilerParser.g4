@@ -9,7 +9,7 @@ prog: (libreria|expr|asignacion|crearfuncion)+;
 libreria: (palabraclaveincluirlibreria nombrepaquete separadoroperaciones)+;
 asignacion: ((tipovariable? nombrevariable (operadorasignacion expr)?)
             | (tipovariable nombrevariable (separadoroperadores nombrevariable)*)) separadoroperaciones?;
-variable: tipovariable? nombrevariable operadorasignacion expr;
+//variable: tipovariable? nombrevariable operadorasignacion expr;
 condicion: operadoraperturaparentesis expresionlogica operadorcierreparentesis;
 operacionswitch: cabeceraswitch cuerposwitch;
 cabeceraswitch: palabrareservadaaperturaswitch operadoraperturaparentesis expr operadorcierreparentesis;

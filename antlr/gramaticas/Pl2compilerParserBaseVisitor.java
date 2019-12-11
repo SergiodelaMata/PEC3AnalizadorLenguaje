@@ -1,4 +1,4 @@
-// Generated from ./Pl2compilerParser.g4 by ANTLR 4.7.2
+// Generated from Pl2compilerParser.g4 by ANTLR 4.7.2
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
@@ -31,13 +31,6 @@ public class Pl2compilerParserBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitAsignacion(Pl2compilerParser.AsignacionContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitVariable(Pl2compilerParser.VariableContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

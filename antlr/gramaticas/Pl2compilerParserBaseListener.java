@@ -51,18 +51,6 @@ public class Pl2compilerParserBaseListener implements Pl2compilerParserListener 
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVariable(Pl2compilerParser.VariableContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitVariable(Pl2compilerParser.VariableContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterCondicion(Pl2compilerParser.CondicionContext ctx) { }
 	/**
 	 * {@inheritDoc}
