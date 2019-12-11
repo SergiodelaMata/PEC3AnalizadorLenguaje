@@ -1,15 +1,11 @@
 import java.util.ArrayList;
 import java.lang.Math;
 
-//en la gramatica creo que hay un problema con el while y al ejecutar el fibonacci.prog coge devolver() dentro del while, por lo que los puntos se cuentan mal (Creo que se puede arreglar poniendo begin? y end? en funcionwhile)
-//hay problemas con las limitaciones de los bloques (begin-end)
-
 /*
   VISITORS CREADOS PARA LOS PUNTOS:
   prog 
   asignacion 
   crearfuncion 
-  variable (SOBRA EN EL PARSER!!)
   condicion 
   operacionswitch 
   cabeceraswitch 
@@ -520,6 +516,10 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       if(ctx.cuerpo() != null)
       {
         puntosCondicional += (int) Math.pow((Integer) visit(ctx.cuerpo()), 2);
+      }
+      else if(ctx.cuerpo3() != null)
+      {
+        puntosCondicional += (int) Math.pow((Integer) visit(ctx.cuerpo3()), 2);
       }
       else if(ctx.cuerpo4() != null)
       {
