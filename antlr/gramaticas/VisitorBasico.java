@@ -25,14 +25,17 @@ import java.lang.Math;
   expresionlogica
   parametros
   parametro
+  palabraclavebooleano
 
   VISITORS EXTRA:
   cadena
   retorno
-  palabraclavebooleano
+  
 
   no se si hay que crear el de libreria para que sume como operacion basica y para las lineas efectivas
-  para las lineas efectivas crear separadoroperaciones y en cada ; que visite suma 1
+
+
+  IMPORTANTE: falta contar la cabecera del for tanto para los puntos como para operaciones, etc
 */
 
 
@@ -201,10 +204,26 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
 
 
       int puntosExpr = 0;
-      if ((ctx.operadoraritmeticosuma() != null) && (ctx.expr(0) != null) && (ctx.expr(1) != null)) puntosExpr += (Integer) (visit(ctx.expr(0))) + 1 + (Integer) (visit(ctx.expr(1))); //puntosExpr + 1 del operador + puntos Expr
-      else if (ctx.operadoraritmeticoresta() != null) puntosExpr += (Integer) (visit(ctx.expr(0))) + 1 + (Integer) (visit(ctx.expr(1)));
-      else if (ctx.operadoraritmeticoproducto() != null) puntosExpr += (Integer) (visit(ctx.expr(0))) + 1 + (Integer) (visit(ctx.expr(1)));
-      else if (ctx.operadoraritmeticodivision() != null) puntosExpr += (Integer) (visit(ctx.expr(0))) + 1 + (Integer) (visit(ctx.expr(1)));
+      if ((ctx.operadoraritmeticosuma() != null) && (ctx.expr(0) != null) && (ctx.expr(1) != null))
+      {
+        puntosExpr += (Integer) (visit(ctx.expr(0))) + 1 + (Integer) (visit(ctx.expr(1))); //puntosExpr + 1 del operador + puntos Expr
+        visitedFunction.addSimpleOperator(1);
+      } 
+      else if (ctx.operadoraritmeticoresta() != null) 
+      {
+        puntosExpr += (Integer) (visit(ctx.expr(0))) + 1 + (Integer) (visit(ctx.expr(1)));
+        visitedFunction.addSimpleOperator(1);
+      }
+      else if (ctx.operadoraritmeticoproducto() != null)
+      {
+        puntosExpr += (Integer) (visit(ctx.expr(0))) + 1 + (Integer) (visit(ctx.expr(1)));
+        visitedFunction.addSimpleOperator(1);
+      }
+      else if (ctx.operadoraritmeticodivision() != null) 
+      {
+        puntosExpr += (Integer) (visit(ctx.expr(0))) + 1 + (Integer) (visit(ctx.expr(1)));
+        visitedFunction.addSimpleOperator(1);
+      }
       else if (ctx.llamarfuncion() != null) puntosExpr += (Integer) visit(ctx.llamarfuncion());
       else if((ctx.operadoraperturaparentesis() != null) && (ctx.expr(0) != null)) puntosExpr += (Integer) visit(ctx.expr(0));
 
@@ -462,11 +481,13 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       if (ctx.tipovariable() != null) //es una declaracion
       {
         visitedFunction.addDeclaration(listaVariables.size()); //suma 1 por declaracion
+        visitedFunction.addSimpleOperator(listaVariables.size());
         puntosAsignacion += listaVariables.size(); //suma 1 por declaracion
       }
       if (ctx.operadorasignacion() != null) //es una asignacion
         {
           puntosAsignacion++; //suma 1 (operacion simple)
+          visitedFunction.addSimpleOperator(1);
           if (ctx.expr() != null) //hay que mirar lo que tiene dentro
           {
             puntosAsignacion += (Integer) visit(ctx.expr());
@@ -499,13 +520,14 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       {
         puntosLlamada = (Integer) visit(ctx.condicionales());
       }
-      else if(ctx.operacionswitch() != null)
+      /*else if(ctx.operacionswitch() != null)
       {
         puntosLlamada = (Integer) visit(ctx.operacionswitch());
-      }
+      }*/
       else
       {
         visitedFunction.addFunctionCall(1); //suma 1 llamada de funcion
+        visitedFunction.addSimpleOperator(1);
         puntosLlamada = 2; //suma 2
         if (ctx.parametros() != null) //cada parametros suma 1
         {
@@ -573,6 +595,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     public Integer visitDevolver(Pl2compilerParser.DevolverContext ctx)
     {
       int puntosDevolver = 0;
+      visitedFunction.addSimpleOperator(1);
 
       if(ctx.llamarfuncion() != null) puntosDevolver += (Integer)visit(ctx.llamarfuncion());
       else if(ctx.expr() != null) puntosDevolver += (Integer)visit(ctx.expr());
@@ -601,35 +624,24 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     }
 
     @Override
-    public Integer visitExpresionlogica(Pl2compilerParser.ExpresionlogicaContext ctx) //ESTA MAL
+    public Integer visitExpresionlogica(Pl2compilerParser.ExpresionlogicaContext ctx)
     {
       Integer puntosExprLogica = 0;
-      if ((ctx.operadorlogico() != null) || ctx.operadorcondicionalpuertalogica() != null) //si es una expresion compleja
+      int numHijos = ctx.getChildCount();
+      //if ((ctx.operadorlogico() != null) || (ctx.operadorcondicionalpuertalogica() != null)) 
+      if (numHijos == 1) //si es un booleano simple
       {
-        /*ArrayList<Pl2compilerParser.ExprContext> listaExprs = new ArrayList<Pl2compilerParser.ExprContext>(ctx.expr());
-
-        puntosExprLogica += listaExprs.size() - 1; //suma uno por operador (operacion simple)
-        for (int i=0; i<listaExprs.size(); i++)
-        {
-          puntosExprLogica += (Integer) visit(listaExprs.get(i));
-        }
-        if (ctx.expresionlogica() != null)
-        {
-          puntosExprLogica++; //suma 1 operacion simple
-          puntosExprLogica += (Integer) visit(ctx.expresionlogica());
-        }
-        */
-        int numHijos = ctx.getChildCount();
-        int numExprs = (numHijos - 1) / 2; //numero de expresiones - 1
-        puntosExprLogica += numExprs; //suma 1 por operador (operacion simple)
-        for (int i=0; i<=numHijos; i+=2) //recorre todas las expresiones (en orden)
+        puntosExprLogica += (Integer) visit(ctx.palabraclavebooleano()); 
+      }
+      else //si es una expresion compleja
+      {
+        int numOps = (numHijos - 1) / 2; //numero de expresiones - 1
+        puntosExprLogica += numOps; //suma 1 por operador (operacion simple)
+        visitedFunction.addSimpleOperator(numOps);
+        for (int i=0; i<=numHijos; i+=2) //recorre todas las expresiones (en orden) saltando los operadores
         {
           puntosExprLogica += (Integer)visit(ctx.getChild(i));
         }
-      }
-      else //si es un booleano simple
-      {
-        puntosExprLogica += 1; //suma 1 operacion simple
       }
       //System.out.println("puntos expresion logica: " + puntosExprLogica);
       return puntosExprLogica;
