@@ -468,30 +468,40 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     }
 
 
-    @Override public Integer visitCondicionales(Pl2compilerParser.CondicionalesContext ctx) 
+    @Override public Integer visitCondicional(Pl2compilerParser.CondicionalContext ctx) 
     { 
-      //Una o muchas condiciones separadas por operadorcondicionalpuertalogica y un cuerpo o cuerpo3
-      Integer puntosCondicionales = 0;
+      Integer puntosCondicional = 0;
       ArrayList<Pl2compilerParser.CondicionContext> listaCondiciones = new ArrayList<Pl2compilerParser.CondicionContext>(ctx.condicion());
       if(listaCondiciones.size() != 0)
       {
         for (int i=0; i<listaCondiciones.size(); i++)
         {
-          puntosCondicionales += (Integer) visit(listaCondiciones.get(i));
+          puntosCondicional += (Integer) visit(listaCondiciones.get(i));
         }
       }
       if(ctx.cuerpo() != null)
       {
-        puntosCondicionales += (int) Math.pow((Integer) visit(ctx.cuerpo()), 2);
+        puntosCondicional += (int) Math.pow((Integer) visit(ctx.cuerpo()), 2);
       }
-      else if(ctx.cuerpo3() != null)
+      else if(ctx.cuerpo4() != null)
       {
-        puntosCondicionales += (int) Math.pow((Integer) visit(ctx.cuerpo3()), 2);
+        puntosCondicional += (int) Math.pow((Integer) visit(ctx.cuerpo3()), 2);
       }
       //puntosCondicionales = (int) Math.pow(puntosCondicionales, 2);
-      return puntosCondicionales;
+      return puntosCondicional;
     }
 	
+    @Override public Integer visitCondicionales(Pl2compilerParser.CondicionalesContext ctx) 
+    { 
+      Integer puntosCondicionales = 0;
+      ArrayList<Pl2compilerParser.CondicionContext> listaCondiciones = new ArrayList<Pl2compilerParser.CondicionContext>(ctx.condicion());
+      for (int i=0; i<listaCondiciones.size(); i++) //no hace falta comprobar si la lista esta vacia porque es condicion+
+      {
+        puntosCondicionales += (Integer) visit(listaCondiciones.get(i));
+      }
+      return puntosCondicionales; 
+    }	
+
     @Override 
     public Integer visitCondicion(Pl2compilerParser.CondicionContext ctx) 
     {

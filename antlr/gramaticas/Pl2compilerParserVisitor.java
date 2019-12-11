@@ -58,6 +58,12 @@ public interface Pl2compilerParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCuerposwitch(Pl2compilerParser.CuerposwitchContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link Pl2compilerParser#condicional}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCondicional(Pl2compilerParser.CondicionalContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link Pl2compilerParser#condicionales}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -93,6 +99,12 @@ public interface Pl2compilerParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitCuerpo3(Pl2compilerParser.Cuerpo3Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link Pl2compilerParser#cuerpo4}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCuerpo4(Pl2compilerParser.Cuerpo4Context ctx);
 	/**
 	 * Visit a parse tree produced by {@link Pl2compilerParser#llamarfuncion}.
 	 * @param ctx the parse tree
