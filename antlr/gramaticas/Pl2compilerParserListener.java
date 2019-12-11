@@ -37,16 +37,6 @@ public interface Pl2compilerParserListener extends ParseTreeListener {
 	 */
 	void exitAsignacion(Pl2compilerParser.AsignacionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link Pl2compilerParser#variable}.
-	 * @param ctx the parse tree
-	 */
-	void enterVariable(Pl2compilerParser.VariableContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link Pl2compilerParser#variable}.
-	 * @param ctx the parse tree
-	 */
-	void exitVariable(Pl2compilerParser.VariableContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link Pl2compilerParser#condicion}.
 	 * @param ctx the parse tree
 	 */

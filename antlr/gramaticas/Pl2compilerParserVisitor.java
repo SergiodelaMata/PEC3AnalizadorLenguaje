@@ -28,12 +28,6 @@ public interface Pl2compilerParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAsignacion(Pl2compilerParser.AsignacionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link Pl2compilerParser#variable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitVariable(Pl2compilerParser.VariableContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link Pl2compilerParser#condicion}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
