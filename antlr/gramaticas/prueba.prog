@@ -7,7 +7,7 @@ begin
     for case from 30 to 1 step -1 do
         begin
             for caso from beginer to 45 do
-                for casa from 43 to ender step paso do
+                for casa from 43 to ender step paso do 
                     while(casa<50) //10
                         imprimir("casa menor que 50");
                 enddo

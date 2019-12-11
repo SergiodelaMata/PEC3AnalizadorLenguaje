@@ -323,7 +323,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
           puntosCuerpo += (Integer) visit(ctx.asignacion(i));
         }
       }
-      System.out.println("puntos cuerpo4: " + puntosCuerpo);
+      //System.out.println("puntos cuerpo4: " + puntosCuerpo);
       return puntosCuerpo; 
     }
 	
@@ -536,7 +536,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
         puntosCondicional += (int) Math.pow((Integer) visit(ctx.cuerpo4()), 2);
       }
       //puntosCondicionales = (int) Math.pow(puntosCondicionales, 2);
-      System.out.println("puntos condicional: " + puntosCondicional);
+      //System.out.println("puntos condicional: " + puntosCondicional);
       return puntosCondicional;
     }
 	
@@ -613,9 +613,9 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
         int numHijos = ctx.getChildCount();
         int numExprs = (numHijos - 1) / 2; //numero de expresiones - 1
         puntosExprLogica += numExprs; //suma 1 por operador (operacion simple)
-        for (int i=0; i<=numHijos; i+=2) //recorre todas las expresiones
+        for (int i=0; i<=numHijos; i+=2) //recorre todas las expresiones (en orden)
         { 
-          puntosExprLogica += (Integer)visit(ctx.getChild(i)); //si conseguimos poner que solo haga esto cuando no sea una palabraclavebooleano quitar ese visit
+          puntosExprLogica += (Integer)visit(ctx.getChild(i));
         }
       }
       else //si es un booleano simple
@@ -629,7 +629,13 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     @Override 
     public Integer visitPalabraclavebooleano(Pl2compilerParser.PalabraclavebooleanoContext ctx) 
     { 
-      return 0; //si es operacion simple cambiar por 1
+      int puntosBooleano = 0;
+      if (ctx.getText().equals("!true") || ctx.getText().equals("!false"))
+      {
+        puntosBooleano++;
+        visitedFunction.addSimpleOperator(1);
+      }
+      return puntosBooleano; 
     }
 	
 	
