@@ -202,7 +202,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       //System.out.println(ctx.getText());
       //System.out.println("puntos expr: " + puntosExpr);
       //falta este caso: operadoraperturaparentesis (nombrevariable|numeros) (separadoroperadores (nombrevariable|numeros))* operadorcierreparentesis, que no se si hace falta (creo que no)
-      return puntosExpr; //TODO: calcular lo que tiene dentro para sumarlo
+      return puntosExpr;
     }
      
     @Override 
