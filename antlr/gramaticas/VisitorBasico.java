@@ -79,10 +79,6 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
         {
           numFunctionPoints += (Integer) visit(ctx.cuerpo());
         }
-        if (ctx.cuerpo3() != null)
-        {
-          numFunctionPoints += (Integer) visit(ctx.cuerpo3());
-        }
         //System.out.println("Hola nueva funcion");
         System.out.println("PUNTOS FUNCION: "+ numFunctionPoints);
 
@@ -291,10 +287,48 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     public Integer visitCuerpo3(Pl2compilerParser.Cuerpo3Context ctx) 
     { 
       Integer puntosCuerpo = 0;
-      if (ctx.llamarfuncion() != null) puntosCuerpo += (Integer) visit(ctx.llamarfuncion());
-      else if (ctx.asignacion() != null) puntosCuerpo += (Integer) visit(ctx.asignacion());
+      ArrayList<Pl2compilerParser.LlamarfuncionContext> listaLlamada = new ArrayList<Pl2compilerParser.LlamarfuncionContext>(ctx.llamarfuncion()); //puede haber mas de 1 codigo
+      ArrayList<Pl2compilerParser.AsignacionContext> listaAsignacion = new ArrayList<Pl2compilerParser.AsignacionContext>(ctx.asignacion()); //puede haber mas de 1 codigo
+      if (ctx.llamarfuncion() != null) 
+      {
+        for (int i=0; i<listaLlamada.size(); i++)
+        {
+          puntosCuerpo += (Integer) visit(ctx.llamarfuncion(i));
+        }
+      }
+      else if (ctx.asignacion() != null) 
+      {
+        for (int i=0; i<listaAsignacion.size(); i++)
+        {
+          puntosCuerpo += (Integer) visit(ctx.asignacion(i));
+        }
+      }
       //System.out.println("puntos cuerpo3: " + puntosCuerpo);
       return puntosCuerpo;
+    }
+
+    @Override 
+    public Integer visitCuerpo4(Pl2compilerParser.Cuerpo4Context ctx) 
+    { 
+      Integer puntosCuerpo = 0;
+      ArrayList<Pl2compilerParser.LlamarfuncionContext> listaLlamada = new ArrayList<Pl2compilerParser.LlamarfuncionContext>(ctx.llamarfuncion()); //puede haber mas de 1 codigo
+      ArrayList<Pl2compilerParser.AsignacionContext> listaAsignacion = new ArrayList<Pl2compilerParser.AsignacionContext>(ctx.asignacion()); //puede haber mas de 1 codigo
+      if (ctx.llamarfuncion() != null) 
+      {
+        for (int i=0; i<listaLlamada.size(); i++)
+        {
+          puntosCuerpo += (Integer) visit(ctx.llamarfuncion(i));
+        }
+      }
+      else if (ctx.asignacion() != null) 
+      {
+        for (int i=0; i<listaAsignacion.size(); i++)
+        {
+          puntosCuerpo += (Integer) visit(ctx.asignacion(i));
+        }
+      }
+      System.out.println("puntos cuerpo4: " + puntosCuerpo);
+      return puntosCuerpo; 
     }
 	
 
@@ -320,6 +354,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       {
         numFunctionPoints += (Integer) visit(ctx.getChild(i));
       }
+      //System.out.println("puntos codigo: " + numFunctionPoints);
       return numFunctionPoints;
      }
 
@@ -344,6 +379,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
 
       if(ctx.cuerpo() != null) puntosWhile += (int) Math.pow((Integer)visit(ctx.cuerpo()) ,2);
       else if(ctx.cuerpo3() != null) puntosWhile += (int) Math.pow((Integer)visit(ctx.cuerpo3()), 2); 
+      else if(ctx.cuerpo4() != null) puntosWhile += (int) Math.pow((Integer)visit(ctx.cuerpo4()), 2);
       //System.out.println("puntos while: " + puntosWhile);
       return puntosWhile;
     }
@@ -354,6 +390,8 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       int puntosFor = 0;
 
       if(ctx.cuerpo() != null) puntosFor += (Integer) visit(ctx.cuerpo());
+      else if(ctx.cuerpo3() != null) puntosFor += (Integer) visit(ctx.cuerpo3());
+      else if(ctx.cuerpo4() != null) puntosFor += (Integer) visit(ctx.cuerpo4());
 
       puntosFor = (int) Math.pow(puntosFor, 2);
 
@@ -363,7 +401,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
 
     //Switch 
     //tiene Operacionswitch, que se compone de "cabeceraswitch cuerposwitch"  No sé si solo con el cuerposwitch valdría
-    @Override 
+    /*@Override 
     public Integer visitOperacionswitch(Pl2compilerParser.OperacionswitchContext ctx) 
     { 
       int puntosSwitch = 0;
@@ -382,9 +420,8 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     @Override 
     public Integer visitCuerposwitch(Pl2compilerParser.CuerposwitchContext ctx) 
     { 
-      /*int puntosSwitch = 0;
-      puntosSwitch += (int) Math.pow((Integer)visit(ctx.expr()), 2);
-      */
+      //int puntosSwitch = 0;
+      //puntosSwitch += (int) Math.pow((Integer)visit(ctx.expr()), 2);
       //esto igual no sirve a la hora de hacer el grafo
       ArrayList<Pl2compilerParser.ExprContext> listaExpr = new ArrayList<Pl2compilerParser.ExprContext>(ctx.expr());
       int puntosSwitch = 0;
@@ -402,8 +439,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
         }
       }
       return puntosSwitch;
-    }
-	
+    }*/
     //((tipovariable? nombrevariable (operadorasignacion expr)?) | (tipovariable nombrevariable (separadoroperadores nombrevariable)*)) separadoroperaciones?;
     @Override 
     public Integer visitAsignacion(Pl2compilerParser.AsignacionContext ctx) 
@@ -471,7 +507,9 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     @Override public Integer visitCondicional(Pl2compilerParser.CondicionalContext ctx) 
     { 
       Integer puntosCondicional = 0;
+      ArrayList<Pl2compilerParser.OperadorcondicionalpuertalogicaContext> listaOperadores = new ArrayList<Pl2compilerParser.OperadorcondicionalpuertalogicaContext>(ctx.operadorcondicionalpuertalogica());
       ArrayList<Pl2compilerParser.CondicionContext> listaCondiciones = new ArrayList<Pl2compilerParser.CondicionContext>(ctx.condicion());
+      puntosCondicional += listaOperadores.size(); //suma 1 por operacion simple
       if(listaCondiciones.size() != 0)
       {
         for (int i=0; i<listaCondiciones.size(); i++)
@@ -485,16 +523,17 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       }
       else if(ctx.cuerpo4() != null)
       {
-        puntosCondicional += (int) Math.pow((Integer) visit(ctx.cuerpo3()), 2);
+        puntosCondicional += (int) Math.pow((Integer) visit(ctx.cuerpo4()), 2);
       }
       //puntosCondicionales = (int) Math.pow(puntosCondicionales, 2);
+      System.out.println("puntos condicional: " + puntosCondicional);
       return puntosCondicional;
     }
 	
     @Override public Integer visitCondicionales(Pl2compilerParser.CondicionalesContext ctx) 
     { 
       Integer puntosCondicionales = 0;
-      ArrayList<Pl2compilerParser.CondicionContext> listaCondiciones = new ArrayList<Pl2compilerParser.CondicionContext>(ctx.condicion());
+      ArrayList<Pl2compilerParser.CondicionalContext> listaCondiciones = new ArrayList<Pl2compilerParser.CondicionalContext>(ctx.condicional());
       for (int i=0; i<listaCondiciones.size(); i++) //no hace falta comprobar si la lista esta vacia porque es condicion+
       {
         puntosCondicionales += (Integer) visit(listaCondiciones.get(i));
