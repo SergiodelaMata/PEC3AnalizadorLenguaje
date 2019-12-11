@@ -397,7 +397,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       puntosWhile = (int) Math.pow(puntosWhile, 2); //si hacemos aqui el ^2 no habria que quitarlo de arriba??
       return puntosWhile;*/
       int puntosWhile = 0;
-
+      visitedFunction.addEfectiveLine(1); //linea de cabecera (condicion)
       if (ctx.expr() != null) puntosWhile += (Integer)visit(ctx.expr());
       else if (ctx.expresionlogica() != null) puntosWhile += (Integer)visit(ctx.expresionlogica());
 
@@ -412,6 +412,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     @Override public Integer visitFuncionfor(Pl2compilerParser.FuncionforContext ctx)  //hay que tener en cuenta los incremetos de i para sumarlos a operaciones basicas??
     {
       int puntosFor = 0;
+      visitedFunction.addEfectiveLine(1); //cabecera for
 
       if(ctx.cuerpo() != null) puntosFor += (Integer) visit(ctx.cuerpo());
       else if(ctx.cuerpo3() != null) puntosFor += (Integer) visit(ctx.cuerpo3());
@@ -477,6 +478,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       int num;
       int num, num2;*/
       int puntosAsignacion = 0;
+      visitedFunction.addEfectiveLine(1);
       ArrayList<Pl2compilerParser.NombrevariableContext> listaVariables = new ArrayList<Pl2compilerParser.NombrevariableContext>(ctx.nombrevariable());
       if (ctx.tipovariable() != null) //es una declaracion
       {
@@ -507,6 +509,10 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       Cada función llamada: 2 puntos, +1 punto por cada parámetro pasado. Tal y como está en visitParametros el return no funcionaria
       */
       //return 2;
+      if (ctx.separadoroperaciones() != null) //solo cuenta como linea efectiva si se acaba la linea (si no eesta dentro de otra)
+      {
+        visitedFunction.addEfectiveLine(1); 
+      }
       Integer puntosLlamada= 0;
       if(ctx.funcionfor() != null)
       {
@@ -574,6 +580,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     @Override public Integer visitCondicionales(Pl2compilerParser.CondicionalesContext ctx)
     {
       Integer puntosCondicionales = 0;
+      visitedFunction.addEfectiveLine(1); //cabecera if (NO SE SI SE AÑADE AQUI O EN CONDICIONAL)
       ArrayList<Pl2compilerParser.CondicionalContext> listaCondiciones = new ArrayList<Pl2compilerParser.CondicionalContext>(ctx.condicional());
       for (int i=0; i<listaCondiciones.size(); i++) //no hace falta comprobar si la lista esta vacia porque es condicion+
       {
@@ -596,6 +603,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     {
       int puntosDevolver = 0;
       visitedFunction.addSimpleOperator(1);
+      visitedFunction.addEfectiveLine(1);
 
       if(ctx.llamarfuncion() != null) puntosDevolver += (Integer)visit(ctx.llamarfuncion());
       else if(ctx.expr() != null) puntosDevolver += (Integer)visit(ctx.expr());
@@ -628,10 +636,9 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     {
       Integer puntosExprLogica = 0;
       int numHijos = ctx.getChildCount();
-      //if ((ctx.operadorlogico() != null) || (ctx.operadorcondicionalpuertalogica() != null)) 
       if (numHijos == 1) //si es un booleano simple
       {
-        puntosExprLogica += (Integer) visit(ctx.palabraclavebooleano()); 
+        puntosExprLogica += (Integer) visit(ctx.palabraclavebooleano(0)); //pongo 0 porque sino no va (no tiene sentido porque ctx.palabraclavebooleano().size = 1)
       }
       else //si es una expresion compleja
       {
