@@ -448,12 +448,22 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       int num := 3;
       int num;
       int num, num2;*/
-      visitedFunction.addDeclaration(1); //suma 1 declaracion
-      int puntosAsignacion = 1; //suma 1
-      if (ctx.expr() != null) //hay que mirar lo que tiene dentro
+      int puntosAsignacion = 0;
+      ArrayList<Pl2compilerParser.NombrevariableContext> listaVariables = new ArrayList<Pl2compilerParser.NombrevariableContext>(ctx.nombrevariable());
+      if (ctx.tipovariable() != null) //es una declaracion
       {
-        puntosAsignacion += (Integer) visit(ctx.expr());
+        visitedFunction.addDeclaration(listaVariables.size()); //suma 1 por declaracion
+        puntosAsignacion += listaVariables.size(); //suma 1 por declaracion
       }
+      if (ctx.operadorasignacion() != null) //es una asignacion
+        {
+          puntosAsignacion++; //suma 1 (operacion simple)
+          if (ctx.expr() != null) //hay que mirar lo que tiene dentro
+          {
+            puntosAsignacion += (Integer) visit(ctx.expr());
+          }
+        }    
+      
       //System.out.println("Puntos asignacion: " + puntosAsignacion);
       return puntosAsignacion; //Cada variable declarada es un punto, asumimos que sus hijos están
     }
