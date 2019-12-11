@@ -63,42 +63,6 @@ public class Pl2compilerParserBaseListener implements Pl2compilerParserListener 
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterOperacionswitch(Pl2compilerParser.OperacionswitchContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitOperacionswitch(Pl2compilerParser.OperacionswitchContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterCabeceraswitch(Pl2compilerParser.CabeceraswitchContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitCabeceraswitch(Pl2compilerParser.CabeceraswitchContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterCuerposwitch(Pl2compilerParser.CuerposwitchContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitCuerposwitch(Pl2compilerParser.CuerposwitchContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterCondicional(Pl2compilerParser.CondicionalContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -682,30 +646,6 @@ public class Pl2compilerParserBaseListener implements Pl2compilerParserListener 
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitPalabraclavebuclewhile(Pl2compilerParser.PalabraclavebuclewhileContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterPalabrareservadaaperturaswitch(Pl2compilerParser.PalabrareservadaaperturaswitchContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitPalabrareservadaaperturaswitch(Pl2compilerParser.PalabrareservadaaperturaswitchContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterPalabrareservadacierrewitch(Pl2compilerParser.PalabrareservadacierrewitchContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitPalabrareservadacierrewitch(Pl2compilerParser.PalabrareservadacierrewitchContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -47,36 +47,6 @@ public interface Pl2compilerParserListener extends ParseTreeListener {
 	 */
 	void exitCondicion(Pl2compilerParser.CondicionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link Pl2compilerParser#operacionswitch}.
-	 * @param ctx the parse tree
-	 */
-	void enterOperacionswitch(Pl2compilerParser.OperacionswitchContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link Pl2compilerParser#operacionswitch}.
-	 * @param ctx the parse tree
-	 */
-	void exitOperacionswitch(Pl2compilerParser.OperacionswitchContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link Pl2compilerParser#cabeceraswitch}.
-	 * @param ctx the parse tree
-	 */
-	void enterCabeceraswitch(Pl2compilerParser.CabeceraswitchContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link Pl2compilerParser#cabeceraswitch}.
-	 * @param ctx the parse tree
-	 */
-	void exitCabeceraswitch(Pl2compilerParser.CabeceraswitchContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link Pl2compilerParser#cuerposwitch}.
-	 * @param ctx the parse tree
-	 */
-	void enterCuerposwitch(Pl2compilerParser.CuerposwitchContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link Pl2compilerParser#cuerposwitch}.
-	 * @param ctx the parse tree
-	 */
-	void exitCuerposwitch(Pl2compilerParser.CuerposwitchContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link Pl2compilerParser#condicional}.
 	 * @param ctx the parse tree
 	 */
@@ -566,26 +536,6 @@ public interface Pl2compilerParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitPalabraclavebuclewhile(Pl2compilerParser.PalabraclavebuclewhileContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link Pl2compilerParser#palabrareservadaaperturaswitch}.
-	 * @param ctx the parse tree
-	 */
-	void enterPalabrareservadaaperturaswitch(Pl2compilerParser.PalabrareservadaaperturaswitchContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link Pl2compilerParser#palabrareservadaaperturaswitch}.
-	 * @param ctx the parse tree
-	 */
-	void exitPalabrareservadaaperturaswitch(Pl2compilerParser.PalabrareservadaaperturaswitchContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link Pl2compilerParser#palabrareservadacierrewitch}.
-	 * @param ctx the parse tree
-	 */
-	void enterPalabrareservadacierrewitch(Pl2compilerParser.PalabrareservadacierrewitchContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link Pl2compilerParser#palabrareservadacierrewitch}.
-	 * @param ctx the parse tree
-	 */
-	void exitPalabrareservadacierrewitch(Pl2compilerParser.PalabrareservadacierrewitchContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link Pl2compilerParser#palabrareservadacase}.
 	 * @param ctx the parse tree
