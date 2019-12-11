@@ -14,7 +14,7 @@ public class File implements Serializable{
         return instance;
     }
 
-    public File()
+    private File()
     {
         this.symbolTable = new TablaSimbolos();
     }

@@ -5,7 +5,7 @@ import org.antlr.v4.runtime.tree.*;
 
 public class Ejecutable2{
     public static void main(String[] args) throws Exception {
-        File file = new File();
+        File file = File.getInstance();
         TablaSimbolos tabla_simbolos = new TablaSimbolos();
         int total_puntos;
         String inputFile = null;
