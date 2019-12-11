@@ -100,21 +100,16 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
         visitedFunction.concatenateName(nombre);
 
         Integer puntosCabecera = 0;
-        if(ctx.parametros() == null)
-        {
-          visitedFunction.addParameter(0); //esto no sobra? añadir 0 = no hacer nada!
-          //System.out.println(0);
-          //System.out.println(nombre + " ");
-        }
-        else
+        if(ctx.parametros() != null)
         {
           ArrayList<Pl2compilerParser.ParametroContext> listaParametros = new ArrayList<Pl2compilerParser.ParametroContext>(ctx.parametros().parametro());
+          visitedFunction.addParameter(listaParametros.size());
           ArrayList<String> listaNombreVariables = new ArrayList<String>();
           for(int i=0; i < listaParametros.size();i++)
           {
             if(listaParametros.get(i).expr().nombrevariable() != null)
             {
-              listaNombreVariables.add(listaParametros.get(i).expr().nombrevariable().get(i).ID().getText());
+              listaNombreVariables.add(listaParametros.get(i).expr().nombrevariable().get(0).ID().getText());
             }
           }
           if(listaNombreVariables.size() != 0)
@@ -165,9 +160,9 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
         }
         return numFunctionPoints;*/
         ArrayList<Pl2compilerParser.ParametroContext> listaParametros = new ArrayList<Pl2compilerParser.ParametroContext>(ctx.parametro());
-        visitedFunction.addParameter(listaParametros.size());
+        //visitedFunction.addParameter(listaParametros.size());
         //System.out.println("Nº Parámetros: " + listaParametros.size());
-        visitedFunction.addParameter(listaParametros.size() * 2); //esto creo que sobra (esta en la linea de arriba)!!
+        //visitedFunction.addParameter(listaParametros.size() * 2); //esto creo que sobra (esta en la linea de arriba)!!
         Integer puntosParametros = 0;
         for(int i = 0; i < listaParametros.size(); i++)
         {
@@ -491,7 +486,6 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       Cada función llamada: 2 puntos, +1 punto por cada parámetro pasado. Tal y como está en visitParametros el return no funcionaria
       */
       //return 2;
-      visitedFunction.addFunctionCall(1); //suma 1 llamada de funcion
       Integer puntosLlamada= 0;
       if(ctx.funcionfor() != null)
       {
@@ -511,6 +505,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       }
       else
       {
+        visitedFunction.addFunctionCall(1); //suma 1 llamada de funcion
         puntosLlamada = 2; //suma 2
         if (ctx.parametros() != null) //cada parametros suma 1
         {
