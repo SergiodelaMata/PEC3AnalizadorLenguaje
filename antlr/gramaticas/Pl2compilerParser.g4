@@ -15,7 +15,7 @@ operacionswitch: cabeceraswitch cuerposwitch;
 cabeceraswitch: palabrareservadaaperturaswitch operadoraperturaparentesis expr operadorcierreparentesis;
 cuerposwitch: (palabrareservadacase expr separadordospuntos (cuerpo3|cuerpo) (palabrareservadabreak separadoroperaciones)?)+ (palabrareservadadefault separadordospuntos (cuerpo3|cuerpo) (palabrareservadabreak separadoroperaciones)?) palabrareservadacierrewitch; 
 condicional: (palabraclavecondiciones ((condicion)
-            | (condicion (operadorcondicionalpuertalogica condicion)*))? palabraclavethen? (cuerpo4|cuerpo));
+            | (condicion (operadorcondicionalpuertalogica condicion)*))? palabraclavethen? (cuerpo3|cuerpo4|cuerpo));
 condicionales:  condicional+ palabraclaveendif;
 funcionwhile: palabraclavebuclewhile operadoraperturaparentesis (expr|expresionlogica) operadorcierreparentesis (cuerpo|cuerpo3|cuerpo4);
 //funcionfor: palabraclavebuclefor operadoraperturaparentesis (variable|nombrevariable) (separadoroperaciones expresionlogica) (separadoroperaciones variable|nombrevariable (operadoraritmeticosuma1 |operadoraritmeticoresta1)) operadorcierreparentesis cuerpo;
