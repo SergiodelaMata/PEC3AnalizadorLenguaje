@@ -1,4 +1,4 @@
-// Generated from ./Pl2compilerParser.g4 by ANTLR 4.7.2
+// Generated from Pl2compilerParser.g4 by ANTLR 4.7.2
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -111,6 +111,18 @@ public class Pl2compilerParserBaseListener implements Pl2compilerParserListener 
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterCondicional(Pl2compilerParser.CondicionalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCondicional(Pl2compilerParser.CondicionalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterCondicionales(Pl2compilerParser.CondicionalesContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -178,6 +190,18 @@ public class Pl2compilerParserBaseListener implements Pl2compilerParserListener 
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCuerpo3(Pl2compilerParser.Cuerpo3Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCuerpo4(Pl2compilerParser.Cuerpo4Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCuerpo4(Pl2compilerParser.Cuerpo4Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

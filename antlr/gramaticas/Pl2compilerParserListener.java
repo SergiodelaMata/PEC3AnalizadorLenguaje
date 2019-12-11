@@ -1,4 +1,4 @@
-// Generated from ./Pl2compilerParser.g4 by ANTLR 4.7.2
+// Generated from Pl2compilerParser.g4 by ANTLR 4.7.2
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -87,6 +87,16 @@ public interface Pl2compilerParserListener extends ParseTreeListener {
 	 */
 	void exitCuerposwitch(Pl2compilerParser.CuerposwitchContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link Pl2compilerParser#condicional}.
+	 * @param ctx the parse tree
+	 */
+	void enterCondicional(Pl2compilerParser.CondicionalContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Pl2compilerParser#condicional}.
+	 * @param ctx the parse tree
+	 */
+	void exitCondicional(Pl2compilerParser.CondicionalContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link Pl2compilerParser#condicionales}.
 	 * @param ctx the parse tree
 	 */
@@ -146,6 +156,16 @@ public interface Pl2compilerParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCuerpo3(Pl2compilerParser.Cuerpo3Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link Pl2compilerParser#cuerpo4}.
+	 * @param ctx the parse tree
+	 */
+	void enterCuerpo4(Pl2compilerParser.Cuerpo4Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link Pl2compilerParser#cuerpo4}.
+	 * @param ctx the parse tree
+	 */
+	void exitCuerpo4(Pl2compilerParser.Cuerpo4Context ctx);
 	/**
 	 * Enter a parse tree produced by {@link Pl2compilerParser#llamarfuncion}.
 	 * @param ctx the parse tree
