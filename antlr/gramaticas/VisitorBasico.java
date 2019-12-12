@@ -177,24 +177,33 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
 
     @Override public Integer visitExpr(Pl2compilerParser.ExprContext ctx)
     {
-      int puntosExpr = 0;
-
-      if (ctx.llamarfuncion() != null) puntosExpr += (Integer) visit(ctx.llamarfuncion());
-      else if (ctx.operadoraritmeticosuma() != null)
+      /*ArrayList<Pl2compilerParser.NombrevariableContext> listaNombreVariables = new ArrayList<Pl2compilerParser.NombrevariableContext>(ctx.nombrevariable());
+      if(listaNombreVariables.size() != 0)
       {
-        ArrayList<Pl2compilerParser.ExprContext> listaExpresiones = new ArrayList<Pl2compilerParser.ExprContext>(ctx.expr());
-        if(listaExpresiones.size() == 2)
+        for(int i = 0; i < listaNombreVariables.size(); i++)
         {
-          puntosExpr += (Integer) (visit(listaExpresiones.get(0))) + 1 + (Integer) (visit(listaExpresiones.get(1))); //puntosExpr + 1 del operador + puntos Expr
-          visitedFunction.addSimpleOperator(1);
+          if(ctx.nombrevariable() != null)
+          {
+            if(listaNombreVariables.get(i).ID() != null)
+            {
+              //visitedFunction.concatenateName(listaNombreVariables.get(i).ID().getText());
+            }
+            else if(listaNombreVariables.get(i).ARRAY() != null)
+            {
+              //visitedFunction.concatenateName(listaNombreVariables.get(i).ARRAY().getText());
+            }
+            else if(listaNombreVariables.get(i).CASE() != null)
+            {
+              //visitedFunction.concatenateName(listaNombreVariables.get(i).CASE().getText());
+            }
+          }
         }
-        else if(listaExpresiones.size() == 1)
-        {
-          puntosExpr += 1 + (Integer) (visit(listaExpresiones.get(0))); //puntosExpr + 1 del operador + puntos Expr
-          visitedFunction.addSimpleOperator(1);
-        }
-
-
+      }*/
+      int puntosExpr = 0;
+      if ((ctx.operadoraritmeticosuma() != null) && (ctx.expr(0) != null) && (ctx.expr(1) != null))
+      {
+        puntosExpr += (Integer) (visit(ctx.expr(0))) + 1 + (Integer) (visit(ctx.expr(1))); //puntosExpr + 1 del operador + puntos Expr
+        visitedFunction.addSimpleOperator(1);
       } 
       else if (ctx.operadoraritmeticoresta() != null) 
       {
@@ -211,6 +220,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
         puntosExpr += (Integer) (visit(ctx.expr(0))) + 1 + (Integer) (visit(ctx.expr(1)));
         visitedFunction.addSimpleOperator(1);
       }
+      else if (ctx.llamarfuncion() != null) puntosExpr += (Integer) visit(ctx.llamarfuncion());
       else if((ctx.operadoraperturaparentesis() != null) && (ctx.expr(0) != null)) puntosExpr += (Integer) visit(ctx.expr(0));
 
       //System.out.println(ctx.getText());
@@ -777,6 +787,50 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       visitedFunction.addSimpleOperator(1);
       return 1 + ((Integer)visit(ctx.expr(0)) + (Integer)visit(ctx.expr(1)));
     }
+
+//Para arreglar lo de la suma, div y demás solo se me ocurre meterlo en el Parser de manera normal, es decir, que no esté en "expr"
+*/
+
+/*//funcionfor: palabraclavebuclefor nombrevariable palabraclaveinciovalorfor (nombrevariable|numeros) palabraclavefinvalorfor (nombrevariable|numeros) 
+//(palabraclavesaltoelementofor (nombrevariable|numeros))? palabraclavehacerfor (cuerpo|cuerpo2|cuerpo3) palabraclaveendbuclefor;
+@Override public Long visitFuncionfor(Pl2compilerParser.FuncionforContext ctx)  //hay que tener en cuenta los incremetos de i para sumarlos a operaciones basicas??
+{
+  long puntosFor = 0;
+  visitedFunction.addEfectiveLine(1); //Con esto del for valdría para contar la línea ejectiva
+
+  if(ctx.cuerpo() != null) puntosFor += (Long) visit(ctx.cuerpo());
+  else if(ctx.cuerpo2() != null) puntosFor += (Long) visit(ctx.cuerpo2());
+  else if(ctx.cuerpo3() != null) puntosFor += (Long) visit(ctx.cuerpo3());
+
+  puntosFor = (long) Math.pow(puntosFor, 2);
+
+  return puntosFor;
+}
+
+//llamadafuncion: (nombrefuncion operadoraperturaparentesis parametros? operadorcierreparentesis separadoroperaciones?);
+@Override 
+    public Long visitLlamadafuncion(Pl2compilerParser.LlamadafuncionContext ctx) 
+    { 
+      if (ctx.asignacion() == null){ //Comprobamos que no es una asginación 
+        if (ctx.separadoroperaciones() != null) //solo cuenta como linea efectiva si se acaba la linea (si no está dentro de otra)
+        {
+          visitedFunction.addEfectiveLine(1); 
+        }
+      }
+
+      Long puntosLlamada= 0;
+      visitedFunction.addFunctionCall(1); //suma 1 llamada de funcion
+      //visitedFunction.addSimpleOperator(1);
+      puntosLlamada = 2; //suma 2
+      if (ctx.parametros() != null) //cada parametros suma 1
+      {
+        ArrayList<Pl2compilerParser.ParametroContext> listaParametros = new ArrayList<Pl2compilerParser.ParametroContext>(ctx.parametros().parametro());
+        puntosLlamada += listaParametros.size(); //suma 1 por parametro
+        puntosLlamada += (Long) visit(ctx.parametros());
+      }
+      return puntosLlamada;
+    }
+
 */
 
 }
