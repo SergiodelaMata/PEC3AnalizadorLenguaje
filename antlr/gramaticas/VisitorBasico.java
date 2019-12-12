@@ -61,7 +61,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
           visit(listaCrearFuncion.get(i));
         }
       }
-      //System.out.prlongln("HOLA");
+      //System.out.println("HOLA");
       return 1; //no seria 0 (realmente da igual)?
     }
 
@@ -75,8 +75,8 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
         {
           numFunctionPolongs += (Long) visit(ctx.cuerpo());
         }
-        //System.out.prlongln("Hola nueva funcion");
-        System.out.prlongln("PUNTOS FUNCION: "+ numFunctionPolongs);
+        //System.out.println("Hola nueva funcion");
+        System.out.println("PUNTOS FUNCION: "+ numFunctionPolongs);
 
         visitedFunction.setFunctionPolongs(numFunctionPolongs);
         file.addFunction(visitedFunction);
@@ -130,7 +130,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
           //puntosCabecera += (Long) visit(ctx.parametros());
           //visitedFunction.concatenateName(listaNombreVariables.get(i).ID().getText());
           //ArrayList<Pl2compilerParser.ParametroContext> listaParametros = new ArrayList<Pl2compilerParser.ParametroContext>(ctx.parametros().parametro());
-          //System.out.prlongln(nombre + " ");
+          //System.out.println(nombre + " ");
         }
         visitedFunction.concatenateName("):");
         if(ctx.retorno() != null)
@@ -145,7 +145,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
             numFunctionPolongs += (long) visit(ctx.getChild(i));
         }*/
         //cabecerafuncion:  palabraclavecreacionfuncion (nombrefuncion|palabraclavefuncionmain) operadoraperturaparentesis parametros? operadorcierreparentesis separadordospuntos retorno;
-        //System.out.prlongln("puntos cabecera: " + puntosCabecera);
+        //System.out.println("puntos cabecera: " + puntosCabecera);
         //return visitedFunction.getFunctionPolongs();
         return puntosCabecera;
     }
@@ -162,16 +162,16 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
         return numFunctionPolongs;*/
         ArrayList<Pl2compilerParser.ParametroContext> listaParametros = new ArrayList<Pl2compilerParser.ParametroContext>(ctx.parametro());
         //visitedFunction.addParameter(listaParametros.size());
-        //System.out.prlongln("Nº Parámetros: " + listaParametros.size());
+        //System.out.println("Nº Parámetros: " + listaParametros.size());
         //visitedFunction.addParameter(listaParametros.size() * 2); //esto creo que sobra (esta en la linea de arriba)!!
         Long puntosParametros = 0;
         for(long i = 0; i < listaParametros.size(); i++)
         {
           puntosParametros += (Long) visit(listaParametros.get(i));
         }
-        //System.out.prlongln("PUNTOS PARAMETROS: " + listaParametros.size() * 2);
+        //System.out.println("PUNTOS PARAMETROS: " + listaParametros.size() * 2);
         //return listaParametros.size() * 2; //los puntos por parametro los retorna en cabecerafuncion (+2) y en llamarfuncion (+1) segun lo que corresponda
-        //System.out.prlongln("PUNTOS PARAMETROS: " + puntosParametros);
+        //System.out.println("PUNTOS PARAMETROS: " + puntosParametros);
         return puntosParametros;
     }
 
@@ -223,8 +223,8 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       else if (ctx.llamarfuncion() != null) puntosExpr += (Long) visit(ctx.llamarfuncion());
       else if((ctx.operadoraperturaparentesis() != null) && (ctx.expr(0) != null)) puntosExpr += (Long) visit(ctx.expr(0));
 
-      //System.out.prlongln(ctx.getText());
-      //System.out.prlongln("puntos expr: " + puntosExpr);
+      //System.out.println(ctx.getText());
+      //System.out.println("puntos expr: " + puntosExpr);
       //falta este caso: operadoraperturaparentesis (nombrevariable|numeros) (separadoroperadores (nombrevariable|numeros))* operadorcierreparentesis, que no se si hace falta (creo que no)
       return puntosExpr;
     }
@@ -239,7 +239,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     public Long visitParametro(Pl2compilerParser.ParametroContext ctx)
     {
       Long puntosParametro = (Long) visit(ctx.expr());
-      //System.out.prlongln("puntos parametro: " + puntosParametro);
+      //System.out.println("puntos parametro: " + puntosParametro);
       return puntosParametro;
     }
 
@@ -295,7 +295,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
             numFunctionPolongs += (Long) visit(listaCodigo.get(i));
         }
       }
-      //System.out.prlongln("PUNTOS CUERPO: " + numFunctionPolongs);
+      //System.out.println("PUNTOS CUERPO: " + numFunctionPolongs);
 
       return numFunctionPolongs;
     }
@@ -320,7 +320,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
           puntosCuerpo += (Long) visit(ctx.asignacion(i));
         }
       }
-      //System.out.prlongln("puntos cuerpo3: " + puntosCuerpo);
+      //System.out.println("puntos cuerpo3: " + puntosCuerpo);
       return puntosCuerpo;
     }
 
@@ -344,7 +344,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
           puntosCuerpo += (Long) visit(ctx.asignacion(i));
         }
       }
-      //System.out.prlongln("puntos cuerpo4: " + puntosCuerpo);
+      //System.out.println("puntos cuerpo4: " + puntosCuerpo);
       return puntosCuerpo;
     }
 
@@ -370,7 +370,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       {
         numFunctionPolongs += (Long) visit(ctx.getChild(i));
       }
-      //System.out.prlongln("puntos codigo: " + numFunctionPolongs);
+      //System.out.println("puntos codigo: " + numFunctionPolongs);
       return numFunctionPolongs;
      }
 
@@ -393,7 +393,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       if(ctx.cuerpo() != null) puntosWhile += (long) Math.pow((Long)visit(ctx.cuerpo()) ,2);
       else if(ctx.cuerpo2() != null) puntosWhile += (long) Math.pow((Long)visit(ctx.cuerpo2()), 2);
       else if(ctx.cuerpo3() != null) puntosWhile += (long) Math.pow((Long)visit(ctx.cuerpo3()), 2);
-      //System.out.prlongln("puntos while: " + puntosWhile);
+      //System.out.println("puntos while: " + puntosWhile);
       return puntosWhile;
     }
 
@@ -495,7 +495,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
           }
         }
 
-      //System.out.prlongln("Puntos asignacion: " + puntosAsignacion);
+      //System.out.println("Puntos asignacion: " + puntosAsignacion);
       return puntosAsignacion; //Cada variable declarada es un punto, asumimos que sus hijos están
     }
 
@@ -563,7 +563,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       {
         puntosLlamada = (Long) visit(ctx.operacionswitch());
       }*/
-      //System.out.prlongln("Puntos llamar funcion: " + puntosLlamada);
+      //System.out.println("Puntos llamar funcion: " + puntosLlamada);
       return puntosLlamada; //Cada función llamada: 2 puntos, +1 punto por cada parámetro pasado
     }
 
@@ -615,7 +615,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
         puntosCondicional += (long) Math.pow((Long) visit(ctx.cuerpo3()), 2);
       }
       //puntosCondicionales = (long) Math.pow(puntosCondicionales, 2);
-      //System.out.prlongln("puntos condicional: " + puntosCondicional);
+      //System.out.println("puntos condicional: " + puntosCondicional);
       return puntosCondicional;
     }
 
@@ -635,7 +635,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
         puntosCondicional += (long) Math.pow((Long) visit(ctx.cuerpo3()), 2);
       }
       //puntosCondicionales = (long) Math.pow(puntosCondicionales, 2);
-      //System.out.prlongln("puntos condicional: " + puntosCondicional);
+      //System.out.println("puntos condicional: " + puntosCondicional);
       return puntosCondicional;
     }
 
@@ -665,7 +665,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
         puntosCondicional += (long) Math.pow((Long) visit(ctx.cuerpo4()), 2);
       }
       //puntosCondicionales = (long) Math.pow(puntosCondicionales, 2);
-      //System.out.prlongln("puntos condicional: " + puntosCondicional);
+      //System.out.println("puntos condicional: " + puntosCondicional);
       return puntosCondicional;
     }*/
 
@@ -722,7 +722,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
           }
         }
       }
-      //System.out.prlongln("PUNTOS CUERPO2: " + numFunctionPolongs);
+      //System.out.println("PUNTOS CUERPO2: " + numFunctionPolongs);
       return numFunctionPolongs;
     }*/
 
@@ -745,7 +745,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
           puntosExprLogica += (Long)visit(ctx.getChild(i));
         }
       }
-      //System.out.prlongln("puntos expresion logica: " + puntosExprLogica);
+      //System.out.println("puntos expresion logica: " + puntosExprLogica);
       return puntosExprLogica;
     }
 
