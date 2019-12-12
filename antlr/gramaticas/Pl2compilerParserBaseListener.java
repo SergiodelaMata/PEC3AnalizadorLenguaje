@@ -171,6 +171,18 @@ public class Pl2compilerParserBaseListener implements Pl2compilerParserListener 
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterLlamadafuncion(Pl2compilerParser.LlamadafuncionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLlamadafuncion(Pl2compilerParser.LlamadafuncionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterCodigo(Pl2compilerParser.CodigoContext ctx) { }
 	/**
 	 * {@inheritDoc}
