@@ -108,6 +108,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
         {
           ArrayList<Pl2compilerParser.ParametroContext> listaParametros = new ArrayList<Pl2compilerParser.ParametroContext>(ctx.parametros().parametro());
           visitedFunction.addParameter(listaParametros.size());
+          visitedFunction.addDeclaration(listaParametros.size()); //los parametros de la funcion son declaraciones
           ArrayList<String> listaNombreVariables = new ArrayList<String>();
           for(int i=0; i < listaParametros.size();i++)
           {
