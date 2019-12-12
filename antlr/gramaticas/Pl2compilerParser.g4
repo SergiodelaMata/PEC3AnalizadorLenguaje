@@ -28,7 +28,7 @@ cuerpo3: (asignacion|llamarfuncion)+ | (palabraclaveinicio (asignacion|llamarfun
 //llamarfuncion: ((nombrefuncion operadoraperturaparentesis parametros? operadorcierreparentesis separadoroperaciones?) | funcionfor | funcionwhile | condicionales| operacionswitch);
 llamarfuncion: (llamadafuncion | funcionfor | funcionwhile | condicionales);
 llamadafuncion: (nombrefuncion operadoraperturaparentesis parametros? operadorcierreparentesis separadoroperaciones?);
-codigo: (asignacion|llamarfuncion|devolver)+;
+codigo: ((asignacion|llamarfuncion)+ |devolver);
 //codigo: (funcionwhile|funcionfor|operacionswitch|asignacion|llamarfuncion|devolver|cuerpo2)+;
 crearfuncion: cabecerafuncion cuerpo;
 devolver: palabraclavefunciondevolver operadoraperturaparentesis (llamarfuncion|expr)? operadorcierreparentesis separadoroperaciones; 

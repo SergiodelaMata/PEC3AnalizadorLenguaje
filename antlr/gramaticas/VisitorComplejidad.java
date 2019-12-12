@@ -101,13 +101,21 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
     @Override
     public Integer visitCuerpo2(Pl2compilerParser.Cuerpo2Context ctx)
     {
-        
+        ArrayList<Pl2compilerParser.LlamarfuncionContext> listLlamadas = new ArrayList<Pl2compilerParser.LlamarfuncionContext>(ctx.llamarfuncion());
+        for(int i = 0; i < listLlamadas.size(); i++)
+        {
+            visit(listLlamadas.get(i));
+        }
         return 1;
     }
     @Override
     public Integer visitCuerpo3(Pl2compilerParser.Cuerpo3Context ctx)
     {
-        
+        ArrayList<Pl2compilerParser.LlamarfuncionContext> listLlamadas = new ArrayList<Pl2compilerParser.LlamarfuncionContext>(ctx.llamarfuncion());
+        for(int i = 0; i < listLlamadas.size(); i++)
+        {
+            visit(listLlamadas.get(i));
+        }
         return 1;
     }
     @Override
@@ -132,6 +140,33 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
     public Integer visitFuncionfor(Pl2compilerParser.FuncionforContext ctx)
     {
         
+        return 1;
+    }
+
+    @Override
+    public Integer visitCodigo(Pl2compilerParser.CodigoContext ctx)
+    {
+        ArrayList<Pl2compilerParser.LlamarfuncionContext> listLlamadas = new ArrayList<Pl2compilerParser.LlamarfuncionContext>(ctx.llamarfuncion());
+        for(int i = 0; i < listLlamadas.size(); i++)
+        {
+            visit(listLlamadas.get(i));
+        }
+        if(ctx.devolver() != null)
+        {
+            visit(ctx.devolver());
+        }
+        return 1;
+    }
+
+    @Override
+    public Integer visitDevolver(Pl2compilerParser.DevolverContext ctx)
+    {
+        return 1;
+    }
+
+    @Override
+    public Integer visitExpr(Pl2compilerParser.ExprContext ctx)
+    {
         return 1;
     }
 
