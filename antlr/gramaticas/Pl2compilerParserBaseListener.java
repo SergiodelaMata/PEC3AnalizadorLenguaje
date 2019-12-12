@@ -159,18 +159,6 @@ public class Pl2compilerParserBaseListener implements Pl2compilerParserListener 
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCuerpo4(Pl2compilerParser.Cuerpo4Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitCuerpo4(Pl2compilerParser.Cuerpo4Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterLlamarfuncion(Pl2compilerParser.LlamarfuncionContext ctx) { }
 	/**
 	 * {@inheritDoc}

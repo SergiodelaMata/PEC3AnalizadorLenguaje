@@ -127,16 +127,6 @@ public interface Pl2compilerParserListener extends ParseTreeListener {
 	 */
 	void exitCuerpo3(Pl2compilerParser.Cuerpo3Context ctx);
 	/**
-	 * Enter a parse tree produced by {@link Pl2compilerParser#cuerpo4}.
-	 * @param ctx the parse tree
-	 */
-	void enterCuerpo4(Pl2compilerParser.Cuerpo4Context ctx);
-	/**
-	 * Exit a parse tree produced by {@link Pl2compilerParser#cuerpo4}.
-	 * @param ctx the parse tree
-	 */
-	void exitCuerpo4(Pl2compilerParser.Cuerpo4Context ctx);
-	/**
 	 * Enter a parse tree produced by {@link Pl2compilerParser#llamarfuncion}.
 	 * @param ctx the parse tree
 	 */
