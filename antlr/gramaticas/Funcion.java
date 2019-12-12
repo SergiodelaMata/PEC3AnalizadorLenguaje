@@ -47,6 +47,11 @@ public class Funcion
         this.numEfectiveLines += points;
     }
 
+    public void removeEfectiveLine(int points)
+    {
+        this.numEfectiveLines -= points;
+    }
+
     public void setName(String name)
     {
         this.name = name;

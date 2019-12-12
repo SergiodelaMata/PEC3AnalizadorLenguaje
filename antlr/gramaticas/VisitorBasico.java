@@ -203,8 +203,6 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
           }
         }
       }*/
-
-
       int puntosExpr = 0;
       if ((ctx.operadoraritmeticosuma() != null) && (ctx.expr(0) != null) && (ctx.expr(1) != null))
       {
@@ -478,8 +476,8 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       int num := 3;
       int num;
       int num, num2;*/
-      int puntosAsignacion = 0;
       visitedFunction.addEfectiveLine(1);
+      int puntosAsignacion = 0;
       ArrayList<Pl2compilerParser.NombrevariableContext> listaVariables = new ArrayList<Pl2compilerParser.NombrevariableContext>(ctx.nombrevariable());
       if (ctx.tipovariable() != null) //es una declaracion
       {
@@ -489,15 +487,63 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       if (ctx.operadorasignacion() != null) //es una asignacion
         {
           puntosAsignacion++; //suma 1 (operacion simple)
-          visitedFunction.addSimpleOperator(1); //NO SE SI := CUANTA COMO OPERADOR (SI NO CUENTA QUITARLO!)
           if (ctx.expr() != null) //hay que mirar lo que tiene dentro
           {
             puntosAsignacion += (Integer) visit(ctx.expr());
+            //Pl2compilerParser.ExprContext contexto = ctx.expr();
+            
+            /*if (ctx.expr().llamarfuncion() != null) //si se asigna una llamadafuncion no se cuenta la linea efectiva (Se cuenta en la llamada)
+            {
+              ArrayList<Pl2compilerParser.LlamarfuncionContext> listaLlamadas = new ArrayList<Pl2compilerParser.LlamarfuncionContext>(ctx.expr().llamarfuncion());
+              //pzArrayList<Pl2compilerParser.LlamarfuncionContext> listaLlamadas = new ArrayList<Pl2compilerParser.LlamarfuncionContext>(ctx.expr().llamarfuncion());
+              //ArrayList<Pl2compilerParser.LlamarfuncionContext> listaLlamadas = new ArrayList<Pl2compilerParser.LlamarfuncionContext>(ctx.expr().llamarfuncion());
+
+              visitedFunction.removeEfectiveLine(listaLlamadas.size());
+            }*/
+            if (isLlamada(ctx.expr())) //si la asignacion acaba en llamada no se suma linea efectiva porque ya se suma en la propia llamada
+            {
+              visitedFunction.removeEfectiveLine(1);
+            }
+            //visitedFunction.removeEfectiveLine(getNumLlamadas(ctx.expr())); //si la asignacion es una llamada a funcion se eliminan los puntos de cada llamada
           }
         }
 
       //System.out.println("Puntos asignacion: " + puntosAsignacion);
       return puntosAsignacion; //Cada variable declarada es un punto, asumimos que sus hijos están
+    }
+
+    public Boolean isLlamada(Pl2compilerParser.ExprContext contexto) //comprueba si el ultimo elemento de la expresion es una llamada (true)
+    {
+      //tengo que recorrer todas y retorna true si la ULTIMA es llamada (la que afecta el ;)
+      //int numllamadas = 0;
+      Boolean isllamada = false;
+      ArrayList<Pl2compilerParser.ExprContext> exprs = new ArrayList<Pl2compilerParser.ExprContext>();
+      exprs.add(contexto);
+      while (exprs.size() != 0)
+      {
+        contexto = exprs.get(0);
+        exprs.remove(0);
+        if (contexto.llamarfuncion() != null) //cambiar por llamadafuncion
+        {
+          //numllamadas++;
+          isllamada = true;
+        }
+        else
+        {
+          isllamada = false;
+        }
+        ArrayList<Pl2compilerParser.ExprContext> exprsHijas = new ArrayList<Pl2compilerParser.ExprContext>(contexto.expr());
+        for (int i=0; i<exprsHijas.size(); i++)
+        {
+          exprs.add(exprsHijas.get(i));
+        }
+        //contexto = exprs.get(0).expr();
+        /*contexto = exprs.get(0);
+        exprs.remove(0);*/
+      }
+      //visitedFunction.removeEfectiveLine(numllamadas);
+      //return numllamadas;
+      return isllamada;
     }
 
     //llamarfuncion: ((nombrefuncion operadoraperturaparentesis parametros? operadorcierreparentesis separadoroperaciones?) | funcionfor | funcionwhile | condicionales| operacionswitch);
