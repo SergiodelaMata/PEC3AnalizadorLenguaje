@@ -8,6 +8,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
     private String completeNameFunction;
     private String nameFunction;
     private int numParametersFunction;
+    private ArrayList<Integer> listNumberNode;
 
     public VisitorComplejidad()
     {
@@ -32,6 +33,9 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
                 this.completeNameFunction = "";         //Para tener el nombre completo de la función con los nombres de sus parámetros
                 this.nameFunction = "";                 //Función sin parámetros
                 this.numParametersFunction = 0;         //Nº de parámetros
+                this.listNumberNode = new ArrayList<Integer>(); //Lista de los números de los nodos usados en la creación de la función
+                this.listNumberNode.add(0);             //El primer nodo será el 0
+
             }
         }
         return 1; //no seria 0 (realmente da igual)?
@@ -87,8 +91,47 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
     @Override
     public Integer visitCuerpo(Pl2compilerParser.CuerpoContext ctx)
     {
-        visit(ctx.cabecerafuncion());
-        visit(ctx.cuerpo());
+        ArrayList<Pl2compilerParser.CodigoContext> listCodigo = new ArrayList<Pl2compilerParser.CodigoContext>(ctx.codigo());
+        for(int i = 0; i < listCodigo.size(); i++)
+        {
+            visit(listCodigo.get(i));
+        }
+        return 1;
+    }
+    @Override
+    public Integer visitCuerpo2(Pl2compilerParser.Cuerpo2Context ctx)
+    {
+        
+        return 1;
+    }
+    @Override
+    public Integer visitCuerpo3(Pl2compilerParser.Cuerpo3Context ctx)
+    {
+        
+        return 1;
+    }
+    @Override
+    public Integer visitLlamarfuncion(Pl2compilerParser.LlamarfuncionContext ctx)
+    {
+        
+        return 1;
+    }
+    @Override
+    public Integer visitCondicionales(Pl2compilerParser.CondicionalesContext ctx)
+    {
+        
+        return 1;
+    }
+    @Override
+    public Integer visitFuncionwhile(Pl2compilerParser.FuncionwhileContext ctx)
+    {
+        
+        return 1;
+    }
+    @Override
+    public Integer visitFuncionfor(Pl2compilerParser.FuncionforContext ctx)
+    {
+        
         return 1;
     }
 

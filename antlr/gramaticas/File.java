@@ -4,6 +4,7 @@ import java.io.Serializable;
 public class File implements Serializable{
     private static File instance;
     TablaSimbolos symbolTable = new TablaSimbolos();
+    TablaSimbolosComplejidad complexSymbolTable;
 
     public static File getInstance()
     {
@@ -17,6 +18,7 @@ public class File implements Serializable{
     private File()
     {
         this.symbolTable = new TablaSimbolos();
+        this.complexSymbolTable = new TablaSimbolosComplejidad();
     }
 
     public void printSymbolTable()
@@ -32,5 +34,10 @@ public class File implements Serializable{
     public TablaSimbolos getTablaSimbolos()
     {
         return this.symbolTable;
+    }
+
+    public void printComplexSymbol()
+    {
+        complexSymbolTable.printHashMap();
     }
 }
