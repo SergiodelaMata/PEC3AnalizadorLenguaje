@@ -30,10 +30,13 @@ public class Ejecutable2{
         ParseTree tree = parser.prog();
 
         VisitorBasico basicVisitor = new VisitorBasico();
+        VisitorComplejidad complexVisitor = new VisitorComplejidad();
         basicVisitor.visit(tree);
-        System.out.println("Visitando árbol");
+        System.out.println("Visitando árbol para puntos función");
         file.printSymbolTable();
         tabla_simbolos.printHashMap();
+        complexVisitor.visit(tree);
+        System.out.println("Visitando árbol de complejidad");
         System.out.println("FIN");        
     }
 }
