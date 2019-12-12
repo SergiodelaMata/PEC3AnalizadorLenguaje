@@ -788,6 +788,50 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       visitedFunction.addSimpleOperator(1);
       return 1 + ((Integer)visit(ctx.expr(0)) + (Integer)visit(ctx.expr(1)));
     }
+
+//Para arreglar lo de la suma, div y demás solo se me ocurre meterlo en el Parser de manera normal, es decir, que no esté en "expr"
+*/
+
+/*//funcionfor: palabraclavebuclefor nombrevariable palabraclaveinciovalorfor (nombrevariable|numeros) palabraclavefinvalorfor (nombrevariable|numeros) 
+//(palabraclavesaltoelementofor (nombrevariable|numeros))? palabraclavehacerfor (cuerpo|cuerpo2|cuerpo3) palabraclaveendbuclefor;
+@Override public Long visitFuncionfor(Pl2compilerParser.FuncionforContext ctx)  //hay que tener en cuenta los incremetos de i para sumarlos a operaciones basicas??
+{
+  long puntosFor = 0;
+  visitedFunction.addEfectiveLine(1); //Con esto del for valdría para contar la línea ejectiva
+
+  if(ctx.cuerpo() != null) puntosFor += (Long) visit(ctx.cuerpo());
+  else if(ctx.cuerpo2() != null) puntosFor += (Long) visit(ctx.cuerpo2());
+  else if(ctx.cuerpo3() != null) puntosFor += (Long) visit(ctx.cuerpo3());
+
+  puntosFor = (long) Math.pow(puntosFor, 2);
+
+  return puntosFor;
+}
+
+//llamadafuncion: (nombrefuncion operadoraperturaparentesis parametros? operadorcierreparentesis separadoroperaciones?);
+@Override 
+    public Long visitLlamadafuncion(Pl2compilerParser.LlamadafuncionContext ctx) 
+    { 
+      if (ctx.asignacion() == null){ //Comprobamos que no es una asginación 
+        if (ctx.separadoroperaciones() != null) //solo cuenta como linea efectiva si se acaba la linea (si no está dentro de otra)
+        {
+          visitedFunction.addEfectiveLine(1); 
+        }
+      }
+
+      Long puntosLlamada= 0;
+      visitedFunction.addFunctionCall(1); //suma 1 llamada de funcion
+      //visitedFunction.addSimpleOperator(1);
+      puntosLlamada = 2; //suma 2
+      if (ctx.parametros() != null) //cada parametros suma 1
+      {
+        ArrayList<Pl2compilerParser.ParametroContext> listaParametros = new ArrayList<Pl2compilerParser.ParametroContext>(ctx.parametros().parametro());
+        puntosLlamada += listaParametros.size(); //suma 1 por parametro
+        puntosLlamada += (Long) visit(ctx.parametros());
+      }
+      return puntosLlamada;
+    }
+
 */
 
 }
