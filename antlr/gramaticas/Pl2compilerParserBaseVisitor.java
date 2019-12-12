@@ -107,6 +107,13 @@ public class Pl2compilerParserBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitLlamadafuncion(Pl2compilerParser.LlamadafuncionContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitCodigo(Pl2compilerParser.CodigoContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}

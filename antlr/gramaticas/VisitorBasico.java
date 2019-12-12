@@ -555,12 +555,12 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       Cada función llamada: 2 puntos, +1 punto por cada parámetro pasado. Tal y como está en visitParametros el return no funcionaria
       */
       //return 2;
-      if (ctx.separadoroperaciones() != null) //solo cuenta como linea efectiva si se acaba la linea (si no eesta dentro de otra)
-      {
-        visitedFunction.addEfectiveLine(1); 
-      }
       Integer puntosLlamada= 0;
-      if(ctx.funcionfor() != null)
+      if (ctx.llamadafuncion() != null)
+      {
+        puntosLlamada += (Integer) visit(ctx.llamadafuncion());
+      }
+      else if(ctx.funcionfor() != null)
       {
         puntosLlamada = (Integer) visit(ctx.funcionfor());
       }
@@ -576,21 +576,30 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       {
         puntosLlamada = (Integer) visit(ctx.operacionswitch());
       }*/
-      else
-      {
-        visitedFunction.addFunctionCall(1); //suma 1 llamada de funcion
-        //visitedFunction.addSimpleOperator(1);
-        puntosLlamada = 2; //suma 2
-        if (ctx.parametros() != null) //cada parametros suma 1
-        {
-          ArrayList<Pl2compilerParser.ParametroContext> listaParametros = new ArrayList<Pl2compilerParser.ParametroContext>(ctx.parametros().parametro());
-          puntosLlamada += listaParametros.size(); //suma 1 por parametro
-          puntosLlamada += (Integer) visit(ctx.parametros());
-        }
-      }
       //System.out.println("Puntos llamar funcion: " + puntosLlamada);
       return puntosLlamada; //Cada función llamada: 2 puntos, +1 punto por cada parámetro pasado
     }
+
+    @Override 
+    public Integer visitLlamadafuncion(Pl2compilerParser.LlamadafuncionContext ctx) 
+    { 
+      if (ctx.separadoroperaciones() != null) //solo cuenta como linea efectiva si se acaba la linea (si no eesta dentro de otra)
+      {
+        visitedFunction.addEfectiveLine(1); 
+      }
+      Integer puntosLlamada= 0;
+      visitedFunction.addFunctionCall(1); //suma 1 llamada de funcion
+      //visitedFunction.addSimpleOperator(1);
+      puntosLlamada = 2; //suma 2
+      if (ctx.parametros() != null) //cada parametros suma 1
+      {
+        ArrayList<Pl2compilerParser.ParametroContext> listaParametros = new ArrayList<Pl2compilerParser.ParametroContext>(ctx.parametros().parametro());
+        puntosLlamada += listaParametros.size(); //suma 1 por parametro
+        puntosLlamada += (Integer) visit(ctx.parametros());
+      }
+      return puntosLlamada;
+    }
+	
 
     @Override public Integer visitCondicionalif(Pl2compilerParser.CondicionalifContext ctx)
     {
