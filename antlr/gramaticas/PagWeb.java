@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class PagWeb
 {
     /*public String createHtml()
@@ -26,10 +28,10 @@ public class PagWeb
             html += "<li>Complejidad ciclomática V(G): <strong>" + "FALTA EL VALOR" + "</strong></li>"; //añadir complejidad
             html += "<li>Puntos función: <strong>" + funciones.get(i).getFunctionPoints() + "</strong></li>";
             html += "<li>Resumen: <ul style=\"list-style-type:circle;\">";
-            html += "<li>Variables declaradas: <strong>" + funciones.get(i).getNumDeclaraciones + "</strong></li>";
-            html += "<li>Líneas de código efectivas: <strong>" + funciones.get(i).getEfectiveLines + "</strong></li>";
-            html += "<li>Número de parámetros esperados: <strong>" + funciones.get(i).getNumParameters + "</strong></li>";
-            html += "<li>Número de llamadas a funciones: <strong>" + funciones.get(i).getNumFunctionCall + "</strong></li>";
+            html += "<li>Variables declaradas: <strong>" + funciones.get(i).getNumDeclaraciones() + "</strong></li>";
+            html += "<li>Líneas de código efectivas: <strong>" + funciones.get(i).getEfectiveLines() + "</strong></li>";
+            html += "<li>Número de parámetros esperados: <strong>" + funciones.get(i).getNumParameters() + "</strong></li>";
+            html += "<li>Número de llamadas a funciones: <strong>" + funciones.get(i).getNumFunctionCall() + "</strong></li>";
             html += "</ul></li>";
             html += "<li>Gráfico de complejidad ciclomática: " + "FALTA EL GRAFO (IMG)" + "</li>";//añadir grafo
             html += "</ul><hr>";
