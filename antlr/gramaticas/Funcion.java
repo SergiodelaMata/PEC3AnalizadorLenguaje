@@ -77,6 +77,26 @@ public class Funcion
       return this.numFunctionPoints;
     }
 
+    public int getNumDeclaraciones()
+    {
+        return this.numDeclaraciones;
+    }
+
+    public int getEfectiveLines()
+    {
+        return this.numEfectiveLines;
+    }
+
+    public int getNumParameters()
+    {
+        return this.numParameters;
+    }
+
+    public int getNumFunctionCall()
+    {
+        return this.numFunctionCall;
+    }
+
     public void printAttributes()
     {
         System.out.println("Nombre: " + this.name);

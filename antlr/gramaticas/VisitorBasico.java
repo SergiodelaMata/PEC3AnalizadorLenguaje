@@ -32,8 +32,7 @@ import java.lang.Math;
   
   no se si hay que crear el de libreria para que sume como operacion basica y para las lineas efectivas
   IMPORTANTE: falta contar la cabecera del for tanto para los puntos como para operaciones, etc
-  IMPORTANTE: hay que cambiar la forma de contar las llamadas como lineas efectivas (no se pueden contar si esta en una asignacion)
-*/
+  */
 
 
 public class VisitorBasico extends Pl2compilerParserBaseVisitor
@@ -390,10 +389,11 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       if (ctx.expr() != null) puntosWhile += (Integer)visit(ctx.expr());
       else if (ctx.expresionlogica() != null) puntosWhile += (Integer)visit(ctx.expresionlogica());
 
-      if(ctx.cuerpo() != null) puntosWhile += (int) Math.pow((Integer)visit(ctx.cuerpo()) ,2);
-      else if(ctx.cuerpo2() != null) puntosWhile += (int) Math.pow((Integer)visit(ctx.cuerpo2()), 2);
-      else if(ctx.cuerpo3() != null) puntosWhile += (int) Math.pow((Integer)visit(ctx.cuerpo3()), 2);
+      if(ctx.cuerpo() != null) puntosWhile += (Integer)visit(ctx.cuerpo());
+      else if(ctx.cuerpo2() != null) puntosWhile += (Integer)visit(ctx.cuerpo2());
+      else if(ctx.cuerpo3() != null) puntosWhile += (Integer)visit(ctx.cuerpo3());
       //System.out.println("puntos while: " + puntosWhile);
+      puntosWhile = (int) Math.pow(puntosWhile, 2);
       return puntosWhile;
     }
 
@@ -604,18 +604,19 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       }
       if(ctx.cuerpo() != null)
       {
-        puntosCondicional += (int) Math.pow((Integer) visit(ctx.cuerpo()), 2);
+        puntosCondicional += (Integer) visit(ctx.cuerpo());
       }
       else if(ctx.cuerpo2() != null)
       {
-        puntosCondicional += (int) Math.pow((Integer) visit(ctx.cuerpo2()), 2);
+        puntosCondicional += (Integer) visit(ctx.cuerpo2());
       }
       else if(ctx.cuerpo3() != null)
       {
-        puntosCondicional += (int) Math.pow((Integer) visit(ctx.cuerpo3()), 2);
+        puntosCondicional += (Integer) visit(ctx.cuerpo3());
       }
       //puntosCondicionales = (int) Math.pow(puntosCondicionales, 2);
       //System.out.println("puntos condicional: " + puntosCondicional);
+      puntosCondicional = (int) Math.pow(puntosCondicional, 2);
       return puntosCondicional;
     }
 

@@ -29,4 +29,8 @@ public class File implements Serializable{
         symbolTable.addFunction(function);
     }
 
+    public TablaSimbolos getTablaSimbolos()
+    {
+        return this.symbolTable;
+    }
 }
