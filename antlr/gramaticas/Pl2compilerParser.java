@@ -174,11 +174,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitProg(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitProg(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ProgContext prog() throws RecognitionException {
@@ -259,11 +254,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitLibreria(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitLibreria(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -347,11 +337,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitAsignacion(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitAsignacion(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -470,11 +455,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitCondicion(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitCondicion(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final CondicionContext condicion() throws RecognitionException {
@@ -541,11 +521,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitCondicionalif(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitCondicionalif(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -664,11 +639,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitCondicionalelse(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitCondicionalelse(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final CondicionalelseContext condicionalelse() throws RecognitionException {
@@ -735,11 +705,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitCondicionales(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitCondicionales(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -813,11 +778,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitFuncionwhile(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitFuncionwhile(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -935,11 +895,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitFuncionfor(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitFuncionfor(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1095,11 +1050,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitCuerpo(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitCuerpo(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final CuerpoContext cuerpo() throws RecognitionException {
@@ -1172,11 +1122,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitCuerpo2(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitCuerpo2(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1299,11 +1244,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitCuerpo3(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitCuerpo3(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1438,11 +1378,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitLlamarfuncion(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitLlamarfuncion(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final LlamarfuncionContext llamarfuncion() throws RecognitionException {
@@ -1521,11 +1456,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitLlamadafuncion(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitLlamadafuncion(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1608,11 +1538,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitCodigo(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitCodigo(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final CodigoContext codigo() throws RecognitionException {
@@ -1692,11 +1617,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitCrearfuncion(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitCrearfuncion(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final CrearfuncionContext crearfuncion() throws RecognitionException {
@@ -1752,11 +1672,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitDevolver(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitDevolver(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1819,11 +1734,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitRetorno(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitRetorno(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final RetornoContext retorno() throws RecognitionException {
@@ -1883,11 +1793,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitCabecerafuncion(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitCabecerafuncion(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2012,11 +1917,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitExpr(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitExpr(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2287,11 +2187,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitExpresionlogica(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitExpresionlogica(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ExpresionlogicaContext expresionlogica() throws RecognitionException {
@@ -2430,11 +2325,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitNombrefuncion(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitNombrefuncion(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final NombrefuncionContext nombrefuncion() throws RecognitionException {
@@ -2473,11 +2363,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitNombrevariable(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitNombrevariable(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2525,11 +2410,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitNombrepaquete(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitNombrepaquete(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final NombrepaqueteContext nombrepaquete() throws RecognitionException {
@@ -2566,11 +2446,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitOperadorasignacion(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitOperadorasignacion(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2619,11 +2494,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitParametros(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitParametros(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2684,11 +2554,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitParametro(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitParametro(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ParametroContext parametro() throws RecognitionException {
@@ -2737,11 +2602,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitOperadoraritmeticoproducto(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitOperadoraritmeticoproducto(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final OperadoraritmeticoproductoContext operadoraritmeticoproducto() throws RecognitionException {
@@ -2778,11 +2638,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitOperadoraritmeticodivision(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitOperadoraritmeticodivision(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2821,11 +2676,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitOperadoraritmeticosuma(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitOperadoraritmeticosuma(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final OperadoraritmeticosumaContext operadoraritmeticosuma() throws RecognitionException {
@@ -2862,11 +2712,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitOperadoraritmeticoresta(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitOperadoraritmeticoresta(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2905,11 +2750,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitOperadoraritmeticosuma1(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitOperadoraritmeticosuma1(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Operadoraritmeticosuma1Context operadoraritmeticosuma1() throws RecognitionException {
@@ -2946,11 +2786,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitOperadoraritmeticoresta1(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitOperadoraritmeticoresta1(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2991,11 +2826,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitOperadorlogico(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitOperadorlogico(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3044,11 +2874,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitOperadorcondicionalpuertalogica(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitOperadorcondicionalpuertalogica(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final OperadorcondicionalpuertalogicaContext operadorcondicionalpuertalogica() throws RecognitionException {
@@ -3095,11 +2920,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitCadena(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitCadena(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final CadenaContext cadena() throws RecognitionException {
@@ -3136,11 +2956,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitSeparadoroperaciones(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitSeparadoroperaciones(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3179,11 +2994,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitSeparadoroperadores(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitSeparadoroperadores(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final SeparadoroperadoresContext separadoroperadores() throws RecognitionException {
@@ -3220,11 +3030,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitSeparadordospuntos(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitSeparadordospuntos(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3263,11 +3068,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitOperadoraperturaparentesis(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitOperadoraperturaparentesis(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final OperadoraperturaparentesisContext operadoraperturaparentesis() throws RecognitionException {
@@ -3304,11 +3104,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitOperadorcierreparentesis(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitOperadorcierreparentesis(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3348,11 +3143,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitTipovariable(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitTipovariable(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3403,11 +3193,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitComentarios(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitComentarios(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ComentariosContext comentarios() throws RecognitionException {
@@ -3456,11 +3241,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitEntero(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitEntero(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3518,11 +3298,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitFlotante(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitFlotante(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final FlotanteContext flotante() throws RecognitionException {
@@ -3564,11 +3339,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitNumeros(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitNumeros(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3622,11 +3392,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclavebooleano(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclavebooleano(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final PalabraclavebooleanoContext palabraclavebooleano() throws RecognitionException {
@@ -3663,11 +3428,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclavebuclefor(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclavebuclefor(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3706,11 +3466,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclaveendbuclefor(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclaveendbuclefor(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final PalabraclaveendbucleforContext palabraclaveendbuclefor() throws RecognitionException {
@@ -3747,11 +3502,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclaveinciovalorfor(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclaveinciovalorfor(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3790,11 +3540,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclavesaltoelementofor(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclavesaltoelementofor(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final PalabraclavesaltoelementoforContext palabraclavesaltoelementofor() throws RecognitionException {
@@ -3831,11 +3576,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclavefinvalorfor(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclavefinvalorfor(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3874,11 +3614,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclavehacerfor(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclavehacerfor(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final PalabraclavehacerforContext palabraclavehacerfor() throws RecognitionException {
@@ -3915,11 +3650,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclavebuclewhile(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclavebuclewhile(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3958,11 +3688,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabrareservadacase(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabrareservadacase(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final PalabrareservadacaseContext palabrareservadacase() throws RecognitionException {
@@ -3999,11 +3724,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabrareservadabreak(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabrareservadabreak(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4042,11 +3762,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabrareservadadefault(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabrareservadadefault(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final PalabrareservadadefaultContext palabrareservadadefault() throws RecognitionException {
@@ -4083,11 +3798,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclaveifcondicion(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclaveifcondicion(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4126,11 +3836,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclaveelsecondicion(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclaveelsecondicion(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final PalabraclaveelsecondicionContext palabraclaveelsecondicion() throws RecognitionException {
@@ -4167,11 +3872,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclavethen(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclavethen(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4210,11 +3910,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclaveendif(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclaveendif(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final PalabraclaveendifContext palabraclaveendif() throws RecognitionException {
@@ -4251,11 +3946,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclaveincluirlibreria(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclaveincluirlibreria(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4294,11 +3984,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclavecreacionfuncion(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclavecreacionfuncion(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final PalabraclavecreacionfuncionContext palabraclavecreacionfuncion() throws RecognitionException {
@@ -4335,11 +4020,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclavefuncionmain(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclavefuncionmain(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4378,11 +4058,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclavefunciondevolver(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclavefunciondevolver(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final PalabraclavefunciondevolverContext palabraclavefunciondevolver() throws RecognitionException {
@@ -4420,11 +4095,6 @@ public class Pl2compilerParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclaveinicio(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclaveinicio(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final PalabraclaveinicioContext palabraclaveinicio() throws RecognitionException {
@@ -4461,11 +4131,6 @@ public class Pl2compilerParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof Pl2compilerParserListener ) ((Pl2compilerParserListener)listener).exitPalabraclavefin(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Pl2compilerParserVisitor ) return ((Pl2compilerParserVisitor<? extends T>)visitor).visitPalabraclavefin(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 

@@ -12,7 +12,7 @@ public class TablaSimbolos
     public void addFunction(Funcion function)
     {
         symbolTable.put(function.getName(), function);
-    }  
+    }
 
     public void printHashMap()
     {
@@ -29,9 +29,9 @@ public class TablaSimbolos
     }
 
     /* Deberíamos tener esto en cuenta
-– LaoperaciónInsertarnodebesobrescribirdeclaracionesanteriores. 
-– La operación Buscar debe encontrar siempre la declaración más reciente. 
+– LaoperaciónInsertarnodebesobrescribirdeclaracionesanteriores.
+– La operación Buscar debe encontrar siempre la declaración más reciente.
 – La operación Eliminar sólo elimina la declaración más reciente de un nombre
     */
-    
+
 }

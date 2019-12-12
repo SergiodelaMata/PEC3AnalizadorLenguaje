@@ -3,7 +3,7 @@ begin
     numero beginer,ender,paso; //3
     beginer:=1; //1
     ender:=333; //1
-    paso:=10 //1
+    paso:=10; //1
 
     if(false) then
         imprimir("verdad");

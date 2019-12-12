@@ -26,15 +26,11 @@ import java.lang.Math;
   parametros
   parametro
   palabraclavebooleano
-
   VISITORS EXTRA:
   cadena
   retorno
   
-
   no se si hay que crear el de libreria para que sume como operacion basica y para las lineas efectivas
-
-
   IMPORTANTE: falta contar la cabecera del for tanto para los puntos como para operaciones, etc
   IMPORTANTE: hay que cambiar la forma de contar las llamadas como lineas efectivas (no se pueden contar si esta en una asignacion)
 */
@@ -251,7 +247,6 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     /*@Override
     public String visitParametro()
     {
-
     }*/
 
     @Override
@@ -275,7 +270,6 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
      /*@Override
      public Integer visitTipovariable(Pl2compilerParser.TipovariableContext ctx)
      {
-
        return 0;
      }*/
 
@@ -288,7 +282,6 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       /*visitedFunction = new Funcion(); //no hay que ponerlo aqui creo
       int numFunctionPoints = 0;
       numFunctionPoints = (Integer) visit(ctx.codigo()); //Da error aquí al ejecutar
-
       visitedFunction.setFunctionPoints(numFunctionPoints);
       file.addFunction(visitedFunction);
       return numFunctionPoints;*/
@@ -386,13 +379,10 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     public Integer visitFuncionwhile(Pl2compilerParser.FuncionwhileContext ctx)
     {
       /*int puntosWhile = 0;
-
       if (ctx.expr() != null) puntosWhile += (int) Math.pow((Integer)visit(ctx.expr()), 2);
       else if (ctx.expresionlogica() != null) puntosWhile += (int) Math.pow((Integer)visit(ctx.expresionlogica()), 2);
-
       if(ctx.cuerpo() != null) puntosWhile += (Integer)visit(ctx.cuerpo());
       else if(ctx.cuerpo3() != null) puntosWhile += (Integer)visit(ctx.cuerpo3());
-
       puntosWhile = (int) Math.pow(puntosWhile, 2); //si hacemos aqui el ^2 no habria que quitarlo de arriba??
       return puntosWhile;*/
       int puntosWhile = 0;
@@ -433,13 +423,11 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       puntosSwitch += (Integer) visit(ctx.cuerposwitch()); //el ^2 iria aqui?????
       return puntosSwitch;
     }
-
     @Override
     public Integer visitCabeceraswitch(Pl2compilerParser.CabeceraswitchContext ctx)
     {
       return (Integer) visit(ctx.expr());
     }
-
     //Habría que tener en cuenta también "cuerpo3" o cambiarlo en el Parser (creo que la segunda opción es más fácil)
     @Override
     public Integer visitCuerposwitch(Pl2compilerParser.CuerposwitchContext ctx)
@@ -497,7 +485,6 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
               ArrayList<Pl2compilerParser.LlamarfuncionContext> listaLlamadas = new ArrayList<Pl2compilerParser.LlamarfuncionContext>(ctx.expr().llamarfuncion());
               //pzArrayList<Pl2compilerParser.LlamarfuncionContext> listaLlamadas = new ArrayList<Pl2compilerParser.LlamarfuncionContext>(ctx.expr().llamarfuncion());
               //ArrayList<Pl2compilerParser.LlamarfuncionContext> listaLlamadas = new ArrayList<Pl2compilerParser.LlamarfuncionContext>(ctx.expr().llamarfuncion());
-
               visitedFunction.removeEfectiveLine(listaLlamadas.size());
             }*/
             if (isLlamada(ctx.expr())) //si la asignacion acaba en llamada no se suma linea efectiva porque ya se suma en la propia llamada
@@ -783,28 +770,21 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     @Override
     public Integer visitOperadoraritmeticosuma(Pl2compilerParser.OperadoraritmeticosumaContext ctx){
       visitedFunction.addSimpleOperator(1);
-
       return 1 + ((Integer)visit(ctx.expr(0)) + (Integer)visit(ctx.expr(1)));
     }
-
     @Override
     public Integer visitOperadoraritmeticoresta(Pl2compilerParser.OperadoraritmeticorestaContext ctx){
       visitedFunction.addSimpleOperator(1);
-
       return 1 + ((Integer)visit(ctx.expr(0)) + (Integer)visit(ctx.expr(1)));
     }
-
     @Override
     public Integer visitOperadoraritmeticoproducto(Pl2compilerParser.OperadoraritmeticoproductoContext ctx){
       visitedFunction.addSimpleOperator(1);
-
       return 1 + ((Integer)visit(ctx.expr(0)) + (Integer)visit(ctx.expr(1)));
     }
-
     @Override
     public Integer visitOperadoraritmeticodivision(Pl2compilerParser.OperadoraritmeticodivisionContext ctx){
       visitedFunction.addSimpleOperator(1);
-
       return 1 + ((Integer)visit(ctx.expr(0)) + (Integer)visit(ctx.expr(1)));
     }
 */
