@@ -36,6 +36,7 @@ import java.lang.Math;
 
 
   IMPORTANTE: falta contar la cabecera del for tanto para los puntos como para operaciones, etc
+  IMPORTANTE: hay que cambiar la forma de contar las llamadas como lineas efectivas (no se pueden contar si esta en una asignacion)
 */
 
 
@@ -482,13 +483,12 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       if (ctx.tipovariable() != null) //es una declaracion
       {
         visitedFunction.addDeclaration(listaVariables.size()); //suma 1 por declaracion
-        visitedFunction.addSimpleOperator(listaVariables.size());
         puntosAsignacion += listaVariables.size(); //suma 1 por declaracion
       }
       if (ctx.operadorasignacion() != null) //es una asignacion
         {
           puntosAsignacion++; //suma 1 (operacion simple)
-          visitedFunction.addSimpleOperator(1);
+          visitedFunction.addSimpleOperator(1); //NO SE SI := CUANTA COMO OPERADOR (SI NO CUENTA QUITARLO!)
           if (ctx.expr() != null) //hay que mirar lo que tiene dentro
           {
             puntosAsignacion += (Integer) visit(ctx.expr());
@@ -532,7 +532,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       else
       {
         visitedFunction.addFunctionCall(1); //suma 1 llamada de funcion
-        visitedFunction.addSimpleOperator(1);
+        //visitedFunction.addSimpleOperator(1);
         puntosLlamada = 2; //suma 2
         if (ctx.parametros() != null) //cada parametros suma 1
         {
@@ -655,7 +655,6 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     public Integer visitDevolver(Pl2compilerParser.DevolverContext ctx)
     {
       int puntosDevolver = 0;
-      visitedFunction.addSimpleOperator(1);
       visitedFunction.addEfectiveLine(1);
 
       if(ctx.llamarfuncion() != null) puntosDevolver += (Integer)visit(ctx.llamarfuncion());
