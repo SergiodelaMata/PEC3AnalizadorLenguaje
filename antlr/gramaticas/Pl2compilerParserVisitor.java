@@ -34,11 +34,17 @@ public interface Pl2compilerParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCondicion(Pl2compilerParser.CondicionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link Pl2compilerParser#condicional}.
+	 * Visit a parse tree produced by {@link Pl2compilerParser#condicionalif}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitCondicional(Pl2compilerParser.CondicionalContext ctx);
+	T visitCondicionalif(Pl2compilerParser.CondicionalifContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Pl2compilerParser#condicionalelse}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCondicionalelse(Pl2compilerParser.CondicionalelseContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link Pl2compilerParser#condicionales}.
 	 * @param ctx the parse tree
@@ -346,11 +352,17 @@ public interface Pl2compilerParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPalabrareservadadefault(Pl2compilerParser.PalabrareservadadefaultContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link Pl2compilerParser#palabraclavecondiciones}.
+	 * Visit a parse tree produced by {@link Pl2compilerParser#palabraclaveifcondicion}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitPalabraclavecondiciones(Pl2compilerParser.PalabraclavecondicionesContext ctx);
+	T visitPalabraclaveifcondicion(Pl2compilerParser.PalabraclaveifcondicionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Pl2compilerParser#palabraclaveelsecondicion}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPalabraclaveelsecondicion(Pl2compilerParser.PalabraclaveelsecondicionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link Pl2compilerParser#palabraclavethen}.
 	 * @param ctx the parse tree

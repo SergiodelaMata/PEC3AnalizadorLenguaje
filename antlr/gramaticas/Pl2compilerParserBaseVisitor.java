@@ -44,7 +44,14 @@ public class Pl2compilerParserBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitCondicional(Pl2compilerParser.CondicionalContext ctx) { return visitChildren(ctx); }
+	@Override public T visitCondicionalif(Pl2compilerParser.CondicionalifContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitCondicionalelse(Pl2compilerParser.CondicionalelseContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -408,7 +415,14 @@ public class Pl2compilerParserBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitPalabraclavecondiciones(Pl2compilerParser.PalabraclavecondicionesContext ctx) { return visitChildren(ctx); }
+	@Override public T visitPalabraclaveifcondicion(Pl2compilerParser.PalabraclaveifcondicionContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitPalabraclaveelsecondicion(Pl2compilerParser.PalabraclaveelsecondicionContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

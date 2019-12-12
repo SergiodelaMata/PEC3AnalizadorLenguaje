@@ -4,6 +4,17 @@ begin
     beginer:=1; //1
     ender:=333; //1
     paso:=10 //1
+
+    if(false) then
+        imprimir("verdad");
+        if (true) then 
+            imprimir("verdadera");
+        endif
+    else
+        imprimir ("falso");
+    endif
+
+
     for case from 30 to 1 step -1 do
         begin
             for caso from beginer to 45 do

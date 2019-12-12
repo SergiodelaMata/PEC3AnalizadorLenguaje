@@ -5,7 +5,7 @@ options {
 	language = Java;
 }
 
-prog: (libreria|expr|asignacion|crearfuncion)+;
+prog: (libreria|crearfuncion)+;
 libreria: (palabraclaveincluirlibreria nombrepaquete separadoroperaciones)+;
 asignacion: ((tipovariable? nombrevariable (operadorasignacion expr)?)
             | (tipovariable nombrevariable (separadoroperadores nombrevariable)*)) separadoroperaciones?;
@@ -14,9 +14,10 @@ condicion: operadoraperturaparentesis expresionlogica operadorcierreparentesis;
 //operacionswitch: cabeceraswitch cuerposwitch;
 //cabeceraswitch: palabrareservadaaperturaswitch operadoraperturaparentesis expr operadorcierreparentesis;
 //cuerposwitch: (palabrareservadacase expr separadordospuntos (cuerpo3|cuerpo) (palabrareservadabreak separadoroperaciones)?)+ (palabrareservadadefault separadordospuntos (cuerpo3|cuerpo) (palabrareservadabreak separadoroperaciones)?) palabrareservadacierrewitch; 
-condicional: (palabraclavecondiciones ((condicion)
-            | (condicion (operadorcondicionalpuertalogica condicion)*))? palabraclavethen? (cuerpo3|cuerpo4|cuerpo));
-condicionales:  condicional+ palabraclaveendif;
+condicionalif: palabraclaveifcondicion ((condicion)
+            | (condicion (operadorcondicionalpuertalogica condicion)*))? palabraclavethen? (cuerpo3|cuerpo4|cuerpo);
+condicionalelse: palabraclaveelsecondicion (cuerpo3|cuerpo4|cuerpo);
+condicionales:  condicionalif condicionalelse? palabraclaveendif;
 funcionwhile: palabraclavebuclewhile operadoraperturaparentesis (expr|expresionlogica) operadorcierreparentesis (cuerpo|cuerpo3|cuerpo4);
 //funcionfor: palabraclavebuclefor operadoraperturaparentesis (variable|nombrevariable) (separadoroperaciones expresionlogica) (separadoroperaciones variable|nombrevariable (operadoraritmeticosuma1 |operadoraritmeticoresta1)) operadorcierreparentesis cuerpo;
 funcionfor: palabraclavebuclefor nombrevariable palabraclaveinciovalorfor (nombrevariable|numeros) palabraclavefinvalorfor (nombrevariable|numeros) (palabraclavesaltoelementofor (nombrevariable|numeros))? palabraclavehacerfor (cuerpo|cuerpo3|cuerpo4) palabraclaveendbuclefor;
@@ -90,7 +91,8 @@ palabraclavebuclewhile: WHILE;
 palabrareservadacase: CASE;
 palabrareservadabreak: BREAK;
 palabrareservadadefault: DEFAULT;
-palabraclavecondiciones: CONDICIONES;
+palabraclaveifcondicion: IF;
+palabraclaveelsecondicion: ELSE;
 palabraclavethen: THEN;
 palabraclaveendif: ENDIF;
 palabraclaveincluirlibreria: INCLUDE;

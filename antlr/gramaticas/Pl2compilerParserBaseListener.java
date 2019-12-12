@@ -63,13 +63,25 @@ public class Pl2compilerParserBaseListener implements Pl2compilerParserListener 
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCondicional(Pl2compilerParser.CondicionalContext ctx) { }
+	@Override public void enterCondicionalif(Pl2compilerParser.CondicionalifContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCondicional(Pl2compilerParser.CondicionalContext ctx) { }
+	@Override public void exitCondicionalif(Pl2compilerParser.CondicionalifContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCondicionalelse(Pl2compilerParser.CondicionalelseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCondicionalelse(Pl2compilerParser.CondicionalelseContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -687,13 +699,25 @@ public class Pl2compilerParserBaseListener implements Pl2compilerParserListener 
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPalabraclavecondiciones(Pl2compilerParser.PalabraclavecondicionesContext ctx) { }
+	@Override public void enterPalabraclaveifcondicion(Pl2compilerParser.PalabraclaveifcondicionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPalabraclavecondiciones(Pl2compilerParser.PalabraclavecondicionesContext ctx) { }
+	@Override public void exitPalabraclaveifcondicion(Pl2compilerParser.PalabraclaveifcondicionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPalabraclaveelsecondicion(Pl2compilerParser.PalabraclaveelsecondicionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPalabraclaveelsecondicion(Pl2compilerParser.PalabraclaveelsecondicionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

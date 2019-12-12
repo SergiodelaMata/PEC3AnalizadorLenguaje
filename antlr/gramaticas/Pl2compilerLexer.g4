@@ -1,11 +1,11 @@
 lexer grammar Pl2compilerLexer;
 
-CONDICIONES: IF | ELSE;
+//CONDICIONES: IF | ELSE;
 
 //IFELSE: IF ' ' ELSE;
 //Keywords
-SWITCH: 'switch';
-ENDSWITCH: 'endswitch';
+//SWITCH: 'switch';
+//ENDSWITCH: 'endswitch';
 CASE: 'case';
 BREAK: 'break';
 DEFAULT: 'default';

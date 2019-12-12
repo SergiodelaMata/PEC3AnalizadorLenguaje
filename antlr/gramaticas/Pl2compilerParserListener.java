@@ -47,15 +47,25 @@ public interface Pl2compilerParserListener extends ParseTreeListener {
 	 */
 	void exitCondicion(Pl2compilerParser.CondicionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link Pl2compilerParser#condicional}.
+	 * Enter a parse tree produced by {@link Pl2compilerParser#condicionalif}.
 	 * @param ctx the parse tree
 	 */
-	void enterCondicional(Pl2compilerParser.CondicionalContext ctx);
+	void enterCondicionalif(Pl2compilerParser.CondicionalifContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link Pl2compilerParser#condicional}.
+	 * Exit a parse tree produced by {@link Pl2compilerParser#condicionalif}.
 	 * @param ctx the parse tree
 	 */
-	void exitCondicional(Pl2compilerParser.CondicionalContext ctx);
+	void exitCondicionalif(Pl2compilerParser.CondicionalifContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link Pl2compilerParser#condicionalelse}.
+	 * @param ctx the parse tree
+	 */
+	void enterCondicionalelse(Pl2compilerParser.CondicionalelseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Pl2compilerParser#condicionalelse}.
+	 * @param ctx the parse tree
+	 */
+	void exitCondicionalelse(Pl2compilerParser.CondicionalelseContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link Pl2compilerParser#condicionales}.
 	 * @param ctx the parse tree
@@ -567,15 +577,25 @@ public interface Pl2compilerParserListener extends ParseTreeListener {
 	 */
 	void exitPalabrareservadadefault(Pl2compilerParser.PalabrareservadadefaultContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link Pl2compilerParser#palabraclavecondiciones}.
+	 * Enter a parse tree produced by {@link Pl2compilerParser#palabraclaveifcondicion}.
 	 * @param ctx the parse tree
 	 */
-	void enterPalabraclavecondiciones(Pl2compilerParser.PalabraclavecondicionesContext ctx);
+	void enterPalabraclaveifcondicion(Pl2compilerParser.PalabraclaveifcondicionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link Pl2compilerParser#palabraclavecondiciones}.
+	 * Exit a parse tree produced by {@link Pl2compilerParser#palabraclaveifcondicion}.
 	 * @param ctx the parse tree
 	 */
-	void exitPalabraclavecondiciones(Pl2compilerParser.PalabraclavecondicionesContext ctx);
+	void exitPalabraclaveifcondicion(Pl2compilerParser.PalabraclaveifcondicionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link Pl2compilerParser#palabraclaveelsecondicion}.
+	 * @param ctx the parse tree
+	 */
+	void enterPalabraclaveelsecondicion(Pl2compilerParser.PalabraclaveelsecondicionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Pl2compilerParser#palabraclaveelsecondicion}.
+	 * @param ctx the parse tree
+	 */
+	void exitPalabraclaveelsecondicion(Pl2compilerParser.PalabraclaveelsecondicionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link Pl2compilerParser#palabraclavethen}.
 	 * @param ctx the parse tree
