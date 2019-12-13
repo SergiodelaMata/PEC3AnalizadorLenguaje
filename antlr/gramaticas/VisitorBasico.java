@@ -31,7 +31,6 @@ import java.lang.Math;
   retorno
   
   no se si hay que crear el de libreria para que sume como operacion basica y para las lineas efectivas
-  IMPORTANTE: falta contar la cabecera del for tanto para los puntos como para operaciones, etc
   */
 
 
@@ -401,14 +400,19 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     //For
     @Override public Long visitFuncionfor(Pl2compilerParser.FuncionforContext ctx)  //hay que tener en cuenta los incremetos de i para sumarlos a operaciones basicas??
     {
-      long puntosFor = 0;
-      visitedFunction.addEfectiveLine(1); //cabecera for
+      long puntosFor = 2; //declaracion y asignacion variable
+      visitedFunction.addEfectiveLine(3); //cabecera for + if + asignacion iteraciones
+      visitedFunction.addDeclaration(1); //declaracion variable
+      visitedFunction.addSimpleOperator(2); //condicion, incremento (iteraciones), 1 asignaciones (:=)
 
-      if(ctx.cuerpo() != null) puntosFor += (Long) visit(ctx.cuerpo());
-      else if(ctx.cuerpo2() != null) puntosFor += (Long) visit(ctx.cuerpo2());
-      else if(ctx.cuerpo3() != null) puntosFor += (Long) visit(ctx.cuerpo3());
+      long puntosCondicion = 1; //1 del operador basico de la condicon
+      if(ctx.cuerpo() != null) puntosCondicion += (Long) visit(ctx.cuerpo());
+      else if(ctx.cuerpo2() != null) puntosCondicion += (Long) visit(ctx.cuerpo2());
+      else if(ctx.cuerpo3() != null) puntosCondicion += (Long) visit(ctx.cuerpo3());
 
-      puntosFor = (long) Math.pow(puntosFor, 2);
+      puntosCondicion = (long) Math.pow(puntosCondicion, 2);
+      puntosFor += puntosCondicion;
+      puntosFor += 2; //2 por la asignacion de las iteraciones + el operador basico (++)
 
       return puntosFor;
     }
@@ -476,6 +480,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       if (ctx.operadorasignacion() != null) //es una asignacion
         {
           puntosAsignacion++; //suma 1 (operacion simple)
+          visitedFunction.addSimpleOperator(1); //:=
           if (ctx.expr() != null) //hay que mirar lo que tiene dentro
           {
             puntosAsignacion += (Long) visit(ctx.expr());
