@@ -98,8 +98,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
         }
         visitedFunction.concatenateName(nombre);
 
-        Integer puntos_Cabecera = 0;
-        long puntosCabecera = puntos_Cabecera.longValue();
+        long puntosCabecera = 0;
         //Long puntosCabecera = puntos_Cabecera.longValue(); Si no funciona el primer cast, intentar el segundo
        
         if(ctx.parametros() != null)
@@ -166,8 +165,8 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
         //visitedFunction.addParameter(listaParametros.size());
         //System.out.println("Nº Parámetros: " + listaParametros.size());
         //visitedFunction.addParameter(listaParametros.size() * 2); //esto creo que sobra (esta en la linea de arriba)!!
-        Integer puntos_Parametros = 0;
-        long puntosParametros = puntos_Parametros.longValue();
+
+        long puntosParametros = 0;
 
         for(int i = 0; i < listaParametros.size(); i++)
         {
@@ -300,8 +299,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     @Override
     public Long visitCuerpo2(Pl2compilerParser.Cuerpo2Context ctx)
     {
-      Integer puntos_Cuerpo = 1;
-      long puntosCuerpo = puntos_Cuerpo.longValue();
+      long puntosCuerpo = 0;
 
       ArrayList<Pl2compilerParser.LlamarfuncionContext> listaLlamada = new ArrayList<Pl2compilerParser.LlamarfuncionContext>(ctx.llamarfuncion()); //puede haber mas de 1 codigo
       ArrayList<Pl2compilerParser.AsignacionContext> listaAsignacion = new ArrayList<Pl2compilerParser.AsignacionContext>(ctx.asignacion()); //puede haber mas de 1 codigo
@@ -326,8 +324,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     @Override
     public Long visitCuerpo3(Pl2compilerParser.Cuerpo3Context ctx)
     {
-      Integer puntos_Cuerpo = 1;
-      long puntosCuerpo = puntos_Cuerpo.longValue();
+      long puntosCuerpo = 0;
 
       ArrayList<Pl2compilerParser.LlamarfuncionContext> listaLlamada = new ArrayList<Pl2compilerParser.LlamarfuncionContext>(ctx.llamarfuncion()); //puede haber mas de 1 codigo
       ArrayList<Pl2compilerParser.AsignacionContext> listaAsignacion = new ArrayList<Pl2compilerParser.AsignacionContext>(ctx.asignacion()); //puede haber mas de 1 codigo
@@ -367,8 +364,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
 
       long numHijos = ctx.getChildCount();
       
-      Integer num_FunctionPoints = 1;
-      long numFunctionPoints = num_FunctionPoints.longValue();
+      long numFunctionPoints = 0;
 
       for (int i=0; i<numHijos; i++) //en este caso se puede hacer asi porque va a visitar todos los hijos
       {
@@ -548,8 +544,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       */
       //return 2;
      
-      Integer puntos_Llamada = 1;
-      long puntosLlamada = puntos_Llamada.longValue();
+      long puntosLlamada = 0;
 
       if (ctx.llamadafuncion() != null)
       {
@@ -582,8 +577,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       {
         visitedFunction.addEfectiveLine(1); 
       }
-      Integer puntos_Llamada = 1;
-      long puntosLlamada = puntos_Llamada.longValue();
+      long puntosLlamada = 0;
 
       visitedFunction.addFunctionCall(1); //suma 1 llamada de funcion
       //visitedFunction.addSimpleOperator(1);
@@ -600,8 +594,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
 
     @Override public Long visitCondicionalif(Pl2compilerParser.CondicionalifContext ctx)
     {
-      Integer puntos_Condicional = 1;
-      long puntosCondicional = puntos_Condicional.longValue();
+      long puntosCondicional = 0;
 
       ArrayList<Pl2compilerParser.OperadorcondicionalpuertalogicaContext> listaOperadores = new ArrayList<Pl2compilerParser.OperadorcondicionalpuertalogicaContext>(ctx.operadorcondicionalpuertalogica());
       ArrayList<Pl2compilerParser.CondicionContext> listaCondiciones = new ArrayList<Pl2compilerParser.CondicionContext>(ctx.condicion());
@@ -634,8 +627,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
 
     @Override public Long visitCondicionalelse(Pl2compilerParser.CondicionalelseContext ctx)
     {
-      Integer puntos_Condicional = 1;
-      long puntosCondicional = puntos_Condicional.longValue();
+      long puntosCondicional = 0;
       
       if(ctx.cuerpo() != null)
       {
@@ -688,8 +680,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
 
     @Override public Long visitCondicionales(Pl2compilerParser.CondicionalesContext ctx)
     {
-      Integer puntos_Condicionales = 1;
-      long puntosCondicionales = puntos_Condicionales.longValue();
+      long puntosCondicionales = 0;
       /*ArrayList<Pl2compilerParser.CondicionalContext> listaCondiciones = new ArrayList<Pl2compilerParser.CondicionalContext>(ctx.condicional());
       for (int i=0; i<listaCondiciones.size(); i++) //no hace falta comprobar si la lista esta vacia porque es condicion+
       {
@@ -747,9 +738,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     @Override
     public Long visitExpresionlogica(Pl2compilerParser.ExpresionlogicaContext ctx)
     {
-      
-      Integer puntos_ExprLogica = 1;
-      long puntosExprLogica = puntos_ExprLogica.longValue();
+      long puntosExprLogica = 0;
 
       long numHijos = ctx.getChildCount();
       if (numHijos == 1) //si es un booleano simple
