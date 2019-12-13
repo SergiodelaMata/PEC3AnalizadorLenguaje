@@ -50,7 +50,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     }
 
     @Override
-    public Integer visitProg(Pl2compilerParser.ProgContext ctx)
+    public Long visitProg(Pl2compilerParser.ProgContext ctx)
     {
       ArrayList<Pl2compilerParser.CrearfuncionContext> listaCrearFuncion = new ArrayList<Pl2compilerParser.CrearfuncionContext>(ctx.crearfuncion());
       if(listaCrearFuncion.size() != 0)
@@ -61,7 +61,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
         }
       }
       //System.out.println("HOLA");
-      return 1; //no seria 0 (realmente da igual)?
+      return null;
     }
 
     @Override
@@ -226,9 +226,9 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     }
 
     @Override
-    public Integer visitCadena(Pl2compilerParser.CadenaContext ctx) //hecho para  que funciona la suma en visitExpr
+    public Long visitCadena(Pl2compilerParser.CadenaContext ctx) //hecho para  que funciona la suma en visitExpr
     {
-      return 0;
+      return null;
     }
 
     @Override
@@ -246,7 +246,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
     }*/
 
     @Override
-    public Integer visitRetorno(Pl2compilerParser.RetornoContext ctx)
+    public Long visitRetorno(Pl2compilerParser.RetornoContext ctx)
     {
       if(ctx.tipovariable().STRING() != null)
       {
@@ -260,7 +260,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       {
         visitedFunction.concatenateName(ctx.tipovariable().VOID().getText());
       }
-      return 0;
+      return null;
      }
 
      /*@Override
