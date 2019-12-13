@@ -58,8 +58,8 @@ public class PagWeb
         html += "</ul></body></html>";
         try
         {
-            FileWriter filewriter = new FileWriter("PL3.html");//declarar el archivo
-            PrintWriter printw = new PrintWriter(filewriter);//declarar un impresor
+            FileWriter filewriter = new FileWriter("PL3.html"); //archivo donde se va a crear
+            PrintWriter printw = new PrintWriter(filewriter);
             printw.println(html);
             printw.close();
         } catch(IOException io)
