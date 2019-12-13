@@ -12,11 +12,11 @@ public class PagWeb
         File file = File.getInstance();
         TablaSimbolos tablaSimbolos = file.getTablaSimbolos();
         
-        int puntosFuncion = 0;
-        int variablesDeclaradas = 0;
-        int lineasEfectivas = 0;
-        int numParametros = 0;
-        int numLlamadas = 0;
+        long puntosFuncion = 0;
+        long variablesDeclaradas = 0;
+        long lineasEfectivas = 0;
+        long numParametros = 0;
+        long numLlamadas = 0;
 
         ArrayList<Funcion> funciones = new ArrayList<Funcion>();
         for (Funcion funcion : tablaSimbolos.getTable().values()) //recorre la tabla de simbolos
