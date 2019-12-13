@@ -1,11 +1,13 @@
 import java.util.ArrayList;
+import java.io.*;
 
 public class PagWeb
 {
-    /*public String createHtml()
-    {
+    public void createHtml()
+    {  
         String html = "";
-        html += "<h1>Practica 3 Procesadores del Lenguaje</h1>";
+        html += "<!DOCTYPE html><head><title>Practica 3 Procesadores del Lenguaje</title></head><body>";
+        //html += "<h1>Practica 3 Procesadores del Lenguaje</h1>";
         
         File file = File.getInstance();
         TablaSimbolos tablaSimbolos = file.getTablaSimbolos();
@@ -17,7 +19,7 @@ public class PagWeb
         int numLlamadas = 0;
 
         ArrayList<Funcion> funciones = new ArrayList<Funcion>();
-        for (Funcion funcion : tablaSimbolos.values()) //recorre la tabla de simbolos
+        for (Funcion funcion : tablaSimbolos.getTable().values()) //recorre la tabla de simbolos
         {
             funciones.add(funcion);
         }
@@ -53,6 +55,16 @@ public class PagWeb
         html += "<li>Número de llamadas a funciones: <strong>" + numLlamadas + "</strong></li>";
         html += "</ul></li>";
         html += "<li>Gráfico de complejidad ciclomática: " + "FALTA EL GRAFO (IMG)" + "</li>";//añadir grafo
-        html += "</ul>";
-    }*/
+        html += "</ul></body></html>";
+        try
+        {
+            FileWriter filewriter = new FileWriter("PL3.html");//declarar el archivo
+            PrintWriter printw = new PrintWriter(filewriter);//declarar un impresor
+            printw.println(html);
+            printw.close();
+        } catch(IOException io)
+        {
+            System.out.println("Error al crear la pagina web");
+        }
+    }
 }

@@ -36,7 +36,9 @@ public class Ejecutable2{
         file.printSymbolTable();
         tabla_simbolos.printHashMap();
         complexVisitor.visit(tree);
-        System.out.println("Visitando árbol de complejidad");
-        System.out.println("FIN");        
+        System.out.println("Visitando árbol de complejidad");       
+        PagWeb pag = new PagWeb();
+        pag.createHtml();
+        System.out.println("FIN"); 
     }
 }

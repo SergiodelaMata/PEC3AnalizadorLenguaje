@@ -28,6 +28,11 @@ public class TablaSimbolos
         symbolTable.remove(function.getName(), function);
     }
 
+    public Hashtable<String, Funcion> getTable()
+    {
+        return this.symbolTable;
+    }
+
     /* Deberíamos tener esto en cuenta
 – LaoperaciónInsertarnodebesobrescribirdeclaracionesanteriores.
 – La operación Buscar debe encontrar siempre la declaración más reciente.
