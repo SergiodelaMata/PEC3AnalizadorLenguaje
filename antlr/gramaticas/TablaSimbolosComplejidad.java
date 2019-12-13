@@ -32,6 +32,38 @@ public class TablaSimbolosComplejidad
         return tablaSimbolos;
     }
 
+    public void printHashMapFunction(int position) //Imprime el recorrido del grafo en una función
+    {
+        TablaSimbolosComplejidadFuncion tablaSimbolos = new TablaSimbolosComplejidadFuncion();
+        tablaSimbolos = getTable(position);
+        Enumeration enumeration = symbolTable.keys(); 
+        ArrayList<Integer> listNumNodes = new ArrayList<Integer>();
+        System.out.println(tablaSimbolos.getFunctionName());
+        for(int i = 0; i < tablaSimbolos.size(); i++)
+        {
+            listNumNodes = tablaSimbolos.get(i);
+            System.out.print("Nodo: " + i + " - ");
+            for(int j = 0; j < listNumNodes.size(); j++)
+            {
+                if(j != 0)
+                {
+                    System.out.print(", ");
+                }
+                System.out.print(listNumNodes.get(j));
+            }
+            System.out.println("");
+        }
+
+    }
+
+    public void printHashMap()
+    {
+        for(int i = 0; i < symbolTable.size(); i++)
+        {
+            printHashMapFunction(i);
+        }
+    }
+
 
     
     

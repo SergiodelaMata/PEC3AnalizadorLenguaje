@@ -51,4 +51,14 @@ public class TablaSimbolosComplejidadFuncion
     {
         this.functionName = name;
     }
+
+    public int size()
+    {
+        return symbolTable.size();
+    }
+
+    public ArrayList<Integer> get(int position)
+    {
+        return symbolTable.get(position);
+    }
 }
