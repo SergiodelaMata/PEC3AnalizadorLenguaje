@@ -4,12 +4,12 @@ import java.util.*;
 public class Funcion
 {
     private String name;
-    private int numParameters;
-    private int numDeclaraciones;
-    private int numFunctionCall;
-    private int numSimpleOperators;
-    private int numEfectiveLines;
-    private int numFunctionPoints; //puntosTotales
+    private long numParameters;
+    private long numDeclaraciones;
+    private long numFunctionCall;
+    private long numSimpleOperators;
+    private long numEfectiveLines;
+    private long numFunctionPoints; //puntosTotales
 
     public Funcion()
     {
@@ -22,32 +22,32 @@ public class Funcion
         this.numFunctionPoints = 0; //puntosTotales
     }
 
-    public void addParameter(int points)
+    public void addParameter(long points)
     {
         this.numParameters += points;
     }
 
-    public void addDeclaration(int points)
+    public void addDeclaration(long points)
     {
         this.numDeclaraciones += points;
     }
 
-    public void addFunctionCall(int points)
+    public void addFunctionCall(long points)
     {
         this.numFunctionCall += points;
     }
 
-    public void addSimpleOperator(int points)
+    public void addSimpleOperator(long points)
     {
         this.numSimpleOperators += points;
     }
 
-    public void addEfectiveLine(int points)
+    public void addEfectiveLine(long points)
     {
         this.numEfectiveLines += points;
     }
 
-    public void removeEfectiveLine(int points)
+    public void removeEfectiveLine(long points)
     {
         this.numEfectiveLines -= points;
     }
@@ -67,32 +67,32 @@ public class Funcion
         return this.name;
     }
 
-    public void setFunctionPoints(int points)
+    public void setFunctionPoints(long points)
     {
         this.numFunctionPoints = points;
     }
 
-    public int getFunctionPoints()
+    public long getFunctionPoints()
     {
       return this.numFunctionPoints;
     }
 
-    public int getNumDeclaraciones()
+    public long getNumDeclaraciones()
     {
         return this.numDeclaraciones;
     }
 
-    public int getEfectiveLines()
+    public long getEfectiveLines()
     {
         return this.numEfectiveLines;
     }
 
-    public int getNumParameters()
+    public long getNumParameters()
     {
         return this.numParameters;
     }
 
-    public int getNumFunctionCall()
+    public long getNumFunctionCall()
     {
         return this.numFunctionCall;
     }
