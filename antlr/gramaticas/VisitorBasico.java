@@ -176,34 +176,27 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
 
     @Override public Integer visitExpr(Pl2compilerParser.ExprContext ctx)
     {
-      /*ArrayList<Pl2compilerParser.NombrevariableContext> listaNombreVariables = new ArrayList<Pl2compilerParser.NombrevariableContext>(ctx.nombrevariable());
-      if(listaNombreVariables.size() != 0)
-      {
-        for(int i = 0; i < listaNombreVariables.size(); i++)
-        {
-          if(ctx.nombrevariable() != null)
-          {
-            if(listaNombreVariables.get(i).ID() != null)
-            {
-              //visitedFunction.concatenateName(listaNombreVariables.get(i).ID().getText());
-            }
-            else if(listaNombreVariables.get(i).ARRAY() != null)
-            {
-              //visitedFunction.concatenateName(listaNombreVariables.get(i).ARRAY().getText());
-            }
-            else if(listaNombreVariables.get(i).CASE() != null)
-            {
-              //visitedFunction.concatenateName(listaNombreVariables.get(i).CASE().getText());
-            }
-          }
-        }
-      }*/
       int puntosExpr = 0;
-      if ((ctx.operadoraritmeticosuma() != null) && (ctx.expr(0) != null) && (ctx.expr(1) != null))
+      if (ctx.llamarfuncion() != null) puntosExpr += (Integer) visit(ctx.llamarfuncion());
+      else if (ctx.operadoraritmeticosuma() != null)
+      {
+        ArrayList<Pl2compilerParser.ExprContext> listaExpresiones = new ArrayList<Pl2compilerParser.ExprContext>(ctx.expr());
+        if(listaExpresiones.size() == 2)
+        {
+          puntosExpr += (Integer) (visit(listaExpresiones.get(0))) + 1 + (Integer) (visit(listaExpresiones.get(1))); //puntosExpr + 1 del operador + puntos Expr
+          visitedFunction.addSimpleOperator(1);
+        }
+        else if(listaExpresiones.size() == 1)
+        {
+          puntosExpr += 1 + (Integer) (visit(listaExpresiones.get(0))); //puntosExpr + 1 del operador + puntos Expr
+          visitedFunction.addSimpleOperator(1);
+        }
+      }
+      /*if ((ctx.operadoraritmeticosuma() != null) && (ctx.expr(0) != null) && (ctx.expr(1) != null))
       {
         puntosExpr += (Integer) (visit(ctx.expr(0))) + 1 + (Integer) (visit(ctx.expr(1))); //puntosExpr + 1 del operador + puntos Expr
         visitedFunction.addSimpleOperator(1);
-      } 
+      } */
       else if (ctx.operadoraritmeticoresta() != null) 
       {
         puntosExpr += (Integer) (visit(ctx.expr(0))) + 1 + (Integer) (visit(ctx.expr(1)));
@@ -219,7 +212,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
         puntosExpr += (Integer) (visit(ctx.expr(0))) + 1 + (Integer) (visit(ctx.expr(1)));
         visitedFunction.addSimpleOperator(1);
       }
-      else if (ctx.llamarfuncion() != null) puntosExpr += (Integer) visit(ctx.llamarfuncion());
+      //else if (ctx.llamarfuncion() != null) puntosExpr += (Integer) visit(ctx.llamarfuncion());
       else if((ctx.operadoraperturaparentesis() != null) && (ctx.expr(0) != null)) puntosExpr += (Integer) visit(ctx.expr(0));
 
       //System.out.println(ctx.getText());
