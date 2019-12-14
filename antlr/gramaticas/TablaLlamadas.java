@@ -1,5 +1,5 @@
 import java.util.*;
-
+import java.io.*;
 
 public class TablaLlamadas
 {
@@ -15,22 +15,11 @@ public class TablaLlamadas
         symbolTable.put(funcion, llamadas);
     }
 
-    public void printHashMap()
+    public void printHashMap() //BORRAR ANTES DE ENTREGAR
     {
         Enumeration e = symbolTable.keys();
         String key;
         ArrayList<String> value;
-        while(e.hasMoreElements())
-        {
-            key = (String) e.nextElement();
-            value = symbolTable.get(key);
-            System.out.print(key + " -> ");
-            for (int i=0; i<value.size(); i++)
-            {
-                System.out.print(value.get(i) + " ");;
-            }
-            System.out.println();
-        }
         while(e.hasMoreElements())
         {
             key = (String) e.nextElement();
@@ -44,18 +33,57 @@ public class TablaLlamadas
         }
     }
 
-    public String createDot()
+
+    public void crearGrafo(String funcionInicio)
+    {
+        if (isValida(funcionInicio)) //comprueba si la funcion existe
+        {
+            String dot = createDot(funcionInicio);
+            try
+            {
+                FileWriter filewriter = new FileWriter("grafoLlamadas.dot"); //archivo donde se va a crear
+                PrintWriter printw = new PrintWriter(filewriter);                
+                Runtime.getRuntime().exec("dot -Tsvg grafoLlamadas.dot -o grafoLlamadas.svg");
+                printw.println(dot);
+                printw.close();
+            } catch(IOException io)
+            {
+                System.out.println("Error al crear la pagina web");
+            }
+        }
+        else
+        {
+            System.out.println("La funcion introducida no es valida");
+        }
+    }
+
+    public Boolean isValida(String funcion) //comprueba si una funcion (nombrefuncion(parametros))esta en el programa
+    {
+        boolean isValida = false;
+        Object[] keys = symbolTable.keySet().toArray();
+        for (int i=0; i<keys.length; i++)
+        {
+            if (keys[i].equals(funcion))
+            {
+                isValida = true;
+            }
+        }
+        return isValida;
+    }
+
+    public String createDot(String funcionInicio)
     {
         String dot = "digraph Llamadas\n{\n";
         Enumeration e = symbolTable.keys();
         String key;
         ArrayList<String> value;
         ArrayList<String> nodos = new ArrayList<String>();
+        dot += 0 + " [label=\"\"style=filled, fillcolor=red];\n"; //pongo nombre a los nodos
         while(e.hasMoreElements()) //añado los nodos claves
         {
             key = (String) e.nextElement();
-            dot += nodos.size() + " [label=\"" + key + "\"];\n"; //pongo nombre a los nodos
             nodos.add(key);
+            dot += nodos.size() + " [label=\"" + key + "\"];\n"; //pongo nombre a los nodos
             value = symbolTable.get(key);
         }
         Enumeration e2 = symbolTable.keys();
@@ -68,13 +96,14 @@ public class TablaLlamadas
             {
                 if (!existe(nodos, value.get(i))) //si el nodo no esta ya creado (evitar repeticiones)
                 {
-                    dot += nodos.size() + " [label=\"" + value.get(i) + "\"];\n"; //pongo nombre a los nodos
                     nodos.add(value.get(i)); //añado el nodo
+                    dot += nodos.size() + " [label=\"" + value.get(i) + "\"];\n"; //pongo nombre a los nodos
                 }
                 System.out.print(value.get(i) + " ");;
             }
             System.out.println();
         }
+        dot += "0->" + (getPosicion(nodos, funcionInicio) + 1) + ";\n";
         Enumeration e3 = symbolTable.keys();
         while (e3.hasMoreElements()) //se crean las relaciones
         {
@@ -82,8 +111,8 @@ public class TablaLlamadas
             value = symbolTable.get(key);
             for (int i=0; i<value.size(); i++) //en este for se crean las relaciones entre los nodos creados antes
             {
-                int posNodoClave = getPosicion(nodos, key);
-                int posNodo = getPosicion(nodos, value.get(i));
+                int posNodoClave = getPosicion(nodos, key) + 1;
+                int posNodo = getPosicion(nodos, value.get(i)) + 1;
                 dot += posNodoClave + "->" + posNodo + ";\n";
             }
         }
@@ -117,12 +146,5 @@ public class TablaLlamadas
             }
         }
         return posicion;
-    }
-
-
-
-
-    
-    
-    
+    }      
 }

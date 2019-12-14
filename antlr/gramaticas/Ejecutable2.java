@@ -41,8 +41,7 @@ public class Ejecutable2{
         System.out.println("Visitando árbol de complejidad");
         visitorLlamadas.visit(tree);
         System.out.println("Visitando el árbol de llamadas");
-        file.getTablaLlamadas().printHashMap();
-        System.out.println(file.getTablaLlamadas().createDot()); //quitar de aqui cuando lo hagamos bien
+        file.getTablaLlamadas().crearGrafo("main()");
         PagWeb pag = new PagWeb();
         pag.createHtml();
         System.out.println("fin"); 
