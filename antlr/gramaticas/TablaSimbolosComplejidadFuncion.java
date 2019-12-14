@@ -6,8 +6,6 @@ public class TablaSimbolosComplejidadFuncion
     private String functionName;
     private Hashtable<Integer, ArrayList<Integer>> symbolTable;
 
-
-
     public TablaSimbolosComplejidadFuncion()
     {
         this.functionName = "";

@@ -13,7 +13,7 @@ asignacion: ((tipovariable? nombrevariable (operadorasignacion expr)?)
 condicion: operadoraperturaparentesis expresionlogica operadorcierreparentesis;
 //operacionswitch: cabeceraswitch cuerposwitch;
 //cabeceraswitch: palabrareservadaaperturaswitch operadoraperturaparentesis expr operadorcierreparentesis;
-//cuerposwitch: (palabrareservadacase expr separadordospuntos (cuerpo2|cuerpo) (palabrareservadabreak separadoroperaciones)?)+ (palabrareservadadefault separadordospuntos (cuerpo2|cuerpo) (palabrareservadabreak separadoroperaciones)?) palabrareservadacierrewitch; 
+//cuerposwitch: (palabrareservadacase expr separadordospuntos (cuerpo2|cuerpo) (palabrareservadabreak separadoroperaciones)?)+ (palabrareservadadefault separadordospuntos (cuerpo2|cuerpo) (palabrareservadabreak separadoroperaciones)?) palabrareservadacierrewitch;
 condicionalif: palabraclaveifcondicion ((condicion)
             | (condicion (operadorcondicionalpuertalogica condicion)*))? palabraclavethen? (cuerpo2|cuerpo3|cuerpo);
 condicionalelse: palabraclaveelsecondicion (cuerpo2|cuerpo3|cuerpo);
@@ -21,7 +21,7 @@ condicionales:  condicionalif condicionalelse? palabraclaveendif;
 funcionwhile: palabraclavebuclewhile operadoraperturaparentesis (expr|expresionlogica) operadorcierreparentesis (cuerpo|cuerpo2|cuerpo3);
 //funcionfor: palabraclavebuclefor operadoraperturaparentesis (variable|nombrevariable) (separadoroperaciones expresionlogica) (separadoroperaciones variable|nombrevariable (operadoraritmeticosuma1 |operadoraritmeticoresta1)) operadorcierreparentesis cuerpo;
 funcionfor: palabraclavebuclefor nombrevariable palabraclaveinciovalorfor (nombrevariable|numeros) palabraclavefinvalorfor (nombrevariable|numeros) (palabraclavesaltoelementofor (nombrevariable|numeros))? palabraclavehacerfor (cuerpo|cuerpo2|cuerpo3) palabraclaveendbuclefor;
-cuerpo: (palabraclaveinicio  codigo+ palabraclavefin);
+cuerpo: palabraclaveinicio  codigo palabraclavefin;
 //cuerpo2: (palabraclaveinicio codigo* palabraclavefin)+;
 cuerpo2: (asignacion|llamarfuncion) | (palabraclaveinicio (asignacion|llamarfuncion)+ palabraclavefin);
 cuerpo3: (asignacion|llamarfuncion)+ | (palabraclaveinicio (asignacion|llamarfuncion)+ palabraclavefin);
@@ -31,13 +31,13 @@ llamadafuncion: (nombrefuncion operadoraperturaparentesis parametros? operadorci
 codigo: ((asignacion|llamarfuncion)+ |devolver);
 //codigo: (funcionwhile|funcionfor|operacionswitch|asignacion|llamarfuncion|devolver|cuerpo2)+;
 crearfuncion: cabecerafuncion cuerpo;
-devolver: palabraclavefunciondevolver operadoraperturaparentesis (llamarfuncion|expr)? operadorcierreparentesis separadoroperaciones; 
+devolver: palabraclavefunciondevolver operadoraperturaparentesis (llamarfuncion|expr)? operadorcierreparentesis separadoroperaciones;
 retorno : tipovariable;
 
 cabecerafuncion:  palabraclavecreacionfuncion (nombrefuncion|palabraclavefuncionmain) operadoraperturaparentesis parametros? operadorcierreparentesis separadordospuntos retorno;
 expr:	expr (operadoraritmeticoproducto|operadoraritmeticodivision) expr
     |	expr (operadoraritmeticosuma|operadoraritmeticoresta) expr
-    |   llamarfuncion
+    |   llamadafuncion
     |	numeros
     |   nombrevariable
     |   operadoraperturaparentesis (nombrevariable|numeros) (separadoroperadores (nombrevariable|numeros))* operadorcierreparentesis
