@@ -16,6 +16,8 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
         this.completeNameFunction = "";
         this.nameFunction = "";
         this.numParametersFunction = 0;
+        this.listNumberNode = new ArrayList<Integer>();
+        this.listNumberNode.add(0);             //El primer nodo será el 0
     }
 
     @Override
@@ -200,7 +202,8 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
     @Override
     public Integer visitLlamadafuncion(Pl2compilerParser.LlamadafuncionContext ctx) //Realiza un camino secuencial
     {
-      int actualNode = listNumberNode.size();
+      int actualNode = 0;
+      actualNode = listNumberNode.size();
       listNumberNode.add(actualNode);
       ArrayList<Integer> listNodes = new ArrayList<Integer>();
       listNodes.add(actualNode);
@@ -214,7 +217,8 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
     {
         ArrayList<Integer> listNodes = new ArrayList<Integer>(); //Para almacenar los nodos a los que se va a partir del nodo actual
         ArrayList<Integer> listPreviousNode = new ArrayList<Integer>(); // Para realizar la unión con el nodo anterior si no se ha realizado que es el que lo ha invocado
-        int actualNode = listNumberNode.size(); //Nº del nodo con el que vamos a trabajar en esta función
+        int actualNode = 0;
+        actualNode = listNumberNode.size(); //Nº del nodo con el que vamos a trabajar en esta función
         int lastNodeSecuence;
         listPreviousNode.add(actualNode);
         symbolTable.addNode(stack.getLast(), listPreviousNode); //Puede que venga de terminar el codigo de otra llamada
@@ -243,7 +247,8 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
     @Override
     public Integer visitCondicionalif(Pl2compilerParser.CondicionalifContext ctx)
     {
-        int actualNode = listNumberNode.get(listNumberNode.size()-1);
+        int actualNode = 0;
+        actualNode = listNumberNode.get(listNumberNode.size()-1);
         ArrayList<Integer> listNodes = new ArrayList<Integer>(); //Para almacenar los nodos a los que se va a partir del nodo actual
         ArrayList<Integer> listLastNode = new ArrayList<Integer>(); //Para almacenar los nodos para el último nodo de la condición
         ArrayList<Pl2compilerParser.CondicionContext> listCondiciones = new ArrayList<Pl2compilerParser.CondicionContext>(ctx.condicion());
@@ -357,7 +362,8 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
     @Override
     public Integer visitCondicionalelse(Pl2compilerParser.CondicionalelseContext ctx)
     {
-        int actualNode = listNumberNode.get(listNumberNode.size()-1); //Puesto que se ha introducido en visitCondicionales
+        int actualNode = 0;
+        actualNode = listNumberNode.get(listNumberNode.size()-1); //Puesto que se ha introducido en visitCondicionales
         ArrayList<Integer> listNodes = new ArrayList<Integer>(); //Para almacenar los nodos a los que se va a partir del nodo actual
         int lastPosNodeSecuenceStudied = 0;
         if(ctx.cuerpo2() != null)
