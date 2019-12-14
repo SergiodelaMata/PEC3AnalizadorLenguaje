@@ -18,6 +18,8 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
         this.numParametersFunction = 0;
         this.listNumberNode = new ArrayList<Integer>();
         this.listNumberNode.add(0);             //El primer nodo será el 0
+        this.stack = new PilaComplejidad();
+        this.symbolTable = new TablaSimbolosComplejidadFuncion();
     }
 
     @Override
