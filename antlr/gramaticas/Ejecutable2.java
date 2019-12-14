@@ -6,7 +6,7 @@ import org.antlr.v4.runtime.tree.*;
 public class Ejecutable2{
     public static void main(String[] args) throws Exception {
         File file = File.getInstance();
-        TablaSimbolos tabla_simbolos = new TablaSimbolos();
+        //TablaSimbolos tabla_simbolos = new TablaSimbolos();
         int total_puntos;
         String inputFile = null;
         
@@ -31,12 +31,18 @@ public class Ejecutable2{
 
         VisitorBasico basicVisitor = new VisitorBasico();
         VisitorComplejidad complexVisitor = new VisitorComplejidad();
+        VisitorLlamadas visitorLlamadas = new VisitorLlamadas();
         basicVisitor.visit(tree);
         System.out.println("Visitando árbol para puntos función");
         file.printSymbolTable();
-        tabla_simbolos.printHashMap();
+        //tabla_simbolos.printHashMap();
+        file.getTablaSimbolos().printHashMap();
         complexVisitor.visit(tree);
-        System.out.println("Visitando árbol de complejidad");       
+        System.out.println("Visitando árbol de complejidad");
+        visitorLlamadas.visit(tree);
+        System.out.println("Visitando el árbol de llamadas");
+        file.getTablaLlamadas().printHashMap();
+        System.out.println(file.getTablaLlamadas().createDot()); //quitar de aqui cuando lo hagamos bien
         PagWeb pag = new PagWeb();
         pag.createHtml();
         System.out.println("FIN"); 

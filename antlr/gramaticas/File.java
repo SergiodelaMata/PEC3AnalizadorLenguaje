@@ -3,8 +3,9 @@ import java.io.Serializable;
 
 public class File implements Serializable{
     private static File instance;
-    TablaSimbolos symbolTable = new TablaSimbolos();
+    TablaSimbolos symbolTable;
     TablaSimbolosComplejidad complexSymbolTable;
+    TablaLlamadas tablaLlamadas;
 
     public static File getInstance()
     {
@@ -19,6 +20,7 @@ public class File implements Serializable{
     {
         this.symbolTable = new TablaSimbolos();
         this.complexSymbolTable = new TablaSimbolosComplejidad();
+        this.tablaLlamadas = new TablaLlamadas();
     }
 
     public void printSymbolTable()
@@ -29,6 +31,16 @@ public class File implements Serializable{
     public void addFunction(Funcion function) //Introduce a new function into the symbol table
     {
         symbolTable.addFunction(function);
+    }
+
+    public void addEntradaTabla(String nombreFuncion, ArrayList<String> llamadas)
+    {
+        tablaLlamadas.addFuncion(nombreFuncion, llamadas);
+    }
+
+    public TablaLlamadas getTablaLlamadas()
+    {
+        return this.tablaLlamadas;
     }
 
     public TablaSimbolos getTablaSimbolos()

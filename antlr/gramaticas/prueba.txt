@@ -1,0 +1,416 @@
+/prog
+/prog/libreria
+/prog/libreria/palabraclaveincluirlibreria
+/prog/libreria/palabraclaveincluirlibreria/palabraclaveincluirlibreria: include
+/prog/libreria/nombrepaquete
+/prog/libreria/nombrepaquete/nombrepaquete: printflib
+/prog/libreria/separadoroperaciones
+/prog/libreria/separadoroperaciones/separadoroperaciones: ;
+/prog/crearfuncion
+/prog/crearfuncion/cabecerafuncion
+/prog/crearfuncion/cabecerafuncion/palabraclavecreacionfuncion
+/prog/crearfuncion/cabecerafuncion/palabraclavecreacionfuncion/palabraclavecreacionfuncion: function
+/prog/crearfuncion/cabecerafuncion/palabraclavefuncionmain
+/prog/crearfuncion/cabecerafuncion/palabraclavefuncionmain/palabraclavefuncionmain: main
+/prog/crearfuncion/cabecerafuncion/operadoraperturaparentesis
+/prog/crearfuncion/cabecerafuncion/operadoraperturaparentesis/operadoraperturaparentesis: (
+/prog/crearfuncion/cabecerafuncion/operadorcierreparentesis
+/prog/crearfuncion/cabecerafuncion/operadorcierreparentesis/operadorcierreparentesis: )
+/prog/crearfuncion/cabecerafuncion/separadordospuntos
+/prog/crearfuncion/cabecerafuncion/separadordospuntos/separadordospuntos: :
+/prog/crearfuncion/cabecerafuncion/retorno
+/prog/crearfuncion/cabecerafuncion/retorno/tipovariable
+/prog/crearfuncion/cabecerafuncion/retorno/tipovariable/tipovariable: void
+/prog/crearfuncion/cuerpo
+/prog/crearfuncion/cuerpo/palabraclaveinicio
+/prog/crearfuncion/cuerpo/palabraclaveinicio/palabraclaveinicio: begin
+/prog/crearfuncion/cuerpo/codigo
+/prog/crearfuncion/cuerpo/codigo/asignacion
+/prog/crearfuncion/cuerpo/codigo/asignacion/tipovariable
+/prog/crearfuncion/cuerpo/codigo/asignacion/tipovariable/tipovariable: numero
+/prog/crearfuncion/cuerpo/codigo/asignacion/nombrevariable
+/prog/crearfuncion/cuerpo/codigo/asignacion/nombrevariable/nombrevariable: umbral
+/prog/crearfuncion/cuerpo/codigo/asignacion/operadorasignacion
+/prog/crearfuncion/cuerpo/codigo/asignacion/operadorasignacion/operadorasignacion: :=
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/numeros
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/numeros/entero
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/numeros/entero/entero: 100
+/prog/crearfuncion/cuerpo/codigo/asignacion/separadoroperaciones
+/prog/crearfuncion/cuerpo/codigo/asignacion/separadoroperaciones/separadoroperaciones: ;
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/nombrefuncion
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/nombrefuncion/nombrefuncion: imprimir
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/operadoraperturaparentesis
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/operadoraperturaparentesis/operadoraperturaparentesis: (
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/parametros
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/parametros/parametro
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/parametros/parametro/expr
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/parametros/parametro/expr/cadena
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/parametros/parametro/expr/cadena/cadena: Iniciando el cálculo de Fibonacci
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/operadorcierreparentesis
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/operadorcierreparentesis/operadorcierreparentesis: )
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/separadoroperaciones
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/separadoroperaciones/separadoroperaciones: ;
+/prog/crearfuncion/cuerpo/codigo/asignacion
+/prog/crearfuncion/cuerpo/codigo/asignacion/tipovariable
+/prog/crearfuncion/cuerpo/codigo/asignacion/tipovariable/tipovariable: cadena
+/prog/crearfuncion/cuerpo/codigo/asignacion/nombrevariable
+/prog/crearfuncion/cuerpo/codigo/asignacion/nombrevariable/nombrevariable: valores
+/prog/crearfuncion/cuerpo/codigo/asignacion/operadorasignacion
+/prog/crearfuncion/cuerpo/codigo/asignacion/operadorasignacion/operadorasignacion: :=
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/llamadafuncion
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/llamadafuncion/nombrefuncion
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/llamadafuncion/nombrefuncion/nombrefuncion: fibonacci
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/llamadafuncion/operadoraperturaparentesis
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/llamadafuncion/operadoraperturaparentesis/operadoraperturaparentesis: (
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/llamadafuncion/parametros
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/llamadafuncion/parametros/parametro
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/llamadafuncion/parametros/parametro/expr
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/llamadafuncion/parametros/parametro/expr/nombrevariable
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/llamadafuncion/parametros/parametro/expr/nombrevariable/nombrevariable: umbral
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/llamadafuncion/operadorcierreparentesis
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/llamadafuncion/operadorcierreparentesis/operadorcierreparentesis: )
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/llamadafuncion/separadoroperaciones
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/llamadafuncion/separadoroperaciones/separadoroperaciones: ;
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/nombrefuncion
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/nombrefuncion/nombrefuncion: imprimir
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/operadoraperturaparentesis
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/operadoraperturaparentesis/operadoraperturaparentesis: (
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/parametros
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/parametros/parametro
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/parametros/parametro/expr
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/parametros/parametro/expr/expr
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/parametros/parametro/expr/expr/nombrevariable
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/parametros/parametro/expr/expr/nombrevariable/nombrevariable: valores
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/parametros/parametro/expr/operadoraritmeticosuma
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/parametros/parametro/expr/operadoraritmeticosuma/operadoraritmeticosuma: +
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/parametros/parametro/expr/expr
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/parametros/parametro/expr/expr/cadena
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/parametros/parametro/expr/expr/cadena/cadena: nFin de fibonacci.
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/operadorcierreparentesis
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/operadorcierreparentesis/operadorcierreparentesis: )
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/separadoroperaciones
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/separadoroperaciones/separadoroperaciones: ;
+/prog/crearfuncion/cuerpo/palabraclavefin
+/prog/crearfuncion/cuerpo/palabraclavefin/palabraclavefin: end
+/prog/crearfuncion
+/prog/crearfuncion/cabecerafuncion
+/prog/crearfuncion/cabecerafuncion/palabraclavecreacionfuncion
+/prog/crearfuncion/cabecerafuncion/palabraclavecreacionfuncion/palabraclavecreacionfuncion: function
+/prog/crearfuncion/cabecerafuncion/nombrefuncion
+/prog/crearfuncion/cabecerafuncion/nombrefuncion/nombrefuncion: fibonacci
+/prog/crearfuncion/cabecerafuncion/operadoraperturaparentesis
+/prog/crearfuncion/cabecerafuncion/operadoraperturaparentesis/operadoraperturaparentesis: (
+/prog/crearfuncion/cabecerafuncion/parametros
+/prog/crearfuncion/cabecerafuncion/parametros/parametro
+/prog/crearfuncion/cabecerafuncion/parametros/parametro/tipovariable
+/prog/crearfuncion/cabecerafuncion/parametros/parametro/tipovariable/tipovariable: numero
+/prog/crearfuncion/cabecerafuncion/parametros/parametro/expr
+/prog/crearfuncion/cabecerafuncion/parametros/parametro/expr/nombrevariable
+/prog/crearfuncion/cabecerafuncion/parametros/parametro/expr/nombrevariable/nombrevariable: umbral
+/prog/crearfuncion/cabecerafuncion/operadorcierreparentesis
+/prog/crearfuncion/cabecerafuncion/operadorcierreparentesis/operadorcierreparentesis: )
+/prog/crearfuncion/cabecerafuncion/separadordospuntos
+/prog/crearfuncion/cabecerafuncion/separadordospuntos/separadordospuntos: :
+/prog/crearfuncion/cabecerafuncion/retorno
+/prog/crearfuncion/cabecerafuncion/retorno/tipovariable
+/prog/crearfuncion/cabecerafuncion/retorno/tipovariable/tipovariable: cadena
+/prog/crearfuncion/cuerpo
+/prog/crearfuncion/cuerpo/palabraclaveinicio
+/prog/crearfuncion/cuerpo/palabraclaveinicio/palabraclaveinicio: begin
+/prog/crearfuncion/cuerpo/codigo
+/prog/crearfuncion/cuerpo/codigo/asignacion
+/prog/crearfuncion/cuerpo/codigo/asignacion/tipovariable
+/prog/crearfuncion/cuerpo/codigo/asignacion/tipovariable/tipovariable: numero
+/prog/crearfuncion/cuerpo/codigo/asignacion/nombrevariable
+/prog/crearfuncion/cuerpo/codigo/asignacion/nombrevariable/nombrevariable: numeroFibonacciInicio
+/prog/crearfuncion/cuerpo/codigo/asignacion/operadorasignacion
+/prog/crearfuncion/cuerpo/codigo/asignacion/operadorasignacion/operadorasignacion: :=
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/numeros
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/numeros/entero
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/numeros/entero/entero: 0
+/prog/crearfuncion/cuerpo/codigo/asignacion/separadoroperaciones
+/prog/crearfuncion/cuerpo/codigo/asignacion/separadoroperaciones/separadoroperaciones: ;
+/prog/crearfuncion/cuerpo/codigo/asignacion
+/prog/crearfuncion/cuerpo/codigo/asignacion/tipovariable
+/prog/crearfuncion/cuerpo/codigo/asignacion/tipovariable/tipovariable: numero
+/prog/crearfuncion/cuerpo/codigo/asignacion/nombrevariable
+/prog/crearfuncion/cuerpo/codigo/asignacion/nombrevariable/nombrevariable: numeroFibonacciSegundo
+/prog/crearfuncion/cuerpo/codigo/asignacion/operadorasignacion
+/prog/crearfuncion/cuerpo/codigo/asignacion/operadorasignacion/operadorasignacion: :=
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/numeros
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/numeros/entero
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/numeros/entero/entero: 1
+/prog/crearfuncion/cuerpo/codigo/asignacion/separadoroperaciones
+/prog/crearfuncion/cuerpo/codigo/asignacion/separadoroperaciones/separadoroperaciones: ;
+/prog/crearfuncion/cuerpo/codigo/asignacion
+/prog/crearfuncion/cuerpo/codigo/asignacion/tipovariable
+/prog/crearfuncion/cuerpo/codigo/asignacion/tipovariable/tipovariable: numero
+/prog/crearfuncion/cuerpo/codigo/asignacion/nombrevariable
+/prog/crearfuncion/cuerpo/codigo/asignacion/nombrevariable/nombrevariable: ResultadoFibonacci
+/prog/crearfuncion/cuerpo/codigo/asignacion/operadorasignacion
+/prog/crearfuncion/cuerpo/codigo/asignacion/operadorasignacion/operadorasignacion: :=
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/numeros
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/numeros/entero
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/numeros/entero/entero: 0
+/prog/crearfuncion/cuerpo/codigo/asignacion/separadoroperaciones
+/prog/crearfuncion/cuerpo/codigo/asignacion/separadoroperaciones/separadoroperaciones: ;
+/prog/crearfuncion/cuerpo/codigo/asignacion
+/prog/crearfuncion/cuerpo/codigo/asignacion/tipovariable
+/prog/crearfuncion/cuerpo/codigo/asignacion/tipovariable/tipovariable: cadena
+/prog/crearfuncion/cuerpo/codigo/asignacion/nombrevariable
+/prog/crearfuncion/cuerpo/codigo/asignacion/nombrevariable/nombrevariable: temporal
+/prog/crearfuncion/cuerpo/codigo/asignacion/operadorasignacion
+/prog/crearfuncion/cuerpo/codigo/asignacion/operadorasignacion/operadorasignacion: :=
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/cadena
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/cadena/cadena: Serie Fibonacci: 
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/operadoraritmeticosuma
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/operadoraritmeticosuma/operadoraritmeticosuma: +
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/llamadafuncion
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/llamadafuncion/nombrefuncion
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/llamadafuncion/nombrefuncion/nombrefuncion: aCadena
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/llamadafuncion/operadoraperturaparentesis
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/llamadafuncion/operadoraperturaparentesis/operadoraperturaparentesis: (
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/llamadafuncion/parametros
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/llamadafuncion/parametros/parametro
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/llamadafuncion/parametros/parametro/expr
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/llamadafuncion/parametros/parametro/expr/nombrevariable
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/llamadafuncion/parametros/parametro/expr/nombrevariable/nombrevariable: numeroFibonacciInicio
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/llamadafuncion/operadorcierreparentesis
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/llamadafuncion/operadorcierreparentesis/operadorcierreparentesis: )
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/operadoraritmeticosuma
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/operadoraritmeticosuma/operadoraritmeticosuma: +
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/cadena
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/cadena/cadena: , 
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/operadoraritmeticosuma
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/operadoraritmeticosuma/operadoraritmeticosuma: +
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/expr
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/expr/llamadafuncion
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/expr/llamadafuncion/nombrefuncion
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/expr/llamadafuncion/nombrefuncion/nombrefuncion: aCadena
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/expr/llamadafuncion/operadoraperturaparentesis
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/expr/llamadafuncion/operadoraperturaparentesis/operadoraperturaparentesis: (
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/expr/llamadafuncion/parametros
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/expr/llamadafuncion/parametros/parametro
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/expr/llamadafuncion/parametros/parametro/expr
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/expr/llamadafuncion/parametros/parametro/expr/nombrevariable
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/expr/llamadafuncion/parametros/parametro/expr/nombrevariable/nombrevariable: numeroFibonacciSegundo
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/expr/llamadafuncion/operadorcierreparentesis
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/expr/llamadafuncion/operadorcierreparentesis/operadorcierreparentesis: )
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/expr/llamadafuncion/separadoroperaciones
+/prog/crearfuncion/cuerpo/codigo/asignacion/expr/expr/expr/expr/llamadafuncion/separadoroperaciones/separadoroperaciones: ;
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/palabraclavebuclewhile
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/palabraclavebuclewhile/palabraclavebuclewhile: while
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/operadoraperturaparentesis
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/operadoraperturaparentesis/operadoraperturaparentesis: (
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/expresionlogica
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/expresionlogica/expr
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/expresionlogica/expr/nombrevariable
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/expresionlogica/expr/nombrevariable/nombrevariable: ResultadoFibonacci
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/expresionlogica/operadorlogico
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/expresionlogica/operadorlogico/operadorlogico: <
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/expresionlogica/expr
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/expresionlogica/expr/nombrevariable
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/expresionlogica/expr/nombrevariable/nombrevariable: umbral
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/operadorcierreparentesis
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/operadorcierreparentesis/operadorcierreparentesis: )
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/palabraclaveinicio
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/palabraclaveinicio/palabraclaveinicio: begin
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/nombrevariable
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/nombrevariable/nombrevariable: ResultadoFibonacci
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/operadorasignacion
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/operadorasignacion/operadorasignacion: :=
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/expr
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/expr/nombrevariable
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/expr/nombrevariable/nombrevariable: numeroFibonacciInicio
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/operadoraritmeticosuma
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/operadoraritmeticosuma/operadoraritmeticosuma: +
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/expr
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/expr/nombrevariable
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/expr/nombrevariable/nombrevariable: numeroFibonacciSegundo
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/separadoroperaciones
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/separadoroperaciones/separadoroperaciones: ;
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/nombrevariable
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/nombrevariable/nombrevariable: temporal
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/operadorasignacion
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/operadorasignacion/operadorasignacion: :=
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/expr
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/expr/nombrevariable
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/expr/nombrevariable/nombrevariable: temporal
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/operadoraritmeticosuma
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/operadoraritmeticosuma/operadoraritmeticosuma: +
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/expr
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/expr/cadena
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/expr/cadena/cadena: , 
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/expr/operadoraritmeticosuma
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/expr/operadoraritmeticosuma/operadoraritmeticosuma: +
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/expr/expr
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/expr/expr/llamadafuncion
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/expr/expr/llamadafuncion/nombrefuncion
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/expr/expr/llamadafuncion/nombrefuncion/nombrefuncion: aCadena
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/expr/expr/llamadafuncion/operadoraperturaparentesis
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/expr/expr/llamadafuncion/operadoraperturaparentesis/operadoraperturaparentesis: (
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/expr/expr/llamadafuncion/parametros
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/expr/expr/llamadafuncion/parametros/parametro
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/expr/expr/llamadafuncion/parametros/parametro/expr
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/expr/expr/llamadafuncion/parametros/parametro/expr/nombrevariable
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/expr/expr/llamadafuncion/parametros/parametro/expr/nombrevariable/nombrevariable: ResultadoFibonacci
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/expr/expr/llamadafuncion/operadorcierreparentesis
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/expr/expr/llamadafuncion/operadorcierreparentesis/operadorcierreparentesis: )
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/expr/expr/llamadafuncion/separadoroperaciones
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/expr/expr/llamadafuncion/separadoroperaciones/separadoroperaciones: ;
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/nombrevariable
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/nombrevariable/nombrevariable: numeroFibonacciInicio
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/operadorasignacion
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/operadorasignacion/operadorasignacion: :=
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/nombrevariable
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/nombrevariable/nombrevariable: numeroFibonacciSegundo
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/separadoroperaciones
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/separadoroperaciones/separadoroperaciones: ;
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/nombrevariable
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/nombrevariable/nombrevariable: numeroFibonacciSegundo
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/operadorasignacion
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/operadorasignacion/operadorasignacion: :=
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/nombrevariable
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/expr/nombrevariable/nombrevariable: ResultadoFibonacci
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/separadoroperaciones
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/codigo/asignacion/separadoroperaciones/separadoroperaciones: ;
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/palabraclavefin
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/funcionwhile/cuerpo/palabraclavefin/palabraclavefin: end
+/prog/crearfuncion/cuerpo/codigo/devolver
+/prog/crearfuncion/cuerpo/codigo/devolver/palabraclavefunciondevolver
+/prog/crearfuncion/cuerpo/codigo/devolver/palabraclavefunciondevolver/palabraclavefunciondevolver: devolver
+/prog/crearfuncion/cuerpo/codigo/devolver/operadoraperturaparentesis
+/prog/crearfuncion/cuerpo/codigo/devolver/operadoraperturaparentesis/operadoraperturaparentesis: (
+/prog/crearfuncion/cuerpo/codigo/devolver/expr
+/prog/crearfuncion/cuerpo/codigo/devolver/expr/nombrevariable
+/prog/crearfuncion/cuerpo/codigo/devolver/expr/nombrevariable/nombrevariable: temporal
+/prog/crearfuncion/cuerpo/codigo/devolver/operadorcierreparentesis
+/prog/crearfuncion/cuerpo/codigo/devolver/operadorcierreparentesis/operadorcierreparentesis: )
+/prog/crearfuncion/cuerpo/codigo/devolver/separadoroperaciones
+/prog/crearfuncion/cuerpo/codigo/devolver/separadoroperaciones/separadoroperaciones: ;
+/prog/crearfuncion/cuerpo/palabraclavefin
+/prog/crearfuncion/cuerpo/palabraclavefin/palabraclavefin: end
+/prog/crearfuncion
+/prog/crearfuncion/cabecerafuncion
+/prog/crearfuncion/cabecerafuncion/palabraclavecreacionfuncion
+/prog/crearfuncion/cabecerafuncion/palabraclavecreacionfuncion/palabraclavecreacionfuncion: function
+/prog/crearfuncion/cabecerafuncion/nombrefuncion
+/prog/crearfuncion/cabecerafuncion/nombrefuncion/nombrefuncion: imprimir
+/prog/crearfuncion/cabecerafuncion/operadoraperturaparentesis
+/prog/crearfuncion/cabecerafuncion/operadoraperturaparentesis/operadoraperturaparentesis: (
+/prog/crearfuncion/cabecerafuncion/parametros
+/prog/crearfuncion/cabecerafuncion/parametros/parametro
+/prog/crearfuncion/cabecerafuncion/parametros/parametro/tipovariable
+/prog/crearfuncion/cabecerafuncion/parametros/parametro/tipovariable/tipovariable: cadena
+/prog/crearfuncion/cabecerafuncion/parametros/parametro/expr
+/prog/crearfuncion/cabecerafuncion/parametros/parametro/expr/nombrevariable
+/prog/crearfuncion/cabecerafuncion/parametros/parametro/expr/nombrevariable/nombrevariable: texto
+/prog/crearfuncion/cabecerafuncion/operadorcierreparentesis
+/prog/crearfuncion/cabecerafuncion/operadorcierreparentesis/operadorcierreparentesis: )
+/prog/crearfuncion/cabecerafuncion/separadordospuntos
+/prog/crearfuncion/cabecerafuncion/separadordospuntos/separadordospuntos: :
+/prog/crearfuncion/cabecerafuncion/retorno
+/prog/crearfuncion/cabecerafuncion/retorno/tipovariable
+/prog/crearfuncion/cabecerafuncion/retorno/tipovariable/tipovariable: void
+/prog/crearfuncion/cuerpo
+/prog/crearfuncion/cuerpo/palabraclaveinicio
+/prog/crearfuncion/cuerpo/palabraclaveinicio/palabraclaveinicio: begin
+/prog/crearfuncion/cuerpo/codigo
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/nombrefuncion
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/nombrefuncion/nombrefuncion: printf
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/operadoraperturaparentesis
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/operadoraperturaparentesis/operadoraperturaparentesis: (
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/parametros
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/parametros/parametro
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/parametros/parametro/expr
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/parametros/parametro/expr/nombrevariable
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/parametros/parametro/expr/nombrevariable/nombrevariable: texto
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/operadorcierreparentesis
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/operadorcierreparentesis/operadorcierreparentesis: )
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/separadoroperaciones
+/prog/crearfuncion/cuerpo/codigo/llamarfuncion/llamadafuncion/separadoroperaciones/separadoroperaciones: ;
+/prog/crearfuncion/cuerpo/palabraclavefin
+/prog/crearfuncion/cuerpo/palabraclavefin/palabraclavefin: end
+/prog/crearfuncion
+/prog/crearfuncion/cabecerafuncion
+/prog/crearfuncion/cabecerafuncion/palabraclavecreacionfuncion
+/prog/crearfuncion/cabecerafuncion/palabraclavecreacionfuncion/palabraclavecreacionfuncion: function
+/prog/crearfuncion/cabecerafuncion/nombrefuncion
+/prog/crearfuncion/cabecerafuncion/nombrefuncion/nombrefuncion: aCadena
+/prog/crearfuncion/cabecerafuncion/operadoraperturaparentesis
+/prog/crearfuncion/cabecerafuncion/operadoraperturaparentesis/operadoraperturaparentesis: (
+/prog/crearfuncion/cabecerafuncion/parametros
+/prog/crearfuncion/cabecerafuncion/parametros/parametro
+/prog/crearfuncion/cabecerafuncion/parametros/parametro/tipovariable
+/prog/crearfuncion/cabecerafuncion/parametros/parametro/tipovariable/tipovariable: numero
+/prog/crearfuncion/cabecerafuncion/parametros/parametro/expr
+/prog/crearfuncion/cabecerafuncion/parametros/parametro/expr/nombrevariable
+/prog/crearfuncion/cabecerafuncion/parametros/parametro/expr/nombrevariable/nombrevariable: x
+/prog/crearfuncion/cabecerafuncion/operadorcierreparentesis
+/prog/crearfuncion/cabecerafuncion/operadorcierreparentesis/operadorcierreparentesis: )
+/prog/crearfuncion/cabecerafuncion/separadordospuntos
+/prog/crearfuncion/cabecerafuncion/separadordospuntos/separadordospuntos: :
+/prog/crearfuncion/cabecerafuncion/retorno
+/prog/crearfuncion/cabecerafuncion/retorno/tipovariable
+/prog/crearfuncion/cabecerafuncion/retorno/tipovariable/tipovariable: cadena
+/prog/crearfuncion/cuerpo
+/prog/crearfuncion/cuerpo/palabraclaveinicio
+/prog/crearfuncion/cuerpo/palabraclaveinicio/palabraclaveinicio: begin
+/prog/crearfuncion/cuerpo/codigo
+/prog/crearfuncion/cuerpo/codigo/devolver
+/prog/crearfuncion/cuerpo/codigo/devolver/palabraclavefunciondevolver
+/prog/crearfuncion/cuerpo/codigo/devolver/palabraclavefunciondevolver/palabraclavefunciondevolver: devolver
+/prog/crearfuncion/cuerpo/codigo/devolver/operadoraperturaparentesis
+/prog/crearfuncion/cuerpo/codigo/devolver/operadoraperturaparentesis/operadoraperturaparentesis: (
+/prog/crearfuncion/cuerpo/codigo/devolver/llamarfuncion
+/prog/crearfuncion/cuerpo/codigo/devolver/llamarfuncion/llamadafuncion
+/prog/crearfuncion/cuerpo/codigo/devolver/llamarfuncion/llamadafuncion/nombrefuncion
+/prog/crearfuncion/cuerpo/codigo/devolver/llamarfuncion/llamadafuncion/nombrefuncion/nombrefuncion: sprintf
+/prog/crearfuncion/cuerpo/codigo/devolver/llamarfuncion/llamadafuncion/operadoraperturaparentesis
+/prog/crearfuncion/cuerpo/codigo/devolver/llamarfuncion/llamadafuncion/operadoraperturaparentesis/operadoraperturaparentesis: (
+/prog/crearfuncion/cuerpo/codigo/devolver/llamarfuncion/llamadafuncion/parametros
+/prog/crearfuncion/cuerpo/codigo/devolver/llamarfuncion/llamadafuncion/parametros/parametro
+/prog/crearfuncion/cuerpo/codigo/devolver/llamarfuncion/llamadafuncion/parametros/parametro/expr
+/prog/crearfuncion/cuerpo/codigo/devolver/llamarfuncion/llamadafuncion/parametros/parametro/expr/cadena
+/prog/crearfuncion/cuerpo/codigo/devolver/llamarfuncion/llamadafuncion/parametros/parametro/expr/cadena/cadena: %d
+/prog/crearfuncion/cuerpo/codigo/devolver/llamarfuncion/llamadafuncion/parametros/separadoroperadores
+/prog/crearfuncion/cuerpo/codigo/devolver/llamarfuncion/llamadafuncion/parametros/separadoroperadores/separadoroperadores: ,
+/prog/crearfuncion/cuerpo/codigo/devolver/llamarfuncion/llamadafuncion/parametros/parametro
+/prog/crearfuncion/cuerpo/codigo/devolver/llamarfuncion/llamadafuncion/parametros/parametro/expr
+/prog/crearfuncion/cuerpo/codigo/devolver/llamarfuncion/llamadafuncion/parametros/parametro/expr/nombrevariable
+/prog/crearfuncion/cuerpo/codigo/devolver/llamarfuncion/llamadafuncion/parametros/parametro/expr/nombrevariable/nombrevariable: x
+/prog/crearfuncion/cuerpo/codigo/devolver/llamarfuncion/llamadafuncion/operadorcierreparentesis
+/prog/crearfuncion/cuerpo/codigo/devolver/llamarfuncion/llamadafuncion/operadorcierreparentesis/operadorcierreparentesis: )
+/prog/crearfuncion/cuerpo/codigo/devolver/operadorcierreparentesis
+/prog/crearfuncion/cuerpo/codigo/devolver/operadorcierreparentesis/operadorcierreparentesis: )
+/prog/crearfuncion/cuerpo/codigo/devolver/separadoroperaciones
+/prog/crearfuncion/cuerpo/codigo/devolver/separadoroperaciones/separadoroperaciones: ;
+/prog/crearfuncion/cuerpo/palabraclavefin
+/prog/crearfuncion/cuerpo/palabraclavefin/palabraclavefin: end
