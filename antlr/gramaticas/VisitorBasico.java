@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.lang.Math;
+import java.lang.reflect.Array;
 
 /*
   VISITORS CREADOS PARA LOS PUNTOS:
@@ -710,7 +711,7 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       long puntosDevolver = 0;
       visitedFunction.addEfectiveLine(1);
 
-      if(ctx.llamarfuncion() != null) puntosDevolver += (Long)visit(ctx.llamarfuncion());
+      if(ctx.llamadafuncion() != null) puntosDevolver += (Long)visit(ctx.llamadafuncion());
       else if(ctx.expr() != null) puntosDevolver += (Long)visit(ctx.expr());
 
       return puntosDevolver;
@@ -736,12 +737,14 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
       return numFunctionPoints;
     }*/
 
+    //expresionlogica: (expr|palabraclavebooleano) ((operadorlogico|operadorcondicionalpuertalogica) (expr|palabraclavebooleano|expresionlogica))*;
+
     @Override
     public Long visitExpresionlogica(Pl2compilerParser.ExpresionlogicaContext ctx)
     {
       long puntosExprLogica = 0;
 
-      long numHijos = ctx.getChildCount();
+      /*long numHijos = ctx.getChildCount();
       if (numHijos == 1) //si es un booleano simple
       {
         puntosExprLogica += (Long) visit(ctx.palabraclavebooleano(0)); //pongo 0 porque sino no va (no tiene sentido porque ctx.palabraclavebooleano().size = 1)
@@ -754,6 +757,30 @@ public class VisitorBasico extends Pl2compilerParserBaseVisitor
         for (int i=0; i<=numHijos; i+=2) //recorre todas las expresiones (en orden) saltando los operadores
         {
           puntosExprLogica += (Long)visit(ctx.getChild(i));
+        }
+      }*/
+      int numHijos = ctx.getChildCount();
+      if (numHijos > 1) //si es una expresion compleja
+      {
+        long numOps = (numHijos - 1) / 2; //numero de expresiones - 1
+        puntosExprLogica += numOps; //suma 1 por operador (operacion simple)
+        visitedFunction.addSimpleOperator(numOps);
+        for (int i=0; i<=numHijos; i+=2) //recorre todas las expresiones (en orden) saltando los operadores
+        {
+          puntosExprLogica += (Long)visit(ctx.getChild(i));
+        }
+      }
+      else 
+      {
+        ArrayList<Pl2compilerParser.ExprContext> listaExprs = new ArrayList<Pl2compilerParser.ExprContext>(ctx.expr());
+        for (int i=0; i<listaExprs.size(); i++)
+        {
+          visit(listaExprs.get(i));
+        }
+        ArrayList<Pl2compilerParser.PalabraclavebooleanoContext> listaBooleanos = new ArrayList<Pl2compilerParser.PalabraclavebooleanoContext>(ctx.palabraclavebooleano());
+        for (int i=0; i<listaBooleanos.size(); i++)
+        {
+          visit(listaBooleanos.get(i));
         }
       }
       //System.out.println("puntos expresion logica: " + puntosExprLogica);

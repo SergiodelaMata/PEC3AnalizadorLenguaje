@@ -317,9 +317,9 @@ public class VisitorLlamadas extends Pl2compilerParserBaseVisitor
     public Integer visitDevolver(Pl2compilerParser.DevolverContext ctx) 
     { 
         llamadas.add("devolver()");
-        if (ctx.llamarfuncion() != null)
+        if (ctx.llamadafuncion() != null)
         {
-            visit(ctx.llamarfuncion());
+            visit(ctx.llamadafuncion());
         }
         else if (ctx.expr() != null)
         {
