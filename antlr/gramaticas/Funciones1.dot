@@ -1,0 +1,7 @@
+//lenguaje.prog
+digraph Funciones1 {
+
+	main -> prueba //-> fin;
+	main [shape=Mdiamond];
+	fin [shape=Msquare];
+}
