@@ -439,9 +439,9 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
     public Integer visitDevolver(Pl2compilerParser.DevolverContext ctx)
     {
         int lastNodeSequence = 0;
-        if(ctx.llamarfuncion() != null)
+        if(ctx.llamadafuncion() != null)
         {
-          lastNodeSequence = (int) visit(ctx.llamarfuncion());
+          lastNodeSequence = (int) visit(ctx.llamadafuncion());
         }
         else if(ctx.expr() != null)
         {
