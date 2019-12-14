@@ -1581,8 +1581,8 @@ public class Pl2compilerParser extends Parser {
 		public SeparadoroperacionesContext separadoroperaciones() {
 			return getRuleContext(SeparadoroperacionesContext.class,0);
 		}
-		public LlamarfuncionContext llamarfuncion() {
-			return getRuleContext(LlamarfuncionContext.class,0);
+		public LlamadafuncionContext llamadafuncion() {
+			return getRuleContext(LlamadafuncionContext.class,0);
 		}
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
@@ -1614,7 +1614,7 @@ public class Pl2compilerParser extends Parser {
 			case 1:
 				{
 				setState(314);
-				llamarfuncion();
+				llamadafuncion();
 				}
 				break;
 			case 2:
@@ -4044,7 +4044,7 @@ public class Pl2compilerParser extends Parser {
 		"\2\2\u0133\u0131\3\2\2\2\u0134\u0136\5\"\22\2\u0135\u0134\3\2\2\2\u0135"+
 		"\u0136\3\2\2\2\u0136\37\3\2\2\2\u0137\u0138\5&\24\2\u0138\u0139\5\24\13"+
 		"\2\u0139!\3\2\2\2\u013a\u013b\5\u0082B\2\u013b\u013e\5P)\2\u013c\u013f"+
-		"\5\32\16\2\u013d\u013f\5(\25\2\u013e\u013c\3\2\2\2\u013e\u013d\3\2\2\2"+
+		"\5\34\17\2\u013d\u013f\5(\25\2\u013e\u013c\3\2\2\2\u013e\u013d\3\2\2\2"+
 		"\u013e\u013f\3\2\2\2\u013f\u0140\3\2\2\2\u0140\u0141\5R*\2\u0141\u0142"+
 		"\5J&\2\u0142#\3\2\2\2\u0143\u0144\5T+\2\u0144%\3\2\2\2\u0145\u0148\5~"+
 		"@\2\u0146\u0149\5,\27\2\u0147\u0149\5\u0080A\2\u0148\u0146\3\2\2\2\u0148"+
