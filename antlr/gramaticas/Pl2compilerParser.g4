@@ -32,7 +32,7 @@ llamadafuncion: (nombrefuncion operadoraperturaparentesis parametros? operadorci
 codigo: (asignacion|llamarfuncion)* devolver?;
 //codigo: (funcionwhile|funcionfor|operacionswitch|asignacion|llamarfuncion|devolver|cuerpo2)+;
 crearfuncion: cabecerafuncion cuerpo;
-devolver: palabraclavefunciondevolver operadoraperturaparentesis (llamarfuncion|expr)? operadorcierreparentesis separadoroperaciones;
+devolver: palabraclavefunciondevolver operadoraperturaparentesis (llamadafuncion|expr)? operadorcierreparentesis separadoroperaciones;
 retorno : tipovariable;
 
 cabecerafuncion:  palabraclavecreacionfuncion (nombrefuncion|palabraclavefuncionmain) operadoraperturaparentesis parametros? operadorcierreparentesis separadordospuntos retorno;
