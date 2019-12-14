@@ -48,6 +48,11 @@ public class File implements Serializable{
         return this.symbolTable;
     }
 
+    public TablaSimbolosComplejidad getTablaSimbolosComplejidad()
+    {
+      return this.complexSymbolTable;
+    }
+
     public void printComplexSymbol()
     {
         complexSymbolTable.printHashMap();

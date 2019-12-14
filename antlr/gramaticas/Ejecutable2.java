@@ -9,12 +9,12 @@ public class Ejecutable2{
         //TablaSimbolos tabla_simbolos = new TablaSimbolos();
         int total_puntos;
         String inputFile = null;
-        
-        
+
+
         if(args.length > 0){
             inputFile=args[0];
         }
-        
+
         InputStream is = System.in;
 
         if(inputFile != null)
@@ -39,11 +39,12 @@ public class Ejecutable2{
         file.getTablaSimbolos().printHashMap();
         complexVisitor.visit(tree);
         System.out.println("Visitando árbol de complejidad");
+        file.getTablaSimbolosComplejidad().printHashMap();
         visitorLlamadas.visit(tree);
         System.out.println("Visitando el árbol de llamadas");
         file.getTablaLlamadas().crearGrafo("main()");
         PagWeb pag = new PagWeb();
         pag.createHtml();
-        System.out.println("fin"); 
+        System.out.println("fin");
     }
 }
