@@ -45,6 +45,6 @@ public class Ejecutable2{
         System.out.println(file.getTablaLlamadas().createDot()); //quitar de aqui cuando lo hagamos bien
         PagWeb pag = new PagWeb();
         pag.createHtml();
-        System.out.println("FIN"); 
+        System.out.println("fin"); 
     }
 }
