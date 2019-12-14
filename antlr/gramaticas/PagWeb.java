@@ -36,9 +36,9 @@ public class PagWeb
             html += "<li>Número de llamadas a funciones: <strong>" + funciones.get(i).getNumFunctionCall() + "</strong></li>";
             html += "</ul></li>";
             html += "<li>Grafo de complejidad ciclomática: " + "</li>";
-            //html +=  <img src=”fichero.svg” width=”100%”>
+            //html +=  <img src=”fichero.svg” width=”100%”>;
             html += "<li>Grafo de llamadas a funciones: " + "FALTA EL GRAFO (IMG)" + "</li>";
-            //html +=  <img src=”fichero.svg” width=”100%”>
+            //html +=  <img src=”fichero.svg” width=”100%”>;
             html += "</ul><hr>";
             //suma a los puntos de todo el programa
             puntosFuncion += funciones.get(i).getFunctionPoints();
@@ -58,14 +58,12 @@ public class PagWeb
         html += "<li>Número de llamadas a funciones: <strong>" + numLlamadas + "</strong></li>";
         html += "</ul></li>";
         html += "<li>Grafo de complejidad ciclomática: " + "FALTA EL GRAFO (IMG)" + "</li>";//añadir grafo
-        //html +=  <img src=”fichero.svg” width=”100%”>                        
+        //html +=  <img src=”fichero.svg” width=”100%”>;                 
         html += "<li>Grafo de llamadas a funciones: " + "FALTA EL GRAFO (IMG)" + "</li>";
-        //html +=  <img src=”fichero.svg” width=”100%”>
-        
+        //html +=  <img src=”fichero.svg” width=”100%”>;        
         /*html += "<li>Grafo de llamadas a funciones: " + "FALTA EL GRAFO (IMG)" + "</li>";
         html +=  <img src=”fichero.svg” width=”100%”>
         */
-
         html += "</ul></body></html>";
         try
         {
