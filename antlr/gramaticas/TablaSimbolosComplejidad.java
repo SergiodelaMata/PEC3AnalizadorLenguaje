@@ -35,31 +35,28 @@ public class TablaSimbolosComplejidad
     public void printHashMapFunction(int position) //Imprime el recorrido del grafo en una función
     {
         TablaSimbolosComplejidadFuncion tablaSimbolos = new TablaSimbolosComplejidadFuncion();
-        System.out.println("Hola soy Elmo");
+        //System.out.println("Hola soy Elmo");
         tablaSimbolos = getTable(position);
+        System.out.println(tablaSimbolos.getFunctionName());
         Enumeration enumeration = symbolTable.keys();
         ArrayList<Integer> listNumNodes = new ArrayList<Integer>();
-        System.out.println(tablaSimbolos.getFunctionName());
         for(int i = 0; i < tablaSimbolos.size(); i++)
         {
             listNumNodes = tablaSimbolos.get(i);
-            System.out.print("Nodo: " + i + " - ");
             for(int j = 0; j < listNumNodes.size(); j++)
             {
                 if(j != 0)
                 {
-                    System.out.print(", ");
+                    System.out.println(i + " -> " + listNumNodes.get(j));
                 }
-                System.out.print(listNumNodes.get(j));
             }
-            System.out.println("");
         }
 
     }
 
     public void printHashMap()
     {
-      System.out.println(symbolTable.size());
+      //System.out.println(symbolTable.size());
         for(int i = 0; i < symbolTable.size(); i++)
         {
             printHashMapFunction(i);

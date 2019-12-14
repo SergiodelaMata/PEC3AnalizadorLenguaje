@@ -32,9 +32,10 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
             {
                 symbolTable = new TablaSimbolosComplejidadFuncion();
                 visit(listaCrearFuncion.get(i));
-                System.out.println(completeNameFunction);
-                System.out.println(nameFunction);
-                System.out.println(numParametersFunction);
+                //System.out.println(completeNameFunction);
+                //System.out.println(nameFunction);
+                //System.out.println(numParametersFunction);
+                file.getTablaSimbolosComplejidad().putFunctionSymbolTable(symbolTable);
                 this.completeNameFunction = "";         //Para tener el nombre completo de la función con los nombres de sus parámetros
                 this.nameFunction = "";                 //Función sin parámetros
                 this.numParametersFunction = 0;         //Nº de parámetros
@@ -180,7 +181,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
     @Override
     public Integer visitLlamarfuncion(Pl2compilerParser.LlamarfuncionContext ctx)
     {
-      int lastNodeSecuence = 0;
+      int lastNodeSequence = 0;
         if(ctx.llamadafuncion() != null)
         {
           visit(ctx.llamadafuncion());
@@ -188,17 +189,17 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
 
         if(ctx.condicionales() != null)
         {
-          lastNodeSecuence = (int)visit(ctx.condicionales());
+          lastNodeSequence = (int)visit(ctx.condicionales());
         }
         else if(ctx.funcionwhile() != null)
         {
-          lastNodeSecuence = (int)visit(ctx.funcionwhile());
+          lastNodeSequence = (int)visit(ctx.funcionwhile());
         }
         else if(ctx.funcionfor() != null)
         {
-          lastNodeSecuence = (int)visit(ctx.funcionfor());
+          lastNodeSequence = (int)visit(ctx.funcionfor());
         }
-        return lastNodeSecuence;
+        return lastNodeSequence;
     }
 
     @Override
@@ -221,7 +222,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
         ArrayList<Integer> listPreviousNode = new ArrayList<Integer>(); // Para realizar la unión con el nodo anterior si no se ha realizado que es el que lo ha invocado
         int actualNode = 0;
         actualNode = listNumberNode.size(); //Nº del nodo con el que vamos a trabajar en esta función
-        int lastNodeSecuence;
+        int lastNodeSequence;
         listPreviousNode.add(actualNode);
         symbolTable.addNode(stack.getLast(), listPreviousNode); //Puede que venga de terminar el codigo de otra llamada
 
@@ -230,11 +231,11 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
         listNodes.add(actualNode+1);      //Incluir el nodo de la condición if a la lista de nodos a los que va el nodo actual
 
         stack.push((int)visit(ctx.condicionalif())); //Posición de la último nodo de la secuencia de condiciones
-        lastNodeSecuence = stack.getLast();
+        lastNodeSequence = stack.getLast();
 
         if(ctx.condicionalelse() != null)
         {
-          listNodes.add(lastNodeSecuence+1);      //Incluir el nodo de la condición else a la lista de nodos a los que va el nodo actual
+          listNodes.add(lastNodeSequence+1);      //Incluir el nodo de la condición else a la lista de nodos a los que va el nodo actual
           listNumberNode.add(listNumberNode.size()); //Incluir a la lista de nodos usados el que va a usarse para la condición condicondicionalelse
           visit(ctx.condicionalelse());
         }
@@ -243,7 +244,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
           listNumberNode.add(listNodes.size() - 1); //Hay que tener en cuenta cuando solo tenemos una condición
         }
         symbolTable.addNode(actualNode, listNodes); //Introducimos los datos del nodo actual con las direcciones a donde va
-        return lastNodeSecuence; //Utilizarlo para situaciones con bucles
+        return lastNodeSequence; //Utilizarlo para situaciones con bucles
     }
 
     @Override
@@ -389,14 +390,84 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
     @Override
     public Integer visitFuncionwhile(Pl2compilerParser.FuncionwhileContext ctx)
     {
+      ArrayList<Integer> listNodes = new ArrayList<Integer>(); //Para almacenar los nodos a los que se va a partir del nodo actual
+      ArrayList<Integer> listPreviousNode = new ArrayList<Integer>(); // Para realizar la unión con el nodo anterior si no se ha realizado que es el que lo ha invocado
+      ArrayList<Integer> listLastNodeWhile = new ArrayList<Integer>(); //Contiene el nodo del nodo padre que realiza el bucle while
+      int actualNode = 0;
+      actualNode = listNumberNode.size(); //Nº del nodo con el que vamos a trabajar en esta función
+      int lastNodeSequence;
+      listPreviousNode.add(actualNode);
+      symbolTable.addNode(stack.getLast(), listPreviousNode); //Puede que venga de terminar el codigo de otra llamada
 
-        return 1;
+      listNumberNode.add(actualNode);   //Incluir a la lista de nodos usados para el nodo actual
+      listNumberNode.add(actualNode+1); //Incluir a la lista de nodos usados el que va a usarse para el cuerpo del bucle
+      listNodes.add(actualNode+1);      //Incluir el nodo de la condición if a la lista de nodos a los que va el nodo actual
+
+      if(ctx.cuerpo() != null)
+      {
+        stack.push((int)visit(ctx.cuerpo())); //Posición de la último nodo de la secuencia del cuerpo
+      }
+      else if(ctx.cuerpo2() != null)
+      {
+        stack.push((int)visit(ctx.cuerpo2())); //Posición de la último nodo de la secuencia del cuerpo2
+      }
+      else if(ctx.cuerpo3() != null)
+      {
+        stack.push((int)visit(ctx.cuerpo3())); //Posición de la último nodo de la secuencia del cuerpo3
+      }
+
+      lastNodeSequence = stack.pop();
+      listLastNodeWhile.add(actualNode);
+      symbolTable.addNode(lastNodeSequence, listLastNodeWhile);
+      lastNodeSequence = listNumberNode.size();
+      listNodes.add(listNumberNode.size());
+      symbolTable.addNode(actualNode, listNodes); //Incluye los nodos hijos del nodo padre actual
+      return lastNodeSequence; //Utilizarlo para situaciones con bucles
     }
     @Override
     public Integer visitFuncionfor(Pl2compilerParser.FuncionforContext ctx)
     {
+      ArrayList<Integer> listNodes = new ArrayList<Integer>(); //Para almacenar los nodos a los que se va a partir del nodo actual
+      ArrayList<Integer> listPreviousNode = new ArrayList<Integer>(); // Para realizar la unión con el nodo anterior si no se ha realizado que es el que lo ha invocado
+      ArrayList<Integer> listLastNodeFor = new ArrayList<Integer>(); //Contiene el nodo del nodo padre que realiza el bucle for
+      int actualNode = 0;
+      actualNode = listNumberNode.size(); //Nº del nodo con el que vamos a trabajar en esta función
+      int lastNodeSequence;
+      listPreviousNode.add(actualNode);
+      symbolTable.addNode(stack.getLast(), listPreviousNode); //Puede que venga de terminar el codigo de otra llamada
 
-        return 1;
+      listNumberNode.add(actualNode);   //Incluir a la lista de nodos usados para el nodo actual
+      listNumberNode.add(actualNode+1); //Incluir a la lista de nodos usados el que va a usarse para la asignación del bucle for
+      listNodes.add(actualNode+1);      //Incluir el nodo de la condición if a la lista de nodos a los que va el nodo actual
+      symbolTable.addNode(actualNode, listNodes);
+
+      listNodes = new ArrayList<Integer>();
+      actualNode++;
+      listNumberNode.add(actualNode+2); //Incluir a la lista de nodos usados el que va a usarse para el cuerpo del bucle
+
+
+      if(ctx.cuerpo() != null)
+      {
+        stack.push((int)visit(ctx.cuerpo())); //Posición de la último nodo de la secuencia del cuerpo
+      }
+      else if(ctx.cuerpo2() != null)
+      {
+        stack.push((int)visit(ctx.cuerpo2())); //Posición de la último nodo de la secuencia del cuerpo2
+      }
+      else if(ctx.cuerpo3() != null)
+      {
+        stack.push((int)visit(ctx.cuerpo3())); //Posición de la último nodo de la secuencia del cuerpo3
+      }
+
+      lastNodeSequence = stack.pop();
+      listLastNodeFor.add(actualNode);
+      symbolTable.addNode(lastNodeSequence, listLastNodeFor);
+      lastNodeSequence = listNumberNode.size();
+      listNodes.add(listNumberNode.size());
+      symbolTable.addNode(actualNode, listNodes); //Incluye los nodos hijos del nodo padre actual
+
+
+      return lastNodeSequence; //Utilizarlo para situaciones con bucles
     }
 
     @Override
