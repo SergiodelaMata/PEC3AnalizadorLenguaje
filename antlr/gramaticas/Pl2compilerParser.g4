@@ -15,7 +15,7 @@ condicion: operadoraperturaparentesis expresionlogica operadorcierreparentesis;
 //cabeceraswitch: palabrareservadaaperturaswitch operadoraperturaparentesis expr operadorcierreparentesis;
 //cuerposwitch: (palabrareservadacase expr separadordospuntos (cuerpo2|cuerpo) (palabrareservadabreak separadoroperaciones)?)+ (palabrareservadadefault separadordospuntos (cuerpo2|cuerpo) (palabrareservadabreak separadoroperaciones)?) palabrareservadacierrewitch;
 condicionalif: palabraclaveifcondicion ((condicion)
-            | (condicion (operadorcondicionalpuertalogica condicion)*))? palabraclavethen? (cuerpo2|cuerpo3|cuerpo);
+            | (condicion (operadorcondicionalpuertalogica condicion)*)) palabraclavethen? (cuerpo2|cuerpo3|cuerpo);
 condicionalelse: palabraclaveelsecondicion (cuerpo2|cuerpo3|cuerpo);
 condicionales:  condicionalif condicionalelse? palabraclaveendif;
 funcionwhile: palabraclavebuclewhile operadoraperturaparentesis (expr|expresionlogica) operadorcierreparentesis (cuerpo|cuerpo2|cuerpo3);
@@ -45,8 +45,8 @@ expr:	expr (operadoraritmeticoproducto|operadoraritmeticodivision) expr
     |   cadena  (operadoraritmeticosuma expr)*
     |	operadoraperturaparentesis expr operadorcierreparentesis
     ;
-expresionlogica: (expr|palabraclavebooleano) ((operadorlogico|operadorcondicionalpuertalogica) (expr|palabraclavebooleano|expresionlogica))+
-                | palabraclavebooleano;
+expresionlogica: (expr|palabraclavebooleano) ((operadorlogico|operadorcondicionalpuertalogica) (expr|palabraclavebooleano|expresionlogica))*;
+                //| palabraclavebooleano;
 
 nombrefuncion: ID;
 nombrevariable: ARRAY | ID | CASE;
