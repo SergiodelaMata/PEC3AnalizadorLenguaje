@@ -53,8 +53,8 @@ public class File implements Serializable{
       return this.complexSymbolTable;
     }
 
-    public void printComplexSymbol()
+    /*public void printComplexSymbol()
     {
         complexSymbolTable.printHashMap();
-    }
+    }*/
 }

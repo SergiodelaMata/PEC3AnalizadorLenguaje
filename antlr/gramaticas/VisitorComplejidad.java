@@ -103,8 +103,87 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
     public Integer visitCuerpo2(Pl2compilerParser.Cuerpo2Context ctx)
     {
         ArrayList<Pl2compilerParser.LlamarfuncionContext> listLlamadas = new ArrayList<Pl2compilerParser.LlamarfuncionContext>(ctx.llamarfuncion());
+        ArrayList<Pl2compilerParser.AsignacionContext> listaAsignaciones = new ArrayList<Pl2compilerParser.AsignacionContext>(ctx.asignacion());
         int numberNode = 0;
 
+        for(int i = 0; i < listaAsignaciones.size(); i++)
+        {
+          stack.push((int)visit(listaAsignaciones.get(i)));
+        }
+        for(int i = 0; i < listaAsignaciones.size(); i++)
+        {
+          if(i == 0)
+          {
+            numberNode = stack.pop();
+          }
+          else
+          {
+            stack.pop();
+          }
+        }
+
+        if(listLlamadas.size() != 0)
+        {
+          stack.push(numberNode);
+          for(int i = 0; i < listLlamadas.size(); i++)//Introduce en una pila los nodos que se han utilizado como última posición de una secuencia de una llamada
+          {
+            if(listLlamadas.get(i).llamadafuncion() == null) //No es una llamada a función
+            {
+              stack.push((int)visit(listLlamadas.get(i)));
+            }
+            else
+            {
+
+              stack.push((int)visit(listLlamadas.get(i)));
+            }
+          }
+          for(int i = 0; i < listLlamadas.size(); i++) //Salva solo la última posición de las secuencias de llamadas realizadas
+          {
+            if(listLlamadas.get(i).llamadafuncion() == null) //No es una llamada
+            {
+              if(i == 0)
+              {
+                numberNode = stack.pop();
+              }
+              else
+              {
+                stack.pop();
+              }
+            }
+            else
+            {
+              stack.pop();
+            }
+          }
+        }
+        return numberNode;
+    }
+    @Override
+    public Integer visitCuerpo3(Pl2compilerParser.Cuerpo3Context ctx)
+    {
+      ArrayList<Pl2compilerParser.LlamarfuncionContext> listLlamadas = new ArrayList<Pl2compilerParser.LlamarfuncionContext>(ctx.llamarfuncion());
+      ArrayList<Pl2compilerParser.AsignacionContext> listaAsignaciones = new ArrayList<Pl2compilerParser.AsignacionContext>(ctx.asignacion());
+      int numberNode = 0;
+
+      for(int i = 0; i < listaAsignaciones.size(); i++)
+      {
+        stack.push((int)visit(listaAsignaciones.get(i)));
+      }
+      for(int i = 0; i < listaAsignaciones.size(); i++)
+      {
+        if(i == 0)
+        {
+          numberNode = stack.pop();
+        }
+        else
+        {
+          stack.pop();
+        }
+      }
+
+      if(listLlamadas.size() != 0)
+      {
+        stack.push(numberNode);
         for(int i = 0; i < listLlamadas.size(); i++)//Introduce en una pila los nodos que se han utilizado como última posición de una secuencia de una llamada
         {
           if(listLlamadas.get(i).llamadafuncion() == null) //No es una llamada a función
@@ -117,12 +196,11 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
             stack.push((int)visit(listLlamadas.get(i)));
           }
         }
-        int counter = 0; //Para coger el primer que no sea una llamada a función
         for(int i = 0; i < listLlamadas.size(); i++) //Salva solo la última posición de las secuencias de llamadas realizadas
         {
           if(listLlamadas.get(i).llamadafuncion() == null) //No es una llamada
           {
-            if(counter == 0)
+            if(i == 0)
             {
               numberNode = stack.pop();
             }
@@ -135,45 +213,6 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
           {
             stack.pop();
           }
-
-        }
-        return numberNode;
-    }
-    @Override
-    public Integer visitCuerpo3(Pl2compilerParser.Cuerpo3Context ctx)
-    {
-      ArrayList<Pl2compilerParser.LlamarfuncionContext> listLlamadas = new ArrayList<Pl2compilerParser.LlamarfuncionContext>(ctx.llamarfuncion());
-      int numberNode = 0;
-
-      for(int i = 0; i < listLlamadas.size(); i++)//Introduce en una pila los nodos que se han utilizado como última posición de una secuencia de una llamada
-      {
-        if(listLlamadas.get(i).llamadafuncion() == null) //No es una llamada a función
-        {
-          stack.push((int)visit(listLlamadas.get(i)));
-        }
-        else
-        {
-
-          stack.push((int)visit(listLlamadas.get(i)));
-        }
-      }
-      int counter = 0; //Para coger el primer que no sea una llamada a función
-      for(int i = 0; i < listLlamadas.size(); i++) //Salva solo la última posición de las secuencias de llamadas realizadas
-      {
-        if(listLlamadas.get(i).llamadafuncion() == null) //No es una llamada
-        {
-          if(counter == 0)
-          {
-            numberNode = stack.pop();
-          }
-          else
-          {
-            stack.pop();
-          }
-        }
-        else
-        {
-          stack.pop();
         }
       }
       return numberNode;
@@ -264,7 +303,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
           verificar = (boolean) visit(listCondiciones.get(counter));
           counter++;
         }
-        stack.pop();
+        //stack.pop();
 
         if(ctx.cuerpo2() != null)
         {
@@ -278,6 +317,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
         {
           lastPosNodeSecuenceStudied = (int)visit(ctx.cuerpo());
         }
+        stack.pop();
         listLastNode.add(listNumberNode.size()); //Añade el nodo estudiado que se encuentra tras finalizar la condición if
         listNumberNode.add(listNumberNode.size()); //Añade el nodo en el que se termina la condición if
         symbolTable.addNode(lastPosNodeSecuenceStudied, listLastNode); //Introduce en la tabla de símbolos la entrada de cierre de condición if
@@ -395,7 +435,22 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
       ArrayList<Integer> listLastNodeWhile = new ArrayList<Integer>(); //Contiene el nodo del nodo padre que realiza el bucle while
       int actualNode = 0;
       actualNode = listNumberNode.size(); //Nº del nodo con el que vamos a trabajar en esta función
-      int lastNodeSequence;
+      int lastNodeSequence = actualNode; //Proporciona el último nodo del que viene la secuencia
+      stack.push(actualNode);
+      boolean verificar = false;
+      if(ctx.expr() != null)//Se va a comprobar que no ha recursividad con respecto a la función que se está creando
+      {
+        verificar = (boolean) visit(ctx.expr());
+      }
+      if(!verificar)
+      {
+        if(ctx.expresionlogica() != null)//Se va a comprobar que no ha recursividad con respecto a la función que se está creando
+        {
+          verificar = (boolean) visit(ctx.expresionlogica());
+        }
+      }
+      //stack.pop();
+
       listPreviousNode.add(actualNode);
       symbolTable.addNode(stack.getLast(), listPreviousNode); //Puede que venga de terminar el codigo de otra llamada
 
@@ -473,8 +528,29 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
     @Override
     public Integer visitCodigo(Pl2compilerParser.CodigoContext ctx)
     {
-        ArrayList<Pl2compilerParser.LlamarfuncionContext> listLlamadas = new ArrayList<Pl2compilerParser.LlamarfuncionContext>(ctx.llamarfuncion());
-        int numberNode = 0;
+      ArrayList<Pl2compilerParser.LlamarfuncionContext> listLlamadas = new ArrayList<Pl2compilerParser.LlamarfuncionContext>(ctx.llamarfuncion());
+      ArrayList<Pl2compilerParser.AsignacionContext> listaAsignaciones = new ArrayList<Pl2compilerParser.AsignacionContext>(ctx.asignacion());
+      int numberNode = 0;
+
+      for(int i = 0; i < listaAsignaciones.size(); i++)
+      {
+        stack.push((int)visit(listaAsignaciones.get(i)));
+      }
+      for(int i = 0; i < listaAsignaciones.size(); i++)
+      {
+        if(i == 0)
+        {
+          numberNode = stack.pop();
+        }
+        else
+        {
+          stack.pop();
+        }
+      }
+
+      if(listLlamadas.size() != 0)
+      {
+        stack.push(numberNode);
         for(int i = 0; i < listLlamadas.size(); i++)//Introduce en una pila los nodos que se han utilizado como última posición de una secuencia de una llamada
         {
           if(listLlamadas.get(i).llamadafuncion() == null) //No es una llamada a función
@@ -487,12 +563,11 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
             stack.push((int)visit(listLlamadas.get(i)));
           }
         }
-        int counter = 0; //Para coger el primer que no sea una llamada a función
         for(int i = 0; i < listLlamadas.size(); i++) //Salva solo la última posición de las secuencias de llamadas realizadas
         {
           if(listLlamadas.get(i).llamadafuncion() == null) //No es una llamada
           {
-            if(counter == 0)
+            if(i == 0)
             {
               numberNode = stack.pop();
             }
@@ -506,18 +581,62 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
             stack.pop();
           }
         }
-        if(ctx.devolver() != null)
+      }if(ctx.devolver() != null)
         {
             stack.push(numberNode);
-            visit(ctx.devolver());
+            numberNode = (int) visit(ctx.devolver());
         }
-        return 1;
+        return numberNode;
+    }
+
+    @Override
+    public Integer visitAsignacion(Pl2compilerParser.AsignacionContext ctx)
+    {
+      int actualNode = 0;
+      actualNode = listNumberNode.get(listNumberNode.size());
+      ArrayList<Integer> listNodes = new ArrayList<Integer>(); //Para almacenar los nodos a los que se va a partir del nodo actual
+      ArrayList<Integer> listPreviousNode = new ArrayList<Integer>(); //Para almacenar los nodos del nodo anterior
+      ArrayList<Integer> listLastNode = new ArrayList<Integer>(); //Para almacenar los nodos para el último nodo de la condición
+      ArrayList<Pl2compilerParser.SeparadoroperadoresContext> listaComas = new ArrayList<Pl2compilerParser.SeparadoroperadoresContext>(ctx.separadoroperadores());
+      int counter = 0;
+      boolean verificar = false;
+
+      listNumberNode.add(actualNode);
+      listPreviousNode.add(actualNode);
+      symbolTable.addNode(stack.pop(), listPreviousNode);
+
+      if(listaComas.size() != 0)
+      {
+        for(int i = 0; i < listaComas.size() + 1; i++) //Para cada una de las variables declaradas
+        {
+          listNumberNode.add(actualNode + 1);
+          listNodes.add(actualNode + 1);
+          symbolTable.addNode(actualNode, listNodes);
+          actualNode++;
+        }
+      }
+      else
+      {
+        if(ctx.expr() != null)
+        {
+          stack.push(actualNode);
+          visit(ctx.expr());
+          listNumberNode.add(actualNode + 1);
+          listNodes.add(actualNode + 1);
+          symbolTable.addNode(actualNode, listNodes);
+          actualNode++;
+        }
+      }
+
+
+
+      return actualNode;
     }
 
     @Override
     public Integer visitDevolver(Pl2compilerParser.DevolverContext ctx)
     {
-        int lastNodeSequence = 0;
+        int lastNodeSequence = stack.getLast();
         if(ctx.llamadafuncion() != null)
         {
           lastNodeSequence = (int) visit(ctx.llamadafuncion());
@@ -527,6 +646,6 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
           visit(ctx.expr());
         }
 
-        return 1;
+        return lastNodeSequence;
     }
 }
