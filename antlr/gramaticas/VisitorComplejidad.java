@@ -225,7 +225,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
     @Override
     public Integer visitLlamarfuncion(Pl2compilerParser.LlamarfuncionContext ctx)
     {
-      int lastNodeSequence = 0;
+      int lastNodeSequence = stack.pop();
         if(ctx.llamadafuncion() != null)
         {
           visit(ctx.llamadafuncion());
@@ -254,7 +254,16 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
       listNumberNode.add(actualNode);
       ArrayList<Integer> listNodes = new ArrayList<Integer>();
       listNodes.add(actualNode);
-      symbolTable.addNode(stack.pop(), listNodes);
+
+      if(stack.size() != 0)
+      {
+        symbolTable.addNode(stack.pop(), listNodes);
+      }
+      else
+      {
+        symbolTable.addNode(0, listNodes); //Es el primer hijo con respecto a la creación de la función
+      }
+
       stack.push(actualNode);
       isFunction(ctx);
       return actualNode;
@@ -612,7 +621,15 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
 
       listNumberNode.add(actualNode);
       listPreviousNode.add(actualNode);
-      symbolTable.addNode(stack.pop(), listPreviousNode);
+      //symbolTable.addNode(stack.pop(), listPreviousNode);
+      if(stack.size() != 0)
+      {
+        symbolTable.addNode(stack.pop(), listPreviousNode);
+      }
+      else
+      {
+        symbolTable.addNode(0, listPreviousNode); //Es el primer hijo con respecto a la creación de la función
+      }
 
       if(listaComas.size() != 0)
       {
