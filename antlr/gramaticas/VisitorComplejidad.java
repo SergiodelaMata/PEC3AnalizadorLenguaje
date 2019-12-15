@@ -277,7 +277,15 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
         actualNode = listNumberNode.size(); //Nº del nodo con el que vamos a trabajar en esta función
         int lastNodeSequence;
         listPreviousNode.add(actualNode);
-        symbolTable.addNode(stack.getLast(), listPreviousNode); //Puede que venga de terminar el codigo de otra llamada
+        if(stack.size() != 0)
+        {
+          symbolTable.addNode(stack.getLast(), listPreviousNode); //Puede que venga de terminar el codigo de otra llamada
+        }
+        else
+        {
+          symbolTable.addNode(0, listPreviousNode); //Puede que venga de terminar el codigo de otra llamada
+        }
+
 
         listNumberNode.add(actualNode);   //Incluir a la lista de nodos usados para el nodo actual
         listNumberNode.add(actualNode+1); //Incluir a la lista de nodos usados el que va a usarse para la condición if
@@ -468,7 +476,14 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
       //stack.pop();
 
       listPreviousNode.add(actualNode);
-      symbolTable.addNode(stack.getLast(), listPreviousNode); //Puede que venga de terminar el codigo de otra llamada
+      if(stack.size() != 0)
+      {
+        symbolTable.addNode(stack.getLast(), listPreviousNode); //Puede que venga de terminar el codigo de otra llamada
+      }
+      else
+      {
+        symbolTable.addNode(0, listPreviousNode); //Puede que venga de terminar el codigo de otra llamada
+      }
 
       listNumberNode.add(actualNode);   //Incluir a la lista de nodos usados para el nodo actual
       listNumberNode.add(actualNode+1); //Incluir a la lista de nodos usados el que va a usarse para el cuerpo del bucle
@@ -505,7 +520,14 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
       actualNode = listNumberNode.size(); //Nº del nodo con el que vamos a trabajar en esta función
       int lastNodeSequence;
       listPreviousNode.add(actualNode);
-      symbolTable.addNode(stack.getLast(), listPreviousNode); //Puede que venga de terminar el codigo de otra llamada
+      if(stack.size() != 0)
+      {
+        symbolTable.addNode(stack.getLast(), listPreviousNode); //Puede que venga de terminar el codigo de otra llamada
+      }
+      else
+      {
+        symbolTable.addNode(0, listPreviousNode); //Puede que venga de terminar el codigo de otra llamada
+      }
 
       listNumberNode.add(actualNode);   //Incluir a la lista de nodos usados para el nodo actual
       listNumberNode.add(actualNode+1); //Incluir a la lista de nodos usados el que va a usarse para la asignación del bucle for
