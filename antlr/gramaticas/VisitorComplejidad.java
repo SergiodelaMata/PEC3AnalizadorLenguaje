@@ -111,7 +111,8 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
         {
           stack.push((int)visit(listaAsignaciones.get(i)));
         }
-        for(int i = 0; i < listaAsignaciones.size(); i++)
+        numberNode = stack.getLast();
+        /*for(int i = 0; i < listaAsignaciones.size(); i++)
         {
           if(i == 0)
           {
@@ -121,11 +122,11 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
           {
             stack.pop();
           }
-        }
+        }*/
 
         if(listLlamadas.size() != 0)
         {
-          stack.push(numberNode);
+          //stack.push(numberNode);
           for(int i = 0; i < listLlamadas.size(); i++)//Introduce en una pila los nodos que se han utilizado como última posición de una secuencia de una llamada
           {
             if(listLlamadas.get(i).llamadafuncion() == null) //No es una llamada a función
@@ -138,7 +139,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
               stack.push((int)visit(listLlamadas.get(i)));
             }
           }
-          for(int i = 0; i < listLlamadas.size(); i++) //Salva solo la última posición de las secuencias de llamadas realizadas
+          /*for(int i = 0; i < listLlamadas.size(); i++) //Salva solo la última posición de las secuencias de llamadas realizadas
           {
             if(listLlamadas.get(i).llamadafuncion() == null) //No es una llamada
             {
@@ -155,7 +156,8 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
             {
               stack.pop();
             }
-          }
+          }*/
+          numberNode = stack.pop();
         }
         return numberNode;
     }
@@ -170,7 +172,8 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
       {
         stack.push((int)visit(listaAsignaciones.get(i)));
       }
-      for(int i = 0; i < listaAsignaciones.size(); i++)
+      numberNode = stack.getLast();
+      /*for(int i = 0; i < listaAsignaciones.size(); i++)
       {
         if(i == 0)
         {
@@ -180,11 +183,11 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
         {
           stack.pop();
         }
-      }
+      }*/
 
       if(listLlamadas.size() != 0)
       {
-        stack.push(numberNode);
+        //stack.push(numberNode);
         for(int i = 0; i < listLlamadas.size(); i++)//Introduce en una pila los nodos que se han utilizado como última posición de una secuencia de una llamada
         {
           if(listLlamadas.get(i).llamadafuncion() == null) //No es una llamada a función
@@ -197,7 +200,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
             stack.push((int)visit(listLlamadas.get(i)));
           }
         }
-        for(int i = 0; i < listLlamadas.size(); i++) //Salva solo la última posición de las secuencias de llamadas realizadas
+        /*for(int i = 0; i < listLlamadas.size(); i++) //Salva solo la última posición de las secuencias de llamadas realizadas
         {
           if(listLlamadas.get(i).llamadafuncion() == null) //No es una llamada
           {
@@ -214,7 +217,8 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
           {
             stack.pop();
           }
-        }
+        }*/
+        numberNode = stack.pop();
       }
       return numberNode;
     }
@@ -537,7 +541,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
       {
         stack.push((int)visit(listaAsignaciones.get(i)));
       }
-      for(int i = 0; i < listaAsignaciones.size(); i++)
+      /*for(int i = 0; i < listaAsignaciones.size(); i++)
       {
         if(i == 0)
         {
@@ -547,11 +551,12 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
         {
           stack.pop();
         }
-      }
+      }*/
+      numberNode = stack.getLast();
 
       if(listLlamadas.size() != 0)
       {
-        stack.push(numberNode);
+        //stack.push(numberNode);
         for(int i = 0; i < listLlamadas.size(); i++)//Introduce en una pila los nodos que se han utilizado como última posición de una secuencia de una llamada
         {
           if(listLlamadas.get(i).llamadafuncion() == null) //No es una llamada a función
@@ -564,7 +569,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
             stack.push((int)visit(listLlamadas.get(i)));
           }
         }
-        for(int i = 0; i < listLlamadas.size(); i++) //Salva solo la última posición de las secuencias de llamadas realizadas
+        /*for(int i = 0; i < listLlamadas.size(); i++) //Salva solo la última posición de las secuencias de llamadas realizadas
         {
           if(listLlamadas.get(i).llamadafuncion() == null) //No es una llamada
           {
@@ -581,8 +586,10 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
           {
             stack.pop();
           }
-        }
-      }if(ctx.devolver() != null)
+        }*/
+        numberNode = stack.pop();
+      }
+      if(ctx.devolver() != null)
         {
             stack.push(numberNode);
             numberNode = (int) visit(ctx.devolver());
