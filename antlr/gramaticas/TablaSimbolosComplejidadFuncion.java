@@ -5,11 +5,13 @@ public class TablaSimbolosComplejidadFuncion
 {
     private String functionName;
     private Hashtable<Integer, ArrayList<Integer>> symbolTable;
+    private ArrayList<Integer> listNode;
 
     public TablaSimbolosComplejidadFuncion()
     {
         this.functionName = "";
         this.symbolTable = new Hashtable<Integer, ArrayList<Integer>>();
+        this.listNode = new ArrayList<Integer>();
     }
 
     public void addNode(int numNode, ArrayList<Integer> listNumNodes)
@@ -58,5 +60,14 @@ public class TablaSimbolosComplejidadFuncion
     public ArrayList<Integer> get(int position)
     {
         return symbolTable.get(position);
+    }
+
+    public ArrayList<Integer> getListNode()
+    {
+      return this.listNode;
+    }
+    public void setListNode(ArrayList<Integer> listNode)
+    {
+      this.listNode = listNode;
     }
 }

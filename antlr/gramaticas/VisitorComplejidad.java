@@ -45,6 +45,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
                   System.out.print(listNumberNode.get(j) + " ");
                 }
                 System.out.println("");
+                symbolTable.setListNode(listNumberNode);
                 file.getTablaSimbolosComplejidad().putFunctionSymbolTable(symbolTable);
                 this.completeNameFunction = "";         //Para tener el nombre completo de la función con los nombres de sus parámetros
                 this.nameFunction = "";                 //Función sin parámetros
@@ -691,17 +692,14 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
     {
       int actualNode = 0;
       actualNode = listNumberNode.size();
-      System.out.println("FUNCIONAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA: " + actualNode);
+      //System.out.println("FUNCIONAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA: " + actualNode);
       ArrayList<Integer> listNodes = new ArrayList<Integer>(); //Para almacenar los nodos a los que se va a partir del nodo actual
       ArrayList<Integer> listPreviousNode = new ArrayList<Integer>(); //Para almacenar los nodos del nodo anterior
       ArrayList<Integer> listLastNode = new ArrayList<Integer>(); //Para almacenar los nodos para el último nodo de la condición
       ArrayList<Pl2compilerParser.SeparadoroperadoresContext> listaComas = new ArrayList<Pl2compilerParser.SeparadoroperadoresContext>(ctx.separadoroperadores());
-      int counter = 0;
-      boolean verificar = false;
 
       listNumberNode.add(listNumberNode.size());
       listPreviousNode.add(actualNode);
-      //symbolTable.addNode(stack.pop(), listPreviousNode);
       if(stack.size() != 0)
       {
         symbolTable.addNode(stack.pop(), listPreviousNode);
@@ -710,15 +708,12 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
       {
         symbolTable.addNode(0, listPreviousNode); //Es el primer hijo con respecto a la creación de la función
       }
-
       if(listaComas.size() != 0)
       {
         for(int i = 0; i < listaComas.size() + 1; i++) //Para cada una de las variables declaradas
         {
           listNodes.add(listNumberNode.size());
           listNumberNode.add(listNumberNode.size());
-          //listNumberNode.add(actualNode + 1);
-          //listNodes.add(actualNode + 1);
           symbolTable.addNode(actualNode, listNodes);
           listNodes = new ArrayList<Integer>();
           actualNode++;
@@ -728,24 +723,11 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
       {
         if(ctx.expr() != null)
         {
-          /*if((ctx.expr().numeros().size() != 0 || ctx.expr().nombrevariable().size() != 0) && ctx.expr().llamadafuncion() == null)
-          {
-            listNodes.add(listNumberNode.size());
-            listNumberNode.add(listNumberNode.size());
-            //listNumberNode.add(actualNode + 1);
-            //listNodes.add(actualNode + 1);
-            symbolTable.addNode(actualNode, listNodes);
-            actualNode++;
-          }*/
-
           if(ctx.expr().operadoraritmeticosuma() != null || ctx.expr().operadoraritmeticoresta() != null || ctx.expr().operadoraritmeticoproducto() != null || ctx.expr().operadoraritmeticodivision() != null)
           {
             stack.push(actualNode);
             isCadena(ctx.expr());
           }
-          //visit(ctx.expr());
-
-
         }
       }
       return actualNode;
