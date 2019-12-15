@@ -489,12 +489,14 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
       if(ctx.expr() != null)//Se va a comprobar que no ha recursividad con respecto a la función que se está creando
       {
         verificar = (boolean) visit(ctx.expr());
+        lastNodeSequence = stack.pop();
       }
       if(!verificar)
       {
         if(ctx.expresionlogica() != null)//Se va a comprobar que no ha recursividad con respecto a la función que se está creando
         {
           verificar = (boolean) visit(ctx.expresionlogica());
+          lastNodeSequence = stack.pop();
         }
       }
       //stack.pop();
@@ -508,15 +510,16 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
       {
         symbolTable.addNode(0, listPreviousNode); //Puede que venga de terminar el codigo de otra llamada
       }
-
+      System.out.println("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" + actualNode + " " + listNumberNode.size());
       //listNumberNode.add(actualNode);   //Incluir a la lista de nodos usados para el nodo actual
       //listNumberNode.add(actualNode+1); //Incluir a la lista de nodos usados el que va a usarse para el cuerpo del bucle
-      listNodes.add(listNumberNode.size());//Incluir a la lista de nodos usados para el nodo actual
-      listNodes.add(listNumberNode.size());//Incluir a la lista de nodos usados el que va a usarse para el cuerpo del bucle
-      listNumberNode.add(listNumberNode.size());
+      listNumberNode.add(listNumberNode.size());//Incluir a la lista de nodos usados para el nodo actual
+      listNodes.add(listNumberNode.size());
+      listNumberNode.add(listNumberNode.size());//Incluir a la lista de nodos usados el que va a usarse para el cuerpo del bucle
+
       //listNumberNode.add(actualNode + 1);
       //listNodes.add(actualNode + 1);
-      listNodes.add(actualNode+1);      //Incluir el nodo de la condición if a la lista de nodos a los que va el nodo actual
+      //listNodes.add(actualNode+1);      //Incluir el nodo de la condición if a la lista de nodos a los que va el nodo actual
 
       if(ctx.cuerpo() != null)
       {
