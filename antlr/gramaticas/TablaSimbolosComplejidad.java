@@ -23,7 +23,7 @@ public class TablaSimbolosComplejidad
         while(position != counter && enumeration.hasMoreElements())
         {
             counter++;
-            enumeration.nextElement();
+            System.out.println("AAAAAAAAAAAAAA " + enumeration.nextElement());
         }
         if(counter == position)
         {
@@ -43,6 +43,7 @@ public class TablaSimbolosComplejidad
         for(int i = 0; i < tablaSimbolos.size(); i++)
         {
             listNumNodes = tablaSimbolos.get(i);
+            System.out.println ("YEAH " + i);
             for(int j = 0; j < listNumNodes.size(); j++)
             {
                 if(j != 0)
