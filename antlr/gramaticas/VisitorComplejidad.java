@@ -452,7 +452,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
         listNumberNode.add(listNumberNode.size());
         //listNumberNode.add(actualNode + 1);
         //listNodes.add(actualNode + 1);
-        symbolTable.addNode(actualNode, listNumberNode);
+        symbolTable.addNode(actualNode, listNodes);
         stack.push(actualNode + 1);
 
         if(ctx.cuerpo2() != null)
@@ -485,11 +485,13 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
       actualNode = listNumberNode.size(); //Nº del nodo con el que vamos a trabajar en esta función
       int lastNodeSequence = actualNode; //Proporciona el último nodo del que viene la secuencia
       stack.push(actualNode);
+      //System.out.println("ACTUAL NODEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEÑJFAÑLKDJFÑALKJDÑLKAJ" + actualNode);
       boolean verificar = false;
       if(ctx.expr() != null)//Se va a comprobar que no ha recursividad con respecto a la función que se está creando
       {
         verificar = (boolean) visit(ctx.expr());
         lastNodeSequence = stack.pop();
+        System.out.println("Last NODEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE " + lastNodeSequence);
       }
       if(!verificar)
       {
@@ -497,6 +499,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
         {
           verificar = (boolean) visit(ctx.expresionlogica());
           lastNodeSequence = stack.pop();
+          System.out.println("Last NODEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE2 " + lastNodeSequence);
         }
       }
       //stack.pop();
@@ -510,7 +513,6 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
       {
         symbolTable.addNode(0, listPreviousNode); //Puede que venga de terminar el codigo de otra llamada
       }
-      System.out.println("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" + actualNode + " " + listNumberNode.size());
       //listNumberNode.add(actualNode);   //Incluir a la lista de nodos usados para el nodo actual
       //listNumberNode.add(actualNode+1); //Incluir a la lista de nodos usados el que va a usarse para el cuerpo del bucle
       listNumberNode.add(listNumberNode.size());//Incluir a la lista de nodos usados para el nodo actual
@@ -707,6 +709,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
           //listNumberNode.add(actualNode + 1);
           //listNodes.add(actualNode + 1);
           symbolTable.addNode(actualNode, listNodes);
+          listNodes = new ArrayList<Integer>();
           actualNode++;
         }
       }
@@ -714,7 +717,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
       {
         if(ctx.expr() != null)
         {
-          if(ctx.expr().numeros().size() != 0 && ctx.expr().llamadafuncion() == null)
+          if((ctx.expr().numeros().size() != 0 || ctx.expr().nombrevariable().size() != 0) && ctx.expr().llamadafuncion() == null)
           {
             listNodes.add(listNumberNode.size());
             listNumberNode.add(listNumberNode.size());
