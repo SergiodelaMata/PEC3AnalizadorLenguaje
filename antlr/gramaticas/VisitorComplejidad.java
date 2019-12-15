@@ -91,6 +91,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
           }
         }
         completeNameFunction += ")";
+        System.out.println(completeNameFunction);
         symbolTable.setFunctionName(completeNameFunction);
         return 1;
     }
@@ -593,7 +594,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
     public Integer visitAsignacion(Pl2compilerParser.AsignacionContext ctx)
     {
       int actualNode = 0;
-      actualNode = listNumberNode.get(listNumberNode.size());
+      actualNode = listNumberNode.size();
       ArrayList<Integer> listNodes = new ArrayList<Integer>(); //Para almacenar los nodos a los que se va a partir del nodo actual
       ArrayList<Integer> listPreviousNode = new ArrayList<Integer>(); //Para almacenar los nodos del nodo anterior
       ArrayList<Integer> listLastNode = new ArrayList<Integer>(); //Para almacenar los nodos para el último nodo de la condición
