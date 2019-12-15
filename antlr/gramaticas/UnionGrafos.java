@@ -20,14 +20,14 @@ public class UnionGrafos //NECESITO EL NODO DESDE EL QUE SE LLAMA!!!!!!
         //Object[] nombresFunciones = tablaComplejidad.keySet().toArray();
         ArrayList<String> nombreFunciones = new ArrayList<String>();
         String nombreFuncion = "";
-        ArrayList<String> funcionesLlamadas; 
+        ArrayList<String> funcionesLlamadas;
         Enumeration e = tablaLlamadas.keys();
         String key;
         while(e.hasMoreElements()) //añado los nombres de las funciones existentes en el programa
         {
             key = (String) e.nextElement();
             nombreFunciones.add(key.substring(9, key.indexOf("(")));
-        }          
+        }
         Enumeration e2 = tablaLlamadas.keys();
         String key2;
         ArrayList<String> value;
@@ -45,7 +45,7 @@ public class UnionGrafos //NECESITO EL NODO DESDE EL QUE SE LLAMA!!!!!!
                 }
             }
             counter++;
-            llamadas.add(key2, funcionesLlamadas);
+            llamadas.put(key2, funcionesLlamadas);
         }
     }
 
@@ -63,7 +63,7 @@ public class UnionGrafos //NECESITO EL NODO DESDE EL QUE SE LLAMA!!!!!!
     }
 
 /*
-hacemos antes el visitorllamadas que el visitorcomplejidada y en e visitorComplejidad 
+hacemos antes el visitorllamadas que el visitorcomplejidada y en e visitorComplejidad
 cada vez que haya una llamada si esta en la lista hace Union grafos*/
 
 }
