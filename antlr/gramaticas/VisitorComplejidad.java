@@ -326,6 +326,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
         listLastNode.add(listNumberNode.size()); //Añade el nodo estudiado que se encuentra tras finalizar la condición if
         listNumberNode.add(listNumberNode.size()); //Añade el nodo en el que se termina la condición if
         symbolTable.addNode(lastPosNodeSecuenceStudied, listLastNode); //Introduce en la tabla de símbolos la entrada de cierre de condición if
+        symbolTable.addNode(actualNode, listNodes);
 
         return lastPosNodeSecuenceStudied + 1; //Retorna el número del nodo del que termina la condición
     }
@@ -428,6 +429,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
         }
         listNodes.add(stack.getLast()); //Añade el nodo en el que se termina la condición else y se une con el nodo donde ya ha terminado la condición del if
         symbolTable.addNode(lastPosNodeSecuenceStudied, listNodes); //Introduce en la tabla de símbolos la entrada de cierre de condición if
+        symbolTable.addNode(actualNode, listNodes);
         return stack.pop(); //Devolve el nodo donde se conectaban las condiciones if y else
     }
 
@@ -525,7 +527,6 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
       lastNodeSequence = listNumberNode.size();
       listNodes.add(listNumberNode.size());
       symbolTable.addNode(actualNode, listNodes); //Incluye los nodos hijos del nodo padre actual
-
 
       return lastNodeSequence; //Utilizarlo para situaciones con bucles
     }
