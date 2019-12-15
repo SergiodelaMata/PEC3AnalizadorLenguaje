@@ -400,6 +400,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
       boolean verificar = false;
       if(ctx.llamadafuncion() != null)
       {
+        visit(ctx.llamadafuncion());
         verificar = isFunction(ctx.llamadafuncion());
       }
       if(!verificar)
@@ -666,6 +667,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
     {
       int actualNode = 0;
       actualNode = listNumberNode.size();
+      System.out.println("FUNCIONAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA: " + actualNode);
       ArrayList<Integer> listNodes = new ArrayList<Integer>(); //Para almacenar los nodos a los que se va a partir del nodo actual
       ArrayList<Integer> listPreviousNode = new ArrayList<Integer>(); //Para almacenar los nodos del nodo anterior
       ArrayList<Integer> listLastNode = new ArrayList<Integer>(); //Para almacenar los nodos para el último nodo de la condición
@@ -701,19 +703,30 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
       {
         if(ctx.expr() != null)
         {
-          stack.push(actualNode);
-          visit(ctx.expr());
-          listNodes.add(listNumberNode.size());
-          listNumberNode.add(listNumberNode.size());
-          //listNumberNode.add(actualNode + 1);
-          //listNodes.add(actualNode + 1);
-          symbolTable.addNode(actualNode, listNodes);
-          actualNode++;
+          if(ctx.expr().numeros().size() != 0 && ctx.expr().llamadafuncion() == null)
+          {
+            listNodes.add(listNumberNode.size());
+            listNumberNode.add(listNumberNode.size());
+            //listNumberNode.add(actualNode + 1);
+            //listNodes.add(actualNode + 1);
+            symbolTable.addNode(actualNode, listNodes);
+            actualNode++;
+          }
+          else
+          {
+            stack.push(actualNode);
+            visit(ctx.expr());
+            System.out.println("VENGA VAMOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS " + listNumberNode.get(listNumberNode.size()-1));
+            listNodes.add(listNumberNode.size()-1);
+            //listNumberNode.add(listNumberNode.size());
+            //listNumberNode.add(actualNode + 1);
+            //listNodes.add(actualNode + 1);
+            symbolTable.addNode(actualNode, listNodes);
+            actualNode++;
+          }
+
         }
       }
-
-
-
       return actualNode;
     }
 
