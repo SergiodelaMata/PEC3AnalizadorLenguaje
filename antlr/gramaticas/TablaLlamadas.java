@@ -15,6 +15,11 @@ public class TablaLlamadas
         symbolTable.put(funcion, llamadas);
     }
 
+    public Hashtable<String, ArrayList<String>> getTabla()
+    {
+        return this.symbolTable;
+    }
+
     public void printHashMap() //BORRAR ANTES DE ENTREGAR
     {
         Enumeration e = symbolTable.keys();
