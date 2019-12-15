@@ -36,7 +36,7 @@ public class PagWeb
             html += "<li>Número de llamadas a funciones: <strong>" + funciones.get(i).getNumFunctionCall() + "</strong></li>";
             html += "</ul></li>";
             html += "<li>Grafo de complejidad ciclomática: " + "</li>";
-            html += "<li>Grafo de llamadas a funciones: " + "FALTA EL GRAFO (IMG)" + "</li>";
+            html += "<li>Grafo de llamadas a funciones: " + "<p><img src=\"grafo" + funciones.get(i).getName().substring(9, funciones.get(i).getName().indexOf("(")) + ".svg\"width=\"800\"height=\"250\"><p>" + "</li>";
             html += "</ul><hr>";
             //suma a los puntos de todo el programa
             puntosFuncion += funciones.get(i).getFunctionPoints();

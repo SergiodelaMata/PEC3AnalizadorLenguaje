@@ -35,17 +35,15 @@ public class TablaSimbolosComplejidad
 
     public void crearGrafo(int posicion)
     {
-        TablaSimbolosComplejidadFuncion tablaSimbolos = new TablaSimbolosComplejidadFuncion();
-        String nombreFuncion = tablaSimbolos.getFunctionName();
-        nombreFuncion = nombreFuncion.substring(0, nombreFuncion.indexOf("(") + 1);
+        Object[] nombresFunciones = symbolTable.keySet().toArray();
+        String nombreFuncion = (String) nombresFunciones[posicion];
+        nombreFuncion = nombreFuncion.substring(9, nombreFuncion.indexOf("("));
+        System.out.println("NOMBRE: " + nombreFuncion);
         String dot = printHashMapFunction(posicion);
         try
         {
-            //String nombreDot = "grafo" + nombreFuncion + ".dot";
             FileWriter filewriter = new FileWriter("grafo" + nombreFuncion + ".dot"); //archivo donde se va a crear
-            PrintWriter printw = new PrintWriter(filewriter);     
-            //String svg = "dot -Tsvg " + nombreDot + "-o grafo" + nombreFuncion +".svg";   
-            //Runtime.getRuntime().exec(svg);
+            PrintWriter printw = new PrintWriter(filewriter);
             Runtime.getRuntime().exec("dot -Tsvg grafo"+ nombreFuncion + ".dot -o grafo" + nombreFuncion +".svg");
             printw.println(dot);
             printw.close();
