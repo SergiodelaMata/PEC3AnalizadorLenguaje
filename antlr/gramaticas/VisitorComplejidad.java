@@ -298,7 +298,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
         {
           listNodes.add(lastNodeSequence+1);      //Incluir el nodo de la condición else a la lista de nodos a los que va el nodo actual
           listNumberNode.add(listNumberNode.size()); //Incluir a la lista de nodos usados el que va a usarse para la condición condicondicionalelse
-          visit(ctx.condicionalelse());
+          lastNodeSequence = (int) visit(ctx.condicionalelse());
         }
         else
         {
@@ -431,7 +431,12 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
         int actualNode = 0;
         actualNode = listNumberNode.get(listNumberNode.size()-1); //Puesto que se ha introducido en visitCondicionales
         ArrayList<Integer> listNodes = new ArrayList<Integer>(); //Para almacenar los nodos a los que se va a partir del nodo actual
-        int lastPosNodeSecuenceStudied = 0;
+        int lastPosNodeSecuenceStudied = actualNode;
+
+        listNumberNode.add(actualNode + 1);
+        symbolTable.addNode(actualNode, listNumberNode);
+        stack.push(actualNode + 1);
+
         if(ctx.cuerpo2() != null)
         {
           lastPosNodeSecuenceStudied = (int) visit(ctx.cuerpo2());
@@ -444,9 +449,10 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
         {
           lastPosNodeSecuenceStudied = (int) visit(ctx.cuerpo());
         }
+        listNodes = new ArrayList<Integer>();
         listNodes.add(stack.getLast()); //Añade el nodo en el que se termina la condición else y se une con el nodo donde ya ha terminado la condición del if
-        symbolTable.addNode(lastPosNodeSecuenceStudied, listNodes); //Introduce en la tabla de símbolos la entrada de cierre de condición if
-        symbolTable.addNode(actualNode, listNodes);
+        //symbolTable.addNode(lastPosNodeSecuenceStudied, listNodes); //Introduce en la tabla de símbolos la entrada de cierre de condición if
+        symbolTable.addNode(lastPosNodeSecuenceStudied, listNodes);
         return stack.pop(); //Devolve el nodo donde se conectaban las condiciones if y else
     }
 
