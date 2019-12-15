@@ -24,7 +24,8 @@ public class TablaSimbolosComplejidad
         while(position != counter && enumeration.hasMoreElements())
         {
             counter++;
-            System.out.println("AAAAAAAAAAAAAA " + enumeration.nextElement());
+            enumeration.nextElement();
+            //System.out.println("AAAAAAAAAAAAAA " + enumeration.nextElement());
         }
         if(counter == position)
         {
@@ -80,7 +81,7 @@ public class TablaSimbolosComplejidad
         for(int i = 0; i < tablaSimbolos.size(); i++)
         {
             listNumNodes = tablaSimbolos.get(i);
-            System.out.println ("YEAH " + i);
+            //System.out.println ("YEAH " + i);
             if(listNumNodes != null)
             {
               for(int j = 0; j < listNumNodes.size(); j++)
@@ -91,7 +92,7 @@ public class TablaSimbolosComplejidad
             }
             else
             {
-              System.out.print(i + " no tiene hijos.");
+              System.out.println(i + " no tiene hijos.");
             }
         }
         dot += "}";
