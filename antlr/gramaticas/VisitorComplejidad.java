@@ -44,6 +44,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
                   }
                   System.out.print(listNumberNode.get(j) + " ");
                 }
+                System.out.println("");
                 file.getTablaSimbolosComplejidad().putFunctionSymbolTable(symbolTable);
                 this.completeNameFunction = "";         //Para tener el nombre completo de la función con los nombres de sus parámetros
                 this.nameFunction = "";                 //Función sin parámetros
@@ -743,6 +744,8 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
       }
       return actualNode;
     }
+
+
 
     @Override
     public Integer visitDevolver(Pl2compilerParser.DevolverContext ctx)
