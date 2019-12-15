@@ -47,10 +47,6 @@ public class TablaSimbolosComplejidad
 
             for(int j = 0; j < listNumNodes.size(); j++)
             {
-                if(j != 0)
-                {
-                    System.out.print(", ");
-                }
                 System.out.println(i + " -> " + listNumNodes.get(j));
             }
         }
