@@ -44,12 +44,14 @@ public class TablaSimbolosComplejidad
         {
             listNumNodes = tablaSimbolos.get(i);
             System.out.println ("YEAH " + i);
+
             for(int j = 0; j < listNumNodes.size(); j++)
             {
                 if(j != 0)
                 {
-                    System.out.println(i + " -> " + listNumNodes.get(j));
+                    System.out.print(", ");
                 }
+                System.out.println(i + " -> " + listNumNodes.get(j));
             }
         }
 
