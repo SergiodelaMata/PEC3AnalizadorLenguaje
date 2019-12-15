@@ -28,7 +28,7 @@ public class TablaSimbolosComplejidadFuncion
                     listpos.add(listNumNodes.get(i));
                 }
             }
-            symbolTable.put(numNode, listNumNodes);
+            symbolTable.put(numNode, listpos);
         }
     }
 

@@ -3,13 +3,13 @@ import java.lang.Math;
 
 public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
 {
-    private File file = File.getInstance(); //Contains the symbol table
-    private TablaSimbolosComplejidadFuncion symbolTable; // = new TablaSimbolosComplejidadFuncion();
-    private String completeNameFunction;
-    private String nameFunction;
-    private int numParametersFunction;
-    private ArrayList<Integer> listNumberNode;
-    private PilaComplejidad stack;
+    File file = File.getInstance(); //Contains the symbol table
+    TablaSimbolosComplejidadFuncion symbolTable; // = new TablaSimbolosComplejidadFuncion();
+    String completeNameFunction;
+    String nameFunction;
+    int numParametersFunction;
+    ArrayList<Integer> listNumberNode;
+    PilaComplejidad stack;
 
     public VisitorComplejidad()
     {
@@ -282,41 +282,51 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
     public Integer visitCondicionales(Pl2compilerParser.CondicionalesContext ctx)
     {
         ArrayList<Integer> listNodes = new ArrayList<Integer>(); //Para almacenar los nodos a los que se va a partir del nodo actual
-        ArrayList<Integer> listPreviousNode = new ArrayList<Integer>(); // Para realizar la unión con el nodo anterior si no se ha realizado que es el que lo ha invocado
+        ArrayList<Integer> listPreviousNodes = new ArrayList<Integer>(); // Para realizar la unión con el nodo anterior si no se ha realizado que es el que lo ha invocado
         int actualNode = 0;
         actualNode = listNumberNode.size(); //Nº del nodo con el que vamos a trabajar en esta función
+
         int lastNodeSequence;
-        listPreviousNode.add(actualNode);
+        listPreviousNodes.add(actualNode);
         if(stack.size() != 0)
         {
-          symbolTable.addNode(stack.getLast(), listPreviousNode); //Puede que venga de terminar el codigo de otra llamada
+          lastNodeSequence = stack.getLast();
         }
         else
         {
-          symbolTable.addNode(0, listPreviousNode); //Puede que venga de terminar el codigo de otra llamada
+          lastNodeSequence = 0;
         }
-
-
+        symbolTable.addNode(lastNodeSequence, listPreviousNodes); //Puede que venga de terminar el codigo de otra llamada
+        System.out.println("ACTUAL NODE DFSAÑLKJFDÑLKAJDÑLKAJDSÑLKJDD: " + actualNode + " " + lastNodeSequence);
+        System.out.println("COCO1 " + listPreviousNodes.size());
         listNumberNode.add(listNumberNode.size());   //Incluir a la lista de nodos usados para el nodo actual
         listNodes.add(actualNode+1);      //Incluir el nodo de la condición if a la lista de nodos a los que va el nodo actual
         listNumberNode.add(listNumberNode.size()); //Incluir a la lista de nodos usados el que va a usarse para la condición if
 
-
         stack.push(actualNode + 1);
+        System.out.println("COCO1.1 " + listPreviousNodes.size());
         stack.push((int)visit(ctx.condicionalif())); //Posición de la último nodo de la secuencia de condiciones
         lastNodeSequence = stack.getLast();
+        System.out.println("COCO2 " + listPreviousNodes.size());
 
         if(ctx.condicionalelse() != null)
         {
           listNodes.add(listNumberNode.size());      //Incluir el nodo de la condición else a la lista de nodos a los que va el nodo actual
           listNumberNode.add(listNumberNode.size()); //Incluir a la lista de nodos usados el que va a usarse para la condición condicondicionalelse
           lastNodeSequence = (int) visit(ctx.condicionalelse());
+          System.out.println("COCO3 " + listPreviousNodes.size());
         }
         else
         {
           listNumberNode.add(listNumberNode.size()); //Hay que tener en cuenta cuando solo tenemos una condición
+          System.out.println("COCO4 " + listPreviousNodes.size());
         }
         symbolTable.addNode(actualNode, listNodes); //Introducimos los datos del nodo actual con las direcciones a donde va
+        for(int i = 0; i < listPreviousNodes.size(); i++)
+        {
+          System.out.println("COCO//" + listPreviousNodes.get(i));
+        }
+        System.out.println("COCO5 " + listPreviousNodes.size());
         return lastNodeSequence; //Utilizarlo para situaciones con bucles
     }
 
