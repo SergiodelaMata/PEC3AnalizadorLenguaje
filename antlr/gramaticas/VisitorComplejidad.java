@@ -656,8 +656,16 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
       }
       if(ctx.devolver() != null)
         {
+          if(ctx.asignacion().size() != 0 || ctx.llamarfuncion().size() != 0)
+          {
             stack.push(numberNode);
-            numberNode = (int) visit(ctx.devolver());
+            listNumberNode.add(listNumberNode.size());
+          }
+          else
+          {
+            stack.push(numberNode);
+          }
+          numberNode = (int) visit(ctx.devolver());
         }
         return numberNode;
     }
@@ -733,7 +741,15 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
     @Override
     public Integer visitDevolver(Pl2compilerParser.DevolverContext ctx)
     {
-        int lastNodeSequence = stack.getLast();
+        int lastNodeSequence = stack.pop();
+        int actualNode = listNumberNode.size();
+        ArrayList<Integer>listPreviousNodes = new ArrayList<Integer>();
+        //ArrayList<Integer>listNodes = new ArrayList<Integer>();
+        listNumberNode.add(listNumberNode.size());
+        listPreviousNodes.add(actualNode);
+        //System.out.println("COME ON ÑLKFDSAJALKDSJÑALKDJFÑLAKJFLSÑDDSDÑDJLÑK: " + lastNodeSequence + " " + actualNode);
+        symbolTable.addNode(lastNodeSequence, listPreviousNodes);
+        stack.push(actualNode);
         if(ctx.llamadafuncion() != null)
         {
           lastNodeSequence = (int) visit(ctx.llamadafuncion());
