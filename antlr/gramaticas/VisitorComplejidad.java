@@ -297,36 +297,36 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
           lastNodeSequence = 0;
         }
         symbolTable.addNode(lastNodeSequence, listPreviousNodes); //Puede que venga de terminar el codigo de otra llamada
-        System.out.println("ACTUAL NODE DFSAÑLKJFDÑLKAJDÑLKAJDSÑLKJDD: " + actualNode + " " + lastNodeSequence);
-        System.out.println("COCO1 " + listPreviousNodes.size());
+        //System.out.println("ACTUAL NODE DFSAÑLKJFDÑLKAJDÑLKAJDSÑLKJDD: " + actualNode + " " + lastNodeSequence);
+        //System.out.println("COCO1 " + listPreviousNodes.size());
         listNumberNode.add(listNumberNode.size());   //Incluir a la lista de nodos usados para el nodo actual
         listNodes.add(actualNode+1);      //Incluir el nodo de la condición if a la lista de nodos a los que va el nodo actual
         listNumberNode.add(listNumberNode.size()); //Incluir a la lista de nodos usados el que va a usarse para la condición if
 
         stack.push(actualNode + 1);
-        System.out.println("COCO1.1 " + listPreviousNodes.size());
+        //System.out.println("COCO1.1 " + listPreviousNodes.size());
         stack.push((int)visit(ctx.condicionalif())); //Posición de la último nodo de la secuencia de condiciones
         lastNodeSequence = stack.getLast();
-        System.out.println("COCO2 " + listPreviousNodes.size());
+        //System.out.println("COCO2 " + listPreviousNodes.size());
 
         if(ctx.condicionalelse() != null)
         {
           listNodes.add(listNumberNode.size());      //Incluir el nodo de la condición else a la lista de nodos a los que va el nodo actual
           listNumberNode.add(listNumberNode.size()); //Incluir a la lista de nodos usados el que va a usarse para la condición condicondicionalelse
           lastNodeSequence = (int) visit(ctx.condicionalelse());
-          System.out.println("COCO3 " + listPreviousNodes.size());
+          //System.out.println("COCO3 " + listPreviousNodes.size());
         }
         else
         {
           listNumberNode.add(listNumberNode.size()); //Hay que tener en cuenta cuando solo tenemos una condición
-          System.out.println("COCO4 " + listPreviousNodes.size());
+          //System.out.println("COCO4 " + listPreviousNodes.size());
         }
         symbolTable.addNode(actualNode, listNodes); //Introducimos los datos del nodo actual con las direcciones a donde va
-        for(int i = 0; i < listPreviousNodes.size(); i++)
+        /*for(int i = 0; i < listPreviousNodes.size(); i++)
         {
           System.out.println("COCO//" + listPreviousNodes.get(i));
-        }
-        System.out.println("COCO5 " + listPreviousNodes.size());
+        }*/
+        //System.out.println("COCO5 " + listPreviousNodes.size());
         return lastNodeSequence; //Utilizarlo para situaciones con bucles
     }
 
@@ -334,7 +334,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
     public Integer visitCondicionalif(Pl2compilerParser.CondicionalifContext ctx)
     {
         int actualNode = stack.pop();
-        System.out.println("READYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY: " + actualNode);
+        //System.out.println("READYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY: " + actualNode);
         ArrayList<Integer> listNodes = new ArrayList<Integer>(); //Para almacenar los nodos a los que se va a partir del nodo actual
         ArrayList<Integer> listLastNode = new ArrayList<Integer>(); //Para almacenar los nodos para el último nodo de la condición
         ArrayList<Pl2compilerParser.CondicionContext> listCondiciones = new ArrayList<Pl2compilerParser.CondicionContext>(ctx.condicion());
@@ -728,7 +728,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
       {
         if(ctx.expr() != null)
         {
-          if((ctx.expr().numeros().size() != 0 || ctx.expr().nombrevariable().size() != 0) && ctx.expr().llamadafuncion() == null)
+          /*if((ctx.expr().numeros().size() != 0 || ctx.expr().nombrevariable().size() != 0) && ctx.expr().llamadafuncion() == null)
           {
             listNodes.add(listNumberNode.size());
             listNumberNode.add(listNumberNode.size());
@@ -736,19 +736,15 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
             //listNodes.add(actualNode + 1);
             symbolTable.addNode(actualNode, listNodes);
             actualNode++;
-          }
-          else
+          }*/
+
+          if(ctx.expr().operadoraritmeticosuma() != null || ctx.expr().operadoraritmeticoresta() != null || ctx.expr().operadoraritmeticoproducto() != null || ctx.expr().operadoraritmeticodivision() != null)
           {
             stack.push(actualNode);
-            visit(ctx.expr());
-            System.out.println("VENGA VAMOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS " + listNumberNode.get(listNumberNode.size()-1));
-            listNodes.add(listNumberNode.size()-1);
-            //listNumberNode.add(listNumberNode.size());
-            //listNumberNode.add(actualNode + 1);
-            //listNodes.add(actualNode + 1);
-            symbolTable.addNode(actualNode, listNodes);
-            actualNode++;
+            isCadena(ctx.expr());
           }
+          //visit(ctx.expr());
+
 
         }
       }
@@ -756,6 +752,53 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
     }
 
 
+    public Boolean isCadena(Pl2compilerParser.ExprContext ctx)
+    {
+      ArrayList<Pl2compilerParser.ExprContext> listaExpresiones = new ArrayList<Pl2compilerParser.ExprContext>(ctx.expr());
+      boolean verificar = false;
+      int i = 0;
+      if(ctx.llamadafuncion() != null)
+      {
+        verificar = isFunction(ctx.llamadafuncion());
+        i++;
+      }
+      if(!verificar)
+      {
+        i = 0;
+        while (!verificar && i < listaExpresiones.size())
+        {
+          verificar = isCadena(listaExpresiones.get(i));
+          i++;
+        }
+      }
+
+      return verificar;
+    }
+
+    /*public Boolean isRecursivo(Pl2compilerParser.LlamarfuncionContext ctx)
+    {
+      boolean verificar = false;
+      String nombreFuncion = "function ";
+      int numParametros = 0;
+      if(ctx.nombrefuncion() != null) //Solo nos interesa cuando es distinto de main
+      {
+          nombreFuncion += ctx.nombrefuncion().ID().getText() + "()";
+          if(ctx.parametros() != null)
+          {
+            ArrayList<Pl2compilerParser.ParametroContext> listaParametros = new ArrayList<Pl2compilerParser.ParametroContext>(ctx.parametros().parametro());
+            numParametros = listaParametros.size();
+            if(nameFunction.contains(nombreFuncion) && numParametros == numParametersFunction) //Se comprueba si hay una llamada recursiva
+            {
+              ArrayList<Integer> listaNodos = new ArrayList<Integer>();
+              listaNodos.add(0); //Introduce el nodo que tenía la recursividad
+              symbolTable.addNode(stack.pop(), listaNodos); //Introduce el camino del nodo en el que se hace la llamada recursiva al nodo inicial de creación de la función
+              verificar = true;
+            }
+          }
+      }
+      return verificar;
+
+    }*/
 
     @Override
     public Integer visitDevolver(Pl2compilerParser.DevolverContext ctx)
