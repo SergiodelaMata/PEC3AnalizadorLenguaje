@@ -117,59 +117,55 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
         ArrayList<Pl2compilerParser.LlamarfuncionContext> listLlamadas = new ArrayList<Pl2compilerParser.LlamarfuncionContext>(ctx.llamarfuncion());
         ArrayList<Pl2compilerParser.AsignacionContext> listaAsignaciones = new ArrayList<Pl2compilerParser.AsignacionContext>(ctx.asignacion());
         int numberNode = 0;
+        for(int i = 0; i < ctx.getChildCount(); i++)
+        {
+          for(int j = 0; j < listLlamadas.size(); j++)
+          {
+            if(ctx.getChild(i) == listLlamadas.get(j))
+            {
+              stack.push((int)visit(listLlamadas.get(j)));
+            }
+          }
+          for(int j = 0; j < listaAsignaciones.size(); j++)
+          {
+            if(ctx.getChild(i) == listaAsignaciones.get(j))
+            {
+              stack.push((int)visit(listaAsignaciones.get(j)));
+            }
+          }
+        }
+        numberNode = stack.getLast();
+        for(int i = 0; i < ctx.getChildCount(); i++)
+        {
+          stack.pop();
+        }
 
-        for(int i = 0; i < listaAsignaciones.size(); i++)
+        /*for(int i = 0; i < listaAsignaciones.size(); i++)
         {
           stack.push((int)visit(listaAsignaciones.get(i)));
         }
         numberNode = stack.getLast();
-        /*for(int i = 0; i < listaAsignaciones.size(); i++)
+        for(int i = 0; i < listaAsignaciones.size(); i++)
         {
-          if(i == 0)
-          {
-            numberNode = stack.pop();
-          }
-          else
-          {
-            stack.pop();
-          }
-        }*/
-
+          stack.pop();
+        }
         if(listLlamadas.size() != 0)
         {
           //stack.push(numberNode);
           for(int i = 0; i < listLlamadas.size(); i++)//Introduce en una pila los nodos que se han utilizado como última posición de una secuencia de una llamada
           {
-            if(listLlamadas.get(i).llamadafuncion() == null) //No es una llamada a función
+            if(listLlamadas.get(i).llamadafuncion() != null)
             {
               stack.push((int)visit(listLlamadas.get(i)));
             }
-            else
-            {
 
-              stack.push((int)visit(listLlamadas.get(i)));
-            }
           }
-          /*for(int i = 0; i < listLlamadas.size(); i++) //Salva solo la última posición de las secuencias de llamadas realizadas
+          numberNode = stack.getLast();
+          for(int i = 0; i < listLlamadas.size(); i++)
           {
-            if(listLlamadas.get(i).llamadafuncion() == null) //No es una llamada
-            {
-              if(i == 0)
-              {
-                numberNode = stack.pop();
-              }
-              else
-              {
-                stack.pop();
-              }
-            }
-            else
-            {
-              stack.pop();
-            }
-          }*/
-          numberNode = stack.pop();
-        }
+            stack.pop();
+          }
+        }*/
         return numberNode;
     }
     @Override
@@ -178,66 +174,81 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
       ArrayList<Pl2compilerParser.LlamarfuncionContext> listLlamadas = new ArrayList<Pl2compilerParser.LlamarfuncionContext>(ctx.llamarfuncion());
       ArrayList<Pl2compilerParser.AsignacionContext> listaAsignaciones = new ArrayList<Pl2compilerParser.AsignacionContext>(ctx.asignacion());
       int numberNode = 0;
+      for(int i = 0; i < ctx.getChildCount(); i++)
+      {
+        for(int j = 0; j < listLlamadas.size(); j++)
+        {
+          if(ctx.getChild(i) == listLlamadas.get(j))
+          {
+            stack.push((int)visit(listLlamadas.get(j)));
+          }
+        }
+        for(int j = 0; j < listaAsignaciones.size(); j++)
+        {
+          if(ctx.getChild(i) == listaAsignaciones.get(j))
+          {
+            stack.push((int)visit(listaAsignaciones.get(j)));
+          }
+        }
+      }
+      numberNode = stack.getLast();
+      for(int i = 0; i < ctx.getChildCount(); i++)
+      {
+        stack.pop();
+      }
 
-      for(int i = 0; i < listaAsignaciones.size(); i++)
+      /*for(int i = 0; i < listaAsignaciones.size(); i++)
       {
         stack.push((int)visit(listaAsignaciones.get(i)));
       }
       numberNode = stack.getLast();
-      /*for(int i = 0; i < listaAsignaciones.size(); i++)
+      for(int i = 0; i < listaAsignaciones.size(); i++)
       {
-        if(i == 0)
-        {
-          numberNode = stack.pop();
-        }
-        else
-        {
-          stack.pop();
-        }
-      }*/
-
+        stack.pop();
+      }
       if(listLlamadas.size() != 0)
       {
         //stack.push(numberNode);
         for(int i = 0; i < listLlamadas.size(); i++)//Introduce en una pila los nodos que se han utilizado como última posición de una secuencia de una llamada
         {
-          if(listLlamadas.get(i).llamadafuncion() == null) //No es una llamada a función
+          if(listLlamadas.get(i).llamadafuncion() != null)
           {
             stack.push((int)visit(listLlamadas.get(i)));
           }
-          else
-          {
 
-            stack.push((int)visit(listLlamadas.get(i)));
-          }
         }
-        /*for(int i = 0; i < listLlamadas.size(); i++) //Salva solo la última posición de las secuencias de llamadas realizadas
+        numberNode = stack.getLast();
+        for(int i = 0; i < listLlamadas.size(); i++)
         {
-          if(listLlamadas.get(i).llamadafuncion() == null) //No es una llamada
-          {
-            if(i == 0)
-            {
-              numberNode = stack.pop();
-            }
-            else
-            {
-              stack.pop();
-            }
-          }
-          else
-          {
-            stack.pop();
-          }
-        }*/
-        numberNode = stack.pop();
-      }
+          stack.pop();
+        }
+      }*/
       return numberNode;
     }
     @Override
     public Integer visitLlamarfuncion(Pl2compilerParser.LlamarfuncionContext ctx)
     {
       int lastNodeSequence = stack.pop();
-        if(ctx.llamadafuncion() != null)
+      for(int i = 0; i < ctx.getChildCount(); i++)
+      {
+        if(ctx.getChild(i) == ctx.llamadafuncion())
+        {
+          lastNodeSequence = (int)visit(ctx.llamadafuncion());
+        }
+        else if(ctx.getChild(i) == ctx.condicionales())
+        {
+          lastNodeSequence = (int)visit(ctx.condicionales());
+        }
+        else if(ctx.getChild(i) == ctx.funcionwhile())
+        {
+          lastNodeSequence = (int)visit(ctx.funcionwhile());
+        }
+        else if(ctx.getChild(i) == ctx.funcionfor())
+        {
+          lastNodeSequence = (int)visit(ctx.funcionfor());
+        }
+      }
+      /*  if(ctx.llamadafuncion() != null)
         {
           visit(ctx.llamadafuncion());
         }
@@ -253,8 +264,8 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
         else if(ctx.funcionfor() != null)
         {
           lastNodeSequence = (int)visit(ctx.funcionfor());
-        }
-        return lastNodeSequence;
+        }*/
+      return lastNodeSequence;
     }
 
     @Override
@@ -298,36 +309,34 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
           lastNodeSequence = 0;
         }
         symbolTable.addNode(lastNodeSequence, listPreviousNodes); //Puede que venga de terminar el codigo de otra llamada
-        //System.out.println("ACTUAL NODE DFSAÑLKJFDÑLKAJDÑLKAJDSÑLKJDD: " + actualNode + " " + lastNodeSequence);
-        //System.out.println("COCO1 " + listPreviousNodes.size());
+
         listNumberNode.add(listNumberNode.size());   //Incluir a la lista de nodos usados para el nodo actual
         listNodes.add(actualNode+1);      //Incluir el nodo de la condición if a la lista de nodos a los que va el nodo actual
         listNumberNode.add(listNumberNode.size()); //Incluir a la lista de nodos usados el que va a usarse para la condición if
-
+        //System.out.println("GUARRETE: " + (actualNode+1));
         stack.push(actualNode + 1);
-        //System.out.println("COCO1.1 " + listPreviousNodes.size());
+
         stack.push((int)visit(ctx.condicionalif())); //Posición de la último nodo de la secuencia de condiciones
         lastNodeSequence = stack.getLast();
-        //System.out.println("COCO2 " + listPreviousNodes.size());
 
         if(ctx.condicionalelse() != null)
         {
           listNodes.add(listNumberNode.size());      //Incluir el nodo de la condición else a la lista de nodos a los que va el nodo actual
           listNumberNode.add(listNumberNode.size()); //Incluir a la lista de nodos usados el que va a usarse para la condición condicondicionalelse
           lastNodeSequence = (int) visit(ctx.condicionalelse());
-          //System.out.println("COCO3 " + listPreviousNodes.size());
         }
         else
         {
           listNumberNode.add(listNumberNode.size()); //Hay que tener en cuenta cuando solo tenemos una condición
-          //System.out.println("COCO4 " + listPreviousNodes.size());
+          listNodes.add(lastNodeSequence);
         }
         symbolTable.addNode(actualNode, listNodes); //Introducimos los datos del nodo actual con las direcciones a donde va
-        /*for(int i = 0; i < listPreviousNodes.size(); i++)
+        //System.out.println("MATANOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+        for(int i = 0; i < listNodes.size();i++)
         {
-          System.out.println("COCO//" + listPreviousNodes.get(i));
-        }*/
-        //System.out.println("COCO5 " + listPreviousNodes.size());
+          System.out.print(listNodes.get(i) + " ");
+        }
+        System.out.println("");
         return lastNodeSequence; //Utilizarlo para situaciones con bucles
     }
 
@@ -618,22 +627,35 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
       ArrayList<Pl2compilerParser.LlamarfuncionContext> listLlamadas = new ArrayList<Pl2compilerParser.LlamarfuncionContext>(ctx.llamarfuncion());
       ArrayList<Pl2compilerParser.AsignacionContext> listaAsignaciones = new ArrayList<Pl2compilerParser.AsignacionContext>(ctx.asignacion());
       int numberNode = 0;
+      for(int i = 0; i < ctx.getChildCount(); i++)
+      {
+        for(int j = 0; j < listLlamadas.size(); j++)
+        {
+          if(ctx.getChild(i) == listLlamadas.get(j))
+          {
+            stack.push((int)visit(listLlamadas.get(j)));
+          }
+        }
+        for(int j = 0; j < listaAsignaciones.size(); j++)
+        {
+          if(ctx.getChild(i) == listaAsignaciones.get(j))
+          {
+            stack.push((int)visit(listaAsignaciones.get(j)));
+          }
+        }
+      }
+      numberNode = stack.getLast();
+      /*for(int i = 0; i < ctx.getChildCount(); i++)
+      {
+        stack.pop();
+      }*/
 
-      for(int i = 0; i < listaAsignaciones.size(); i++)
+
+
+      /*for(int i = 0; i < listaAsignaciones.size(); i++)
       {
         stack.push((int)visit(listaAsignaciones.get(i)));
       }
-      /*for(int i = 0; i < listaAsignaciones.size(); i++)
-      {
-        if(i == 0)
-        {
-          numberNode = stack.pop();
-        }
-        else
-        {
-          stack.pop();
-        }
-      }*/
       numberNode = stack.getLast();
 
       if(listLlamadas.size() != 0)
@@ -651,40 +673,22 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
             stack.push((int)visit(listLlamadas.get(i)));
           }
         }
-        /*for(int i = 0; i < listLlamadas.size(); i++) //Salva solo la última posición de las secuencias de llamadas realizadas
-        {
-          if(listLlamadas.get(i).llamadafuncion() == null) //No es una llamada
-          {
-            if(i == 0)
-            {
-              numberNode = stack.pop();
-            }
-            else
-            {
-              stack.pop();
-            }
-          }
-          else
-          {
-            stack.pop();
-          }
-        }*/
         numberNode = stack.pop();
-      }
+      }*/
       if(ctx.devolver() != null)
+      {
+        if(ctx.asignacion().size() != 0 || ctx.llamarfuncion().size() != 0)
         {
-          if(ctx.asignacion().size() != 0 || ctx.llamarfuncion().size() != 0)
-          {
-            stack.push(numberNode);
-            listNumberNode.add(listNumberNode.size());
-          }
-          else
-          {
-            stack.push(numberNode);
-          }
-          numberNode = (int) visit(ctx.devolver());
+          stack.push(numberNode);
+          listNumberNode.add(listNumberNode.size());
         }
-        return numberNode;
+        else
+        {
+          stack.push(numberNode);
+        }
+        numberNode = (int) visit(ctx.devolver());
+      }
+      return numberNode;
     }
 
     @Override
@@ -692,7 +696,6 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
     {
       int actualNode = 0;
       actualNode = listNumberNode.size();
-      //System.out.println("FUNCIONAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA: " + actualNode);
       ArrayList<Integer> listNodes = new ArrayList<Integer>(); //Para almacenar los nodos a los que se va a partir del nodo actual
       ArrayList<Integer> listPreviousNode = new ArrayList<Integer>(); //Para almacenar los nodos del nodo anterior
       ArrayList<Integer> listLastNode = new ArrayList<Integer>(); //Para almacenar los nodos para el último nodo de la condición
@@ -727,6 +730,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
           {
             stack.push(actualNode);
             isCadena(ctx.expr());
+            //stack.pop();
           }
         }
       }
