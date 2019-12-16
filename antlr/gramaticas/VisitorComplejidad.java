@@ -271,9 +271,9 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
     @Override
     public Integer visitLlamadafuncion(Pl2compilerParser.LlamadafuncionContext ctx) //Realiza un camino secuencial
     {
+      ArrayList<Integer> listNodes = new ArrayList<Integer>();
       int actualNode = listNumberNode.size();
       listNumberNode.add(listNumberNode.size());
-      ArrayList<Integer> listNodes = new ArrayList<Integer>();
       listNodes.add(actualNode);
 
       if(stack.size() != 0)
@@ -286,16 +286,18 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
       }
 
       stack.push(actualNode);
-      isFunction(ctx);
+      boolean verificar = isFunction(ctx);
+      stack.pop();
+
       return actualNode;
     }
+
     @Override
     public Integer visitCondicionales(Pl2compilerParser.CondicionalesContext ctx)
     {
         ArrayList<Integer> listNodes = new ArrayList<Integer>(); //Para almacenar los nodos a los que se va a partir del nodo actual
         ArrayList<Integer> listPreviousNodes = new ArrayList<Integer>(); // Para realizar la unión con el nodo anterior si no se ha realizado que es el que lo ha invocado
-        int actualNode = 0;
-        actualNode = listNumberNode.size(); //Nº del nodo con el que vamos a trabajar en esta función
+        int actualNode = listNumberNode.size(); //Nº del nodo con el que vamos a trabajar en esta función
 
         int lastNodeSequence;
         listPreviousNodes.add(actualNode);
@@ -310,45 +312,52 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
         symbolTable.addNode(lastNodeSequence, listPreviousNodes); //Puede que venga de terminar el codigo de otra llamada
 
         listNumberNode.add(listNumberNode.size());   //Incluir a la lista de nodos usados para el nodo actual
-        listNodes.add(actualNode+1);      //Incluir el nodo de la condición if a la lista de nodos a los que va el nodo actual
-        listNumberNode.add(listNumberNode.size()); //Incluir a la lista de nodos usados el que va a usarse para la condición if
+        //listNodes.add(actualNode+1);      //Incluir el nodo de la condición if a la lista de nodos a los que va el nodo actual
+        //listNumberNode.add(listNumberNode.size()); //Incluir a la lista de nodos usados el que va a usarse para la condición if
         //System.out.println("GUARRETE: " + (actualNode+1));
-        stack.push(actualNode + 1);
+        stack.push(actualNode);
+        //stack.push(actualNode + 1);
 
         stack.push((int)visit(ctx.condicionalif())); //Posición de la último nodo de la secuencia de condiciones
         lastNodeSequence = stack.getLast();
-
+System.out.println("MOCOMOCOMOCO2: " + symbolTable.get(2).size());
         if(ctx.condicionalelse() != null)
         {
-          listNodes.add(listNumberNode.size());      //Incluir el nodo de la condición else a la lista de nodos a los que va el nodo actual
-          listNumberNode.add(listNumberNode.size()); //Incluir a la lista de nodos usados el que va a usarse para la condición condicondicionalelse
+          System.out.println("CAQUILLA 3000: " + actualNode + "--" + lastNodeSequence);
+          //stack.push(lastNodeSequence);
+          stack.push(actualNode);
+          //listNodes.add(listNumberNode.size());      //Incluir el nodo de la condición else a la lista de nodos a los que va el nodo actual
+          //listNumberNode.add(listNumberNode.size()); //Incluir a la lista de nodos usados el que va a usarse para la condición condicondicionalelse
           lastNodeSequence = (int) visit(ctx.condicionalelse());
         }
         else
         {
+          listNodes.add(listNumberNode.size());
           listNumberNode.add(listNumberNode.size()); //Hay que tener en cuenta cuando solo tenemos una condición
-          listNodes.add(lastNodeSequence);
+          //listNodes.add(lastNodeSequence);
+          symbolTable.addNode(actualNode, listNodes);
         }
-        symbolTable.addNode(actualNode, listNodes); //Introducimos los datos del nodo actual con las direcciones a donde va
+        //symbolTable.addNode(actualNode, listNodes); //Introducimos los datos del nodo actual con las direcciones a donde va
         //System.out.println("MATANOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
-        for(int i = 0; i < listNodes.size();i++)
+        /*for(int i = 0; i < listNodes.size();i++)
         {
           System.out.print(listNodes.get(i) + " ");
         }
-        System.out.println("");
+        System.out.println("");*/
+        //System.out.println("MOCOMOCOMOCO: " + listNodes.size());
+        System.out.println("MOCOMOCOMOCO3: " + symbolTable.get(2).size());
         return lastNodeSequence; //Utilizarlo para situaciones con bucles
     }
 
     @Override
     public Integer visitCondicionalif(Pl2compilerParser.CondicionalifContext ctx)
     {
-        int actualNode = stack.pop();
-        //System.out.println("READYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY: " + actualNode);
+        int actualNode = stack.pop(); //Nodo padre
         ArrayList<Integer> listNodes = new ArrayList<Integer>(); //Para almacenar los nodos a los que se va a partir del nodo actual
         ArrayList<Integer> listLastNode = new ArrayList<Integer>(); //Para almacenar los nodos para el último nodo de la condición
         ArrayList<Pl2compilerParser.CondicionContext> listCondiciones = new ArrayList<Pl2compilerParser.CondicionContext>(ctx.condicion());
-        int lastPosNodeSecuenceStudied = actualNode; //Proporciona el último nodo del que viene la secuencia
-        listNodes.add(listNumberNode.size());
+        int lastPosNodeSequenceStudied = actualNode; //Proporciona el último nodo del que viene la secuencia
+        listNodes.add(listNumberNode.size()); //Nodo condicion if
         listNumberNode.add(listNumberNode.size());
         //listNumberNode.add(actualNode + 1);
         //listNodes.add(actualNode + 1);
@@ -365,22 +374,24 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
 
         if(ctx.cuerpo2() != null)
         {
-          lastPosNodeSecuenceStudied = (int)visit(ctx.cuerpo2());
+          lastPosNodeSequenceStudied = (int)visit(ctx.cuerpo2());
         }
         else if(ctx.cuerpo3() != null)
         {
-          lastPosNodeSecuenceStudied = (int)visit(ctx.cuerpo3());
+          lastPosNodeSequenceStudied = (int)visit(ctx.cuerpo3());
         }
         else if(ctx.cuerpo() != null)
         {
-          lastPosNodeSecuenceStudied = (int)visit(ctx.cuerpo());
+          lastPosNodeSequenceStudied = (int)visit(ctx.cuerpo());
         }
-        stack.pop();
+        stack.pop(); //pop actualNode + 1
         listLastNode.add(listNumberNode.size()); //Añade el nodo estudiado que se encuentra tras finalizar la condición if
         listNumberNode.add(listNumberNode.size()); //Añade el nodo en el que se termina la condición if
-        symbolTable.addNode(lastPosNodeSecuenceStudied, listLastNode); //Introduce en la tabla de símbolos la entrada de cierre de condición if
-
-        return lastPosNodeSecuenceStudied + 1; //Retorna el número del nodo del que termina la condición
+        symbolTable.addNode(lastPosNodeSequenceStudied, listLastNode); //Introduce en la tabla de símbolos la entrada de cierre de condición if
+        //System.out.println("MOCOMOCOMOCO1: " + listNodes.size());
+        //System.out.println("MOCOMOCOMOCO2: " + listLastNode.size());
+        System.out.println("MOCOMOCOMOCO2: " + symbolTable.get(2).size());
+        return lastPosNodeSequenceStudied + 1; //Retorna el número del nodo del que termina la condición
     }
 
     @Override
@@ -409,7 +420,6 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
           verificar = (boolean)visit(listaExpresiones.get(counter));
           counter++;
         }
-
       }
       return verificar;
     }
@@ -453,10 +463,22 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
             {
               ArrayList<Integer> listaNodos = new ArrayList<Integer>();
               listaNodos.add(0); //Introduce el nodo que tenía la recursividad
-              symbolTable.addNode(stack.pop(), listaNodos); //Introduce el camino del nodo en el que se hace la llamada recursiva al nodo inicial de creación de la función
+              symbolTable.addNode(stack.getLast(), listaNodos); //Introduce el camino del nodo en el que se hace la llamada recursiva al nodo inicial de creación de la función
               verificar = true;
             }
           }
+      }
+      if(!verificar && ctx.parametros() != null && ctx.parametros().parametro().size() != 0)
+      {
+        int counter = 0;
+        while(!verificar && counter < ctx.parametros().parametro().size())
+        {
+          if(ctx.parametros().parametro(counter).expr() != null)
+          {
+            verificar =(boolean) visit(ctx.parametros().parametro(counter).expr());
+          }
+          counter++;
+        }
       }
       return verificar;
     }
@@ -464,34 +486,44 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
     @Override
     public Integer visitCondicionalelse(Pl2compilerParser.CondicionalelseContext ctx)
     {
-        int actualNode = 0;
-        actualNode = listNumberNode.get(listNumberNode.size()-1); //Puesto que se ha introducido en visitCondicionales
+        int actualNode = stack.pop(); //Para obtener el nodo padre del else
+        int lastNode = stack.pop(); //Punto de unión con la condición if
+        int lastPosNodeSequenceStudied = lastNode;
+        System.out.println("GUARRETE 2 : " + actualNode + "--" + lastNode);
+        //actualNode = listNumberNode.get(listNumberNode.size()-1); //Puesto que se ha introducido en visitCondicionales
         ArrayList<Integer> listNodes = new ArrayList<Integer>(); //Para almacenar los nodos a los que se va a partir del nodo actual
-        int lastPosNodeSecuenceStudied = actualNode;
-
+        ArrayList<Integer> listLastNode = new ArrayList<Integer>();
+        listNodes.add(listNumberNode.size());
         listNumberNode.add(listNumberNode.size());
+        symbolTable.addNode(actualNode, listNodes);
+System.out.println("MOCOMOCOMOCO4: " + symbolTable.get(2).size());
+        //listNumberNode.add(listNumberNode.size());
         //listNumberNode.add(actualNode + 1);
         //listNodes.add(actualNode + 1);
-        symbolTable.addNode(actualNode, listNodes);
-        stack.push(actualNode + 1);
+        //symbolTable.addNode(actualNode, listNodes);
+        stack.push(listNumberNode.size()-1);
 
         if(ctx.cuerpo2() != null)
         {
-          lastPosNodeSecuenceStudied = (int) visit(ctx.cuerpo2());
+          lastPosNodeSequenceStudied = (int) visit(ctx.cuerpo2());
         }
         else if(ctx.cuerpo3() != null)
         {
-          lastPosNodeSecuenceStudied = (int) visit(ctx.cuerpo3());
+          lastPosNodeSequenceStudied = (int) visit(ctx.cuerpo3());
         }
         else if(ctx.cuerpo() != null)
         {
-          lastPosNodeSecuenceStudied = (int) visit(ctx.cuerpo());
+          lastPosNodeSequenceStudied = (int) visit(ctx.cuerpo());
         }
-        listNodes = new ArrayList<Integer>();
-        listNodes.add(stack.getLast()); //Añade el nodo en el que se termina la condición else y se une con el nodo donde ya ha terminado la condición del if
-        //symbolTable.addNode(lastPosNodeSecuenceStudied, listNodes); //Introduce en la tabla de símbolos la entrada de cierre de condición if
-        symbolTable.addNode(lastPosNodeSecuenceStudied, listNodes);
-        return stack.pop(); //Devolve el nodo donde se conectaban las condiciones if y else
+        //listNodes = new ArrayList<Integer>();
+        listLastNode.add(lastNode); //Añade el nodo en el que se termina la condición else y se une con el nodo donde ya ha terminado la condición del if
+        System.out.println("MOCOMOCOMOCO6: " + listLastNode.get(0));
+        //symbolTable.addNode(lastPosNodeSequenceStudied, listNodes); //Introduce en la tabla de símbolos la entrada de cierre de condición if
+        symbolTable.addNode(lastPosNodeSequenceStudied, listLastNode);
+        //System.out.println("MOCOMOCOMOCO1: " + listNodes.size());
+        //System.out.println("MOCOMOCOMOCO2: " + listLastNode.size());
+        System.out.println("MOCOMOCOMOCO5: " + symbolTable.get(6) + " " + lastPosNodeSequenceStudied + " " + lastNode);
+        return lastNode; //Devolve el nodo donde se conectaban las condiciones if y else
     }
 
 
