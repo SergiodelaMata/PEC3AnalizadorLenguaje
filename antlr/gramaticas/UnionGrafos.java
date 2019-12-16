@@ -164,20 +164,19 @@ public class UnionGrafos //NECESITO EL NODO DESDE EL QUE SE LLAMA!!!!!!
         //crear uniones
         HashMap<String, ArrayList<Integer>> nodosLlamados;
         //String funcion;
-        Object[] nombresFunciones;
+        Object[] nombresFuncionesLlamadas;
         ArrayList<Integer> nodos;
-        String nodoLlamada;
         String funcionLlamada;
         String relacionIda, relacionVuelta;
         Boolean recursividad = false;
         for (int i=0; i<funciones.length; i++) //recorro las funciones existentes en el programa
         {
             nodosLlamados = funcionesLlamadas.get(funciones[i]);
-            nombresFunciones = nodosLlamados.keySet().toArray();
-            for (int j=0; j<nombresFunciones.length; j++) //recorro las funciones llamadas
+            nombresFuncionesLlamadas = nodosLlamados.keySet().toArray();
+            for (int j=0; j<nombresFuncionesLlamadas.length; j++) //recorro las funciones llamadas
             {
-                funcionLlamada = (String) nombresFunciones[j]; //funcion llamada
-                nodos = nodosLlamados.get(nombresFunciones[j]); //nodos desde donde se llama
+                funcionLlamada = (String) nombresFuncionesLlamadas[j]; //funcion llamada
+                nodos = nodosLlamados.get(nombresFuncionesLlamadas[j]); //nodos desde donde se llama
                 if (funciones[i].equals(funcionLlamada)) //funcion = funcion llamada
                 {
                     recursividad = true;
@@ -190,8 +189,10 @@ public class UnionGrafos //NECESITO EL NODO DESDE EL QUE SE LLAMA!!!!!!
                     }
                     else
                     {
-                        relacionIda = funciones[i] + "0->" + funcionLlamada + k; //k=nodo desde el que se llama
-                        relacionVuelta = funcionLlamada + k + "->" + funciones[i] + ultimosNodos.get(funciones[i]);
+                        relacionIda = (String) funciones[i] + k + "->0" + funcionLlamada; //desde el nodo k (nodo llamada) de la funcion hasta  el nodo 0 de la funcion llamada
+                        //relacionIda = funciones[i] + "0->" + funcionLlamada + k; //k=nodo desde el que se llama
+                        relacionVuelta = funcionLlamada + ultimosNodos.get(funciones[i]) + "->" + funciones[i] + k; //desde el ultimo nodo de la funcion llamada hasta el nodo k (nodo llamada) de la funcion llamante
+                        //relacionVuelta = funcionLlamada + k + "->" + funciones[i] + ultimosNodos.get(funciones[i]);
                         dot += relacionIda;
                         dot += relacionVuelta;
                     }
