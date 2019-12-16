@@ -85,7 +85,6 @@ public class UnionGrafos
         Enumeration e2 = tablaLlamadas.keys();
         String key2;
         ArrayList<String> value;
-        int counter = 0;
         while(e2.hasMoreElements()) //añado las llamadas de las funciones existentes en el programa
         {
             //System.out.println("ENTRA SETT");
@@ -94,12 +93,11 @@ public class UnionGrafos
             funLlamadas = new ArrayList<>();
             for (int i=0; i<value.size(); i++)
             {
-                if (existeEnProg(value.get(counter), tablaLlamadas)) //si la funcion existe realmente se añade a las llamadas
+                if (existeEnProg(value.get(i), tablaLlamadas)) //si la funcion existe realmente se añade a las llamadas
                 {
                     funLlamadas.add(value.get(i));
                 }
             }
-            counter++;
             llamadas.put(key2, funLlamadas);
         }
         //puedo retornar el hashmap llamadas para cogerlo en VisitorComplejidad o lo ejecuto en el constructor y hago un get
