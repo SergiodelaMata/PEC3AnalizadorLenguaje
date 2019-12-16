@@ -136,8 +136,6 @@ prueba56->prueba57;
 prueba57->prueba58;
 prueba58->prueba59;
 }
-Inicio->main0;
-main0->0prueba;
+main0->prueba0;
 prueba59->main0;
-main0 -> Fin;
 }

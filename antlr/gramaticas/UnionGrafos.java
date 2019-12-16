@@ -305,7 +305,7 @@ public class UnionGrafos
                     }
                     else
                     {
-                        relacionIda = (String) funciones[i] + k + "->0" + funcionLlamada + ";"; //desde el nodo k (nodo llamada) de la funcion hasta  el nodo 0 de la funcion llamada
+                        relacionIda = (String) funciones[i] + k + "->" + funcionLlamada + "0;"; //desde el nodo k (nodo llamada) de la funcion hasta  el nodo 0 de la funcion llamada
                         //relacionIda = funciones[i] + "0->" + funcionLlamada + k; //k=nodo desde el que se llama
                         relacionVuelta = funcionLlamada + ultimosNodos.get(funcionLlamada) + "->" + funciones[i] + k + ";"; //desde el ultimo nodo de la funcion llamada hasta el nodo k (nodo llamada) de la funcion llamante
                         //relacionVuelta = funcionLlamada + k + "->" + funciones[i] + ultimosNodos.get(funciones[i]);
@@ -320,7 +320,7 @@ public class UnionGrafos
         {
             FileWriter filewriter = new FileWriter("grafoCompleto.dot"); //archivo donde se va a crear
             PrintWriter printw = new PrintWriter(filewriter);                
-            Runtime.getRuntime().exec("dot -Tsvg grafoCompelto.dot -o grafoLlamadas.svg");
+            Runtime.getRuntime().exec("dot -Tsvg grafoCompleto.dot -o grafoCompleto.svg");
             printw.println(dot);
             printw.close();
         } catch(IOException io)
