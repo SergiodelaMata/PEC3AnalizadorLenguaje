@@ -660,6 +660,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
         int actualNode = listNumberNode.size();
         ArrayList<Integer>listPreviousNodes = new ArrayList<Integer>();
         listPreviousNodes.add(actualNode);
+        listNumberNode.add(listNumberNode.size());
         symbolTable.addNode(lastNodeSequence, listPreviousNodes);
         stack.push(actualNode);
         if(ctx.llamadafuncion() != null)

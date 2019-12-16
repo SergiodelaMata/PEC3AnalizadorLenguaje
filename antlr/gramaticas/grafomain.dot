@@ -1,6 +1,0 @@
-digraph Grafo
-{
-0 [label=""style=filled, fillcolor=red]
-1 [label=""style=filled, fillcolor=blue]
-0->1;
-}
