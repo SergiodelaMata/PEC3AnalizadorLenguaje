@@ -10,6 +10,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
     int numParametersFunction;
     ArrayList<Integer> listNumberNode;
     PilaComplejidad stack;
+    UnionGrafos unionGrafos;
 
     public VisitorComplejidad()
     {
@@ -20,6 +21,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
         this.listNumberNode.add(0);             //El primer nodo será el 0
         this.stack = new PilaComplejidad();
         this.symbolTable = new TablaSimbolosComplejidadFuncion();
+        this.unionGrafos = file.getUnionGrafos();
     }
 
     @Override
@@ -212,6 +214,14 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
       else
       {
         symbolTable.addNode(0, listNodes); //Es el primer hijo con respecto a la creación de la función
+      }
+
+      if (unionGrafos.existeEnProg(ctx.nombrefuncion().ID().getText(), file.getTablaLlamadas().getTabla()))
+      {
+        //file.getUnionGrafos().setTablaLlamadas(file.getTablaLlamadas().getTabla());
+        System.out.println("ENTRA VISITOR");
+        file.getUnionGrafos().setLlamada(this.completeNameFunction, ctx.nombrefuncion().ID().getText(), actualNode, file.getTablaLlamadas().getTabla());
+        //unionGrafos.setLlamada(this.completeNameFunction, ctx.nombrefuncion().ID().getText(), actualNode);
       }
 
       stack.push(actualNode);

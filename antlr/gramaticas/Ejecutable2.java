@@ -37,12 +37,18 @@ public class Ejecutable2{
         file.printSymbolTable();
         //tabla_simbolos.printHashMap();
         file.getTablaSimbolos().printHashMap();
-        complexVisitor.visit(tree);
-        System.out.println("Visitando árbol de complejidad");
-        file.getTablaSimbolosComplejidad().printHashMap();
+
         visitorLlamadas.visit(tree);
         System.out.println("Visitando el árbol de llamadas");
         file.getTablaLlamadas().crearGrafo("main()");
+
+        complexVisitor.visit(tree);
+        System.out.println("Visitando árbol de complejidad");
+        file.getTablaSimbolosComplejidad().printHashMap();
+
+        file.getUnionGrafos().setLlamadasReales(file.getTablaLlamadas().getTabla());
+        file.getUnionGrafos().crearGrafo("main()");
+
         PagWeb pag = new PagWeb();
         pag.createHtml();
         System.out.println("fin");
