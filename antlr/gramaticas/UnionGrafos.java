@@ -104,7 +104,7 @@ public class UnionGrafos //NECESITO EL NODO DESDE EL QUE SE LLAMA!!!!!!
     public void crearGrafo()
     {
         String dot = "digraph Grafo\n{\n";
-        Object[] funLlamadas = funcionesLlamadas.keySet().toArray(); //nombres de las funciones existentes
+        Object[] funciones = funcionesLlamadas.keySet().toArray(); //nombres de las funciones existentes
         //crear subgrafos
         FileReader fr;
         BufferedReader br;
@@ -114,11 +114,11 @@ public class UnionGrafos //NECESITO EL NODO DESDE EL QUE SE LLAMA!!!!!!
         String line;
         String ultimoNodo = "0";
         HashMap<String, String> ultimosNodos = new HashMap<String, String>();
-        for (int i=0; i<funLlamadas.length; i++)
+        for (int i=0; i<funciones.length; i++)
         {
             dotSubgrafo = "subgraph";
             //dotAux = "";
-            nombreFile = "grafo" + funLlamadas[i] + ".dot";
+            nombreFile = "grafo" + funciones[i] + ".dot";
             try
             {
                 fr = new FileReader(nombreFile);
@@ -140,16 +140,16 @@ public class UnionGrafos //NECESITO EL NODO DESDE EL QUE SE LLAMA!!!!!!
                     {
                         if (line.contains("[")) //si es una linea de instaciar nodo
                         {
-                            dotSubgrafo += funLlamadas[i] + line; //nombre + linea
+                            dotSubgrafo += funciones[i] + line; //nombre + linea
                             ultimoNodo = line.substring(0, 1); //actualizo ultimo nodo para quedarme con el ultimo
                         }
                         else //si es una linea de relacion
                         {
-                            dotSubgrafo += funLlamadas[i] + line.substring(0, 2) + funLlamadas[i] + line.substring(3, line.length()); //nombre + nodo-> + nombre + nodo (dir);
+                            dotSubgrafo += funciones[i] + line.substring(0, 2) + funciones[i] + line.substring(3, line.length()); //nombre + nodo-> + nombre + nodo (dir);
                         }
                     }
                 }
-                ultimosNodos.put((String) funLlamadas[i], ultimoNodo);
+                ultimosNodos.put((String) funciones[i], ultimoNodo);
                 fr.close();
             }
             catch (IOException io)
@@ -161,7 +161,6 @@ public class UnionGrafos //NECESITO EL NODO DESDE EL QUE SE LLAMA!!!!!!
 
             dot += dotSubgrafo; //añado el subgrafo         
         }
-
         //crear uniones
         HashMap<String, ArrayList<Integer>> nodosLlamados;
         //String funcion;
@@ -170,23 +169,32 @@ public class UnionGrafos //NECESITO EL NODO DESDE EL QUE SE LLAMA!!!!!!
         String nodoLlamada;
         String funcionLlamada;
         String relacionIda, relacionVuelta;
-        for (int i=0; i<funLlamadas.length; i++) //recorro las funciones existentes en el programa
+        Boolean recursividad = false;
+        for (int i=0; i<funciones.length; i++) //recorro las funciones existentes en el programa
         {
-            nodosLlamados = funcionesLlamadas.get(funLlamadas[i]);
+            nodosLlamados = funcionesLlamadas.get(funciones[i]);
             nombresFunciones = nodosLlamados.keySet().toArray();
             for (int j=0; j<nombresFunciones.length; j++) //recorro las funciones llamadas
             {
-                funcionLlamada = (String) nombresFunciones[i]; //funcion llamada
-                nodos = nodosLlamados.get(nombresFunciones[i]); //nodos desde donde se llama
+                funcionLlamada = (String) nombresFunciones[j]; //funcion llamada
+                nodos = nodosLlamados.get(nombresFunciones[j]); //nodos desde donde se llama
+                if (funciones[i].equals(funcionLlamada)) //funcion = funcion llamada
+                {
+                    recursividad = true;
+                }
                 for (int k=0; k<nodos.size(); k++) //recorro los nodos donde se llama a las funciones
                 {
-                    //k = nodo
-                    nodoLlamada = (String) funLlamadas[i] + k; //nombre + numNodo
-                    relacionIda = funLlamadas[i] + "0->" + funcionLlamada + nodoLlamada;
-                    relacionVuelta = funcionLlamada + nodoLlamada + "->" + funLlamadas[i] + ultimosNodos.get(funLlamadas[i]);
-                    dot += relacionIda;
-                    dot += relacionVuelta;
-                    //añadir las relaciones a  dot
+                    if (recursividad)
+                    {
+                        dot += funciones[i] + "->" + ultimosNodos.get(funciones[i]);
+                    }
+                    else
+                    {
+                        relacionIda = funciones[i] + "0->" + funcionLlamada + k; //k=nodo desde el que se llama
+                        relacionVuelta = funcionLlamada + k + "->" + funciones[i] + ultimosNodos.get(funciones[i]);
+                        dot += relacionIda;
+                        dot += relacionVuelta;
+                    }
                 }
             }
         }
