@@ -336,6 +336,10 @@ System.out.println("MOCOMOCOMOCO2: " + symbolTable.get(2).size());
           listNumberNode.add(listNumberNode.size()); //Hay que tener en cuenta cuando solo tenemos una condición
           //listNodes.add(lastNodeSequence);
           symbolTable.addNode(actualNode, listNodes);
+          listNodes = new ArrayList<Integer>();
+          listNodes.add(lastNodeSequence);
+          symbolTable.addNode(listNumberNode.size()-1, listNodes);
+          //System.out.println("MOCOMOCOMOCO7: " + actualNode + "--" + symbolTable.get(actualNode));
         }
         //symbolTable.addNode(actualNode, listNodes); //Introducimos los datos del nodo actual con las direcciones a donde va
         //System.out.println("MATANOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
