@@ -121,16 +121,17 @@ public class TablaSimbolosComplejidad
     //Sumar la complejidad de todas las funciones, para obtener la total
     public int complejidadTodasFunciones (){
 
-        int complejidadTotal; complejidadAux= 0;
+        int complejidadTotal = 0;
+        int complejidadAux = 0;
         TablaSimbolosComplejidadFuncion aux = new TablaSimbolosComplejidadFuncion();//Cuidado con el constructor de esta clase
 
-        for(int i=0; symbolTable.length(); i++){
+        for(int i=0; i<symbolTable.size(); i++){
             aux=getTable(i);
             complejidadAux = aux.calcularComplejidadCiclomaticaFuncion(); 
-            complejidadTotal = complejidadTotal + complejidadAux;         
+            complejidadTotal += complejidadAux;         
         }
 
-        return complejidadTotal
+        return complejidadTotal;
     }
 
 }

@@ -10,6 +10,7 @@ public class Funcion
     private long numSimpleOperators;
     private long numEfectiveLines;
     private long numFunctionPoints; //puntosTotales
+    private long complejidad;
 
     public Funcion()
     {
@@ -20,6 +21,7 @@ public class Funcion
         this.numSimpleOperators = 0;
         this.numEfectiveLines = 0;
         this.numFunctionPoints = 0; //puntosTotales
+        this.complejidad = 0;
     }
 
     public void addParameter(long points)
@@ -97,6 +99,16 @@ public class Funcion
         return this.numFunctionCall;
     }
 
+    public long getComplejidad()
+    {
+        return this.complejidad;
+    }
+
+    public void setComplejidad(long complejidad_nueva)
+    {
+        this.complejidad = complejidad_nueva;
+    }
+
     public void printAttributes()
     {
         System.out.println("Nombre: " + this.name);
@@ -106,6 +118,7 @@ public class Funcion
         System.out.println("Nº de operadores simples: " + this.numSimpleOperators);
         System.out.println("Nº puntos función: " + this.numFunctionPoints);
         System.out.println("Nº líneas efectivas: " + this.numEfectiveLines);
+        System.out.println("Nombre: " + this.complejidad);
     }
 }
 

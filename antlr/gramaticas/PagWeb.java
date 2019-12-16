@@ -17,6 +17,7 @@ public class PagWeb
         long lineasEfectivas = 0;
         long numParametros = 0;
         long numLlamadas = 0;
+        long complejidad = 0;
 
         ArrayList<Funcion> funciones = new ArrayList<Funcion>();
         for (Funcion funcion : tablaSimbolos.getTable().values()) //recorre la tabla de simbolos
@@ -27,7 +28,7 @@ public class PagWeb
         {
             html += "<h2>" + funciones.get(i).getName() + "</h2>";
             html += "<ul style=\"list-style-type:disc;\">";
-            html += "<li>Complejidad ciclomática V(G): <strong>" + "FALTA EL VALOR" + "</strong></li>"; //añadir complejidad
+            html += "<li>Complejidad ciclomática V(G): <strong>" + funciones.get(i).getComplejidad() + "</strong></li>"; //añadir complejidad
             html += "<li>Puntos función: <strong>" + funciones.get(i).getFunctionPoints() + "</strong></li>";
             html += "<li>Resumen: <ul style=\"list-style-type:circle;\">";
             html += "<li>Variables declaradas: <strong>" + funciones.get(i).getNumDeclaraciones() + "</strong></li>";
@@ -44,10 +45,12 @@ public class PagWeb
             lineasEfectivas += funciones.get(i).getEfectiveLines();
             numParametros += funciones.get(i).getNumParameters();
             numLlamadas += funciones.get(i).getNumFunctionCall();
+            complejidad += funciones.get(i).getComplejidad();
+
         }
         html += "<h2>PUNTOS PROGRAMA COMPLETO</h2>";
         html += "<ul style='list-style-type:disc;'>";
-        html += "<li>Complejidad ciclomática V(G): <strong>" + "FALTA EL VALOR" + "</strong></li>"; //añadir complejidad
+        html += "<li>Complejidad ciclomática V(G): <strong>" + complejidad + "</strong></li>"; //añadir complejidad
         html += "<li>Puntos función: <strong>" + puntosFuncion + "</strong></li>";
         html += "<li>Resumen: <ul style='list-style-type:circle;'>";
         html += "<li>Variables declaradas: <strong>" + variablesDeclaradas + "</strong></li>";
@@ -55,8 +58,7 @@ public class PagWeb
         html += "<li>Número de parámetros esperados: <strong>" + numParametros + "</strong></li>";
         html += "<li>Número de llamadas a funciones: <strong>" + numLlamadas + "</strong></li>";
         html += "</ul></li>";
-        html += "<li>Grafo de complejidad ciclomática: " + "FALTA EL GRAFO (IMG)" + "</li>";//añadir grafo
-                
+        html += "<li>Grafo de complejidad ciclomática: " + "FALTA EL GRAFO (IMG)" + "</li>";//añadir grafo                
         html += "<li>Grafo de llamadas a funciones: <p><img src=\"grafoLlamadas.svg\"width=\"800\"height=\"250\"><p></li>";
 
 

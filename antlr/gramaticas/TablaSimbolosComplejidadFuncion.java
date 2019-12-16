@@ -84,12 +84,11 @@ public class TablaSimbolosComplejidadFuncion
         
         int numeroAristas = 0;
         ArrayList<Integer> arrayAux;
-        nodosGrafo = getNumNodosGrafo();
 
-        Enumeration<Integer> valoresHashtable = symbolTable.elements();
+        Enumeration<ArrayList<Integer>> valoresHashtable = symbolTable.elements();
         while (valoresHashtable.hasMoreElements()) {
             arrayAux = valoresHashtable.nextElement(); //Es muy posible que de error, o no salga el resultado correto
-            for (int i=0; arrayAux.length(); i++){
+            for (int i=0; i<arrayAux.size(); i++){
                 numeroAristas = numeroAristas + i;
             }            
         }
@@ -100,7 +99,9 @@ public class TablaSimbolosComplejidadFuncion
     //Simplemente usamos la fórmula para el cálculo de la complejidad ciclomática: Complejidad ciclomática = Aristas - Nodos + 2
     public int calcularComplejidadCiclomaticaFuncion(){
         
-        int nodosGrafo, numeroAristas, complejidadCiclomatica = 0;
+        int nodosGrafo = 0;
+        int numeroAristas = 0;
+        int complejidadCiclomatica = 0;
         nodosGrafo = getNumNodosGrafo();        
         numeroAristas = getNumAristasGrafo();
         complejidadCiclomatica = numeroAristas - nodosGrafo + 2;
