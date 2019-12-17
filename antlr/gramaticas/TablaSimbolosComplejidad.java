@@ -87,14 +87,15 @@ public class TablaSimbolosComplejidad
               for(int j = 0; j < listNumNodes.size(); j++)
               {
                   System.out.println(i + " -> " + listNumNodes.get(j));
-                  if (i<listNumNodes.get(j)) //flecha normal
+                  dot += i + "->" + listNumNodes.get(j) + ";\n";
+                  /*if (i<listNumNodes.get(j)) //flecha normal
                   {
-                    dot += i + "->" + listNumNodes.get(j) + ";\n";
+                    
                   }
                   else //flecha en sentido contrario
                   {
                     dot += i + "->" + listNumNodes.get(j) + " [dir=\"back\"];\n";
-                  }
+                  }*/
               }
             }
             else
