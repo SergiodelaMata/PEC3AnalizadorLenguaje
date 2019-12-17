@@ -16,3 +16,8 @@ CONSIDERACIONES PARA LOS PUNTOS FUNCION:
 
     -If y while: las condiciones de la cabecera se consideran puntos interiores, y por lo tanto, también 
     se elevan al cuadrado.
+
+
+GRAFO PROGRAMA:
+    -Para el grafo completo del programa solo se consideran las funciones creadas en el .prog a la hora 
+    de hacer llamadas puesto que son las que podemos crear.

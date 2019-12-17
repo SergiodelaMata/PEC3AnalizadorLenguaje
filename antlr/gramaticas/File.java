@@ -7,6 +7,7 @@ public class File implements Serializable{
     TablaSimbolosComplejidad complexSymbolTable;
     TablaLlamadas tablaLlamadas;
     UnionGrafos unionGrafos;
+    FuncionLlamada funcionLlamada;
 
     public static File getInstance()
     {
@@ -23,6 +24,7 @@ public class File implements Serializable{
         this.complexSymbolTable = new TablaSimbolosComplejidad();
         this.tablaLlamadas = new TablaLlamadas();
         this.unionGrafos = new UnionGrafos();
+        this.funcionLlamada = new FuncionLlamada();
     }
 
     public void printSymbolTable()
@@ -58,6 +60,16 @@ public class File implements Serializable{
     public UnionGrafos getUnionGrafos()
     {
         return this.unionGrafos;
+    }
+
+    public void setFuncionLlamada(FuncionLlamada funcionLlamada)
+    {
+        this.funcionLlamada = funcionLlamada;
+    }
+
+    public FuncionLlamada getFuncionLlamada()
+    {
+        return this.funcionLlamada;
     }
 
     /*public void setLlamada(String funcion, String funcionLlamada, Integer nodo)

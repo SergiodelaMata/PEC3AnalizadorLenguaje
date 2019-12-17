@@ -11,6 +11,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
     ArrayList<Integer> listNumberNode;
     PilaComplejidad stack;
     UnionGrafos unionGrafos;
+    FuncionLlamada funcionLlamada;
 
     public VisitorComplejidad()
     {
@@ -22,6 +23,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
         this.stack = new PilaComplejidad();
         this.symbolTable = new TablaSimbolosComplejidadFuncion();
         this.unionGrafos = file.getUnionGrafos();
+        this.funcionLlamada = new FuncionLlamada();
     }
 
     @Override
@@ -46,6 +48,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
                 this.listNumberNode.add(0);             //El primer nodo será el 0
                 this.stack = new PilaComplejidad();
             }
+            file.setFuncionLlamada(funcionLlamada);
         }
         return 0;
     }
@@ -208,10 +211,9 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
 
       if (unionGrafos.existeEnProg(ctx.nombrefuncion().ID().getText(), file.getTablaLlamadas().getTabla()))
       {
-        //file.getUnionGrafos().setTablaLlamadas(file.getTablaLlamadas().getTabla());
+        funcionLlamada.addNodeFunction(this.completeNameFunction, ctx.nombrefuncion().ID().getText(), actualNode);
         System.out.println("ENTRA VISITOR");
-        file.getUnionGrafos().setLlamada(this.completeNameFunction, ctx.nombrefuncion().ID().getText(), actualNode, file.getTablaLlamadas().getTabla());
-        //unionGrafos.setLlamada(this.completeNameFunction, ctx.nombrefuncion().ID().getText(), actualNode);
+        //file.getUnionGrafos().setLlamada(this.completeNameFunction, ctx.nombrefuncion().ID().getText(), actualNode, file.getTablaLlamadas().getTabla());
       }
 
       stack.push(actualNode);
@@ -611,7 +613,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
           if(ctx.expr().operadoraritmeticosuma() != null || ctx.expr().operadoraritmeticoresta() != null || ctx.expr().operadoraritmeticoproducto() != null || ctx.expr().operadoraritmeticodivision() != null)
           {
             stack.push(actualNode);
-            isCadena(ctx.expr());
+            isCadena(ctx.expr(), actualNode);
             stack.pop();
           }
         }
@@ -620,7 +622,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
     }
 
 
-    public Boolean isCadena(Pl2compilerParser.ExprContext ctx)
+    public Boolean isCadena(Pl2compilerParser.ExprContext ctx, Integer actualNode)
     {
       ArrayList<Pl2compilerParser.ExprContext> listaExpresiones = new ArrayList<Pl2compilerParser.ExprContext>(ctx.expr());
       boolean verificar = false;
@@ -629,13 +631,19 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
       {
         verificar = isFunction(ctx.llamadafuncion());
         i++;
+        if (unionGrafos.existeEnProg(ctx.llamadafuncion().nombrefuncion().ID().getText(), file.getTablaLlamadas().getTabla()))
+        {
+          funcionLlamada.addNodeFunction(this.completeNameFunction, ctx.llamadafuncion().nombrefuncion().ID().getText(), actualNode);
+          System.out.println("ENTRA VISITOR");
+          //file.getUnionGrafos().setLlamada(this.completeNameFunction, ctx.nombrefuncion().ID().getText(), actualNode, file.getTablaLlamadas().getTabla());
+        }
       }
       if(!verificar)
       {
         i = 0;
         while (!verificar && i < listaExpresiones.size())
         {
-          verificar = isCadena(listaExpresiones.get(i));
+          verificar = isCadena(listaExpresiones.get(i), actualNode);
           i++;
         }
       }

@@ -16,7 +16,7 @@ public class UnionGrafos
         //this.file = File.getInstance();
         //this.tablaComplejidad = file.getTablaSimbolosComplejidad();
         //this.tablaLlamadas = new Hashtable<String, ArrayList<String>>();
-        this.llamadas = new HashMap<String, ArrayList<String>>();
+        //this.llamadas = new HashMap<String, ArrayList<String>>();
         this.funcionesLlamadas = new HashMap<String, HashMap<String, ArrayList<Integer>>>();
         this.nodosLlamada = new HashMap<String, ArrayList<Integer>>();
         //setLlamadasReales();
@@ -27,14 +27,42 @@ public class UnionGrafos
         this.tablaLlamadas = tablallamadas;
     }*/
 
-    public void setLlamada(String funcion, String funcionLlamada, Integer nodo, Hashtable<String, ArrayList<String>> tablaLlamadas)
+    public void setFuncionesLlamadas(HashMap<String, HashMap<String, ArrayList<Integer>>> funcionesLlamadas)
+    {
+        this.funcionesLlamadas = funcionesLlamadas;
+    }
+
+    public void printTODO()
+    {
+        Object[] funcionesReales = funcionesLlamadas.keySet().toArray();
+        HashMap<String, ArrayList<Integer>> llamadas;
+        Object[] fLlamadas;
+        ArrayList<Integer> nodos;
+        for (int i=0; i<funcionesReales.length; i++)
+        {
+            System.out.println("FUNCION REAL: " + funcionesReales[i]);
+            llamadas = funcionesLlamadas.get(funcionesReales[i]);
+            fLlamadas = llamadas.keySet().toArray();
+            for (int j=0; j<fLlamadas.length; j++)
+            {
+                System.out.println("FUNCION LLAMADA: " + fLlamadas[j]);
+                nodos = llamadas.get(fLlamadas[j]);
+                for (int k=0; k<nodos.size(); k++)
+                {
+                    System.out.println("NODO: " + nodos.get(k));
+                }
+            }
+            
+        }
+    }
+
+    /*public void setLlamada(String funcion, String funcionLlamada, Integer nodo, Hashtable<String, ArrayList<String>> tablaLlamadas)
     {
         //funcionesLlamadas.put(funcion, )
         funcion = funcion.substring(9, funcion.indexOf("("));
         //Object[] fLlamadas = nodosLlamada.keySet().toArray();
         Object[] fLlamadas = nodosLlamada.keySet().toArray();
         //introduzco las llamadas  y nodos a nodosLlamada
-        System.out.println(llamadas);
         System.out.println("ENTRA: " + fLlamadas.length);
         if (fLlamadas.length == 0) //si esta vacio se mete directamente
         {
@@ -76,10 +104,12 @@ public class UnionGrafos
                 funcionesLlamadas.put(funcion, nodosLlamada);
             }
         }
-    }
+        System.out.println("FUNCION: " + funcion);
+        System.out.println("FUNCION LL: " + funcionLlamada);
+    }*/
 
 
-    public void setLlamadasReales(Hashtable<String, ArrayList<String>> tablaLlamadas) //actualiza el hashmap llamadas para que tenga solo las llamada s funciones existentes en e progrma
+    /*public void setLlamadasReales(Hashtable<String, ArrayList<String>> tablaLlamadas) //actualiza el hashmap llamadas para que tenga solo las llamada s funciones existentes en e progrma
     {
         ArrayList<String> funLlamadas;
         Enumeration e2 = tablaLlamadas.keys();
@@ -102,7 +132,7 @@ public class UnionGrafos
         }
         //puedo retornar el hashmap llamadas para cogerlo en VisitorComplejidad o lo ejecuto en el constructor y hago un get
         //si no retorno cambiar nombre por setLlamadasReales()
-    }
+    }*/
 
     public Boolean existeEnProg(String nombre, Hashtable<String, ArrayList<String>> tablaLlamadas) //comprueba si el nombre esta en un array
     {
@@ -185,7 +215,7 @@ public class UnionGrafos
                                     dotSubgrafo += funcion + line  + "\n"; //nombre + linea
                                     
                                     ultimoNodo = line.substring(0, line.indexOf("[")-1); //actualizo ultimo nodo para quedarme con el ultimo
-                                    System.out.println("ultimoNodo: " + ultimoNodo);
+                                    //System.out.println("ultimoNodo: " + ultimoNodo);
                                 }
                                 else //si es una linea de relacion
                                 {
@@ -238,8 +268,22 @@ public class UnionGrafos
                 ultimosNodos = aux.getUltimosNodos();
                 dot += dotSubgrafo; //añado el subgrafo  
             }
-            String fLlamada = (String) funcionesLlamadas.get(funciones[i]).keySet().toArray()[i]; //cogo el nombre de la funcion llamada
-            if (!grafosCreados.contains(fLlamada))
+            
+            Object[] fLlamada = funcionesLlamadas.get(funciones[i]).keySet().toArray(); //cogo el nombre de las funciones llamadas
+            for (int j=0; j<fLlamada.length; j++)
+            {
+                if (!grafosCreados.contains((String) fLlamada[j]))
+                {
+                    System.out.println("FLLAMADA: " + fLlamada[j]);
+                    grafosCreados.add((String) fLlamada[j]);
+                    ClaseAuxiliar aux = crearSubgrafo(ultimosNodos, (String) fLlamada[j], funcionInicial);
+                    dotSubgrafo = aux.getDot();
+                    ultimosNodos = aux.getUltimosNodos();
+                    dot += dotSubgrafo; //añado el subgrafo  
+                }
+            }
+            //String fLlamada = (String) funcionesLlamadas.get(funciones[i]).keySet().toArray()[i]; //cogo el nombre de la funcion llamada
+            /*if (!grafosCreados.contains(fLlamada))
             {
                 System.out.println("ENTRA CRE");
                 grafosCreados.add(fLlamada);
@@ -247,7 +291,7 @@ public class UnionGrafos
                 dotSubgrafo = aux.getDot();
                 ultimosNodos = aux.getUltimosNodos();
                 dot += dotSubgrafo; //añado el subgrafo  
-            }
+            }*/
                 /*grafosCreados.add(funciones[i]);
                 dotSubgrafo = "subgraph " + funciones[i] + "\n{\n";
                 //dotAux = "";
@@ -320,11 +364,11 @@ public class UnionGrafos
                 {
                     if (recursividad)
                     {
-                        dot += funciones[i] + "->" + ultimosNodos.get(funciones[i])  + "\n";
+                        dot += (String) funciones[i] + k + "->" + funciones[i] +ultimosNodos.get(funciones[i])  + "\n";
                     }
                     else
                     {
-                        relacionIda = (String) funciones[i] + k + "->" + funcionLlamada + "0;"; //desde el nodo k (nodo llamada) de la funcion hasta  el nodo 0 de la funcion llamada
+                        relacionIda = (String) funciones[i] + nodos.get(k) + "->" + funcionLlamada + "0;"; //desde el nodo k (nodo llamada) de la funcion hasta  el nodo 0 de la funcion llamada
                         //relacionIda = funciones[i] + "0->" + funcionLlamada + k; //k=nodo desde el que se llama
                         relacionVuelta = funcionLlamada + ultimosNodos.get(funcionLlamada) + "->" + funciones[i] + k + ";"; //desde el ultimo nodo de la funcion llamada hasta el nodo k (nodo llamada) de la funcion llamante
                         //relacionVuelta = funcionLlamada + k + "->" + funciones[i] + ultimosNodos.get(funciones[i]);

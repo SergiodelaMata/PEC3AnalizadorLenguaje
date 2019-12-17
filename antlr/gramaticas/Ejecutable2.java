@@ -49,8 +49,16 @@ public class Ejecutable2{
             System.out.println("Visitando árbol de complejidad");
             file.getTablaSimbolosComplejidad().printHashMap();
 
-            file.getUnionGrafos().setLlamadasReales(file.getTablaLlamadas().getTabla());
+            //file.getUnionGrafos().setLlamadasReales(file.getTablaLlamadas().getTabla());
+            file.getUnionGrafos().setFuncionesLlamadas(file.getFuncionLlamada().getHash());
             file.getUnionGrafos().crearGrafo(nombreFunPrin);
+            file.getUnionGrafos().printTODO();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            file.getFuncionLlamada().printTODO();
 
             PagWeb pag = new PagWeb(nombreHtml);
             pag.createHtml();
