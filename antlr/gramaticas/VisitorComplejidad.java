@@ -97,7 +97,6 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
           }
         }
         completeNameFunction += ")";
-        System.out.println(completeNameFunction);
         symbolTable.setCompleteFunctionName(completeNameFunction);
         return 0;
     }
@@ -212,8 +211,6 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
       if (unionGrafos.existeEnProg(ctx.nombrefuncion().ID().getText(), file.getTablaLlamadas().getTabla()))
       {
         funcionLlamada.addNodeFunction(this.completeNameFunction, ctx.nombrefuncion().ID().getText(), actualNode);
-        System.out.println("ENTRA VISITOR");
-        //file.getUnionGrafos().setLlamada(this.completeNameFunction, ctx.nombrefuncion().ID().getText(), actualNode, file.getTablaLlamadas().getTabla());
       }
 
       stack.push(actualNode);
@@ -255,7 +252,6 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
         {
           listNodes.add(listNumberNode.size());
           listNumberNode.add(listNumberNode.size()); //Hay que tener en cuenta cuando solo tenemos una condición
-          //listNodes.add(lastNodeSequence);
           symbolTable.addNode(actualNode, listNodes);
           listNodes = new ArrayList<Integer>();
           listNodes.add(lastNodeSequence);
@@ -474,7 +470,6 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
       }
 
       lastNodeSequence = stack.getLast();
-      System.out.println("MOCOMOCOMOCO8 " + lastNodeSequence + "--" + actualNode);
       listLastNodeWhile.add(actualNode);
       symbolTable.addNode(lastNodeSequence, listLastNodeWhile);
 
@@ -634,8 +629,6 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
         if (unionGrafos.existeEnProg(ctx.llamadafuncion().nombrefuncion().ID().getText(), file.getTablaLlamadas().getTabla()))
         {
           funcionLlamada.addNodeFunction(this.completeNameFunction, ctx.llamadafuncion().nombrefuncion().ID().getText(), actualNode);
-          System.out.println("ENTRA VISITOR");
-          //file.getUnionGrafos().setLlamada(this.completeNameFunction, ctx.nombrefuncion().ID().getText(), actualNode, file.getTablaLlamadas().getTabla());
         }
       }
       if(!verificar)

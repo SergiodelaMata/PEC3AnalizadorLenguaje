@@ -20,7 +20,7 @@ public class TablaLlamadas
         return this.symbolTable;
     }
 
-    public void printHashMap() //BORRAR ANTES DE ENTREGAR
+    public void printHashMap()
     {
         Enumeration e = symbolTable.keys();
         String key;
@@ -130,11 +130,9 @@ public class TablaLlamadas
 
     public Boolean existe(ArrayList<String> nodos, String nodo) //comprueba si existe un nodo (si esta en el array)
     {
-        //no he tenido en cuenta que haya dos funciones con el mismo nombre y distintos parametros
         boolean existe = false;
         for (int i=0; i<nodos.size(); i++)
         {
-            //if (nodo.equals(nodos.get(i)))
             if (nodos.get(i).substring(0, nodos.get(i).indexOf("(") + 1).equals(nodo.substring(0, nodo.indexOf("(") + 1))) //si en nodos ya esta el nodo (compruenba todo el nombre menos los parametros)
             {
                 existe = true;
@@ -145,7 +143,7 @@ public class TablaLlamadas
 
     public int getPosicion(ArrayList<String> nodos, String nodo) //Obtiene la posicion de un nodo en la lista de nodos
     {
-        int posicion = -1; //en principio no puede darse el caso de que retorne esto, si se diera habrai que crear una excepcion
+        int posicion = -1; //en principio no puede darse el caso de que retorne esto, si se diera habria que crear una excepcion
         for (int i=0; i<nodos.size(); i++) //recorre lso nodos para enontrar el nodo pasado por parametro
         {
             if (nodos.get(i).substring(0, nodos.get(i).indexOf("(") + 1).equals(nodo.substring(0, nodo.indexOf("(") + 1))) //si es el nodo buscado

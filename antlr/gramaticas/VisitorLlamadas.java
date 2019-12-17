@@ -17,7 +17,6 @@ public class VisitorLlamadas extends Pl2compilerParserBaseVisitor
             visit(listaFunciones.get(i));
             //añadir nombre  y llamadas a la tabla
             file.addEntradaTabla(nombreFuncion, llamadas);
-            //System.out.println(nombreFuncion + " " + llamadas);
         }
         return null; 
     }
@@ -65,7 +64,6 @@ public class VisitorLlamadas extends Pl2compilerParserBaseVisitor
           }
         }
         nombreFuncion += ")";
-        //symbolTable.setFunctionName(completeNameFunction);
         return null;
     }
     
