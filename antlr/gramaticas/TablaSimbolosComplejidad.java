@@ -80,15 +80,12 @@ public class TablaSimbolosComplejidad
             {
                dot += "0 [label=\"\"style=filled, fillcolor=red]\n";
             }
-            else if (i == listaNodos.size()-1)
-            {
-                dot += (listaNodos.size()-1) + " [label=\"\"style=filled, fillcolor=blue]\n";
-            }
             else
             {
                 dot += i + " [label=\"\"];\n";
             }
         }
+        dot += listaNodos.size() + "  [label=\"\"style=filled, fillcolor=blue];\n"; //añado un nuevo nodo
         for(int i = 0; i < tablaSimbolos.size(); i++)
         {
             listNumNodes = tablaSimbolos.get(i);
@@ -101,6 +98,7 @@ public class TablaSimbolosComplejidad
               }
             }
         }
+        dot += listaNodos.size()-1 + "->" + listaNodos.size() + ";\n"; 
         dot += "}";
         System.out.println(dot);
         return dot;
