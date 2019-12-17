@@ -127,7 +127,7 @@ public class UnionGrafos
         return existe;
     }
 
-    public ClaseAuxiliar crearSubgrafo(HashMap<String, String> ultimosNodos, String funcion)
+    public ClaseAuxiliar crearSubgrafo(HashMap<String, String> ultimosNodos, String funcion, String funcionInicial)
     {
         FileReader fr;
         BufferedReader br;
@@ -135,11 +135,11 @@ public class UnionGrafos
         String dotSubgrafo = "";
         String line;
         String ultimoNodo = "0";
-            //FALTA CREAR SUBGRAFO FUNCIONES LLAMADAS
             //System.out.println("ENTRA2");
                 dotSubgrafo = "subgraph " + funcion + "\n{\n";
                 //dotAux = "";
                 nombreFile = "grafo" + funcion + ".dot";
+                funcionInicial = funcionInicial.substring(0, funcionInicial.indexOf("("));
                 try
                 {
                     fr = new FileReader(nombreFile);
@@ -159,16 +159,38 @@ public class UnionGrafos
                     {
                         if (!line.contains("}")) //ignora la ultima linea
                         {
-                            if (line.contains("[l")) //si es una linea de instaciar nodo
+                            if (!funcion.equals(funcionInicial)) //si no es la funcion inicial
                             {
-                                dotSubgrafo += funcion + line  + "\n"; //nombre + linea
-                                
-                                ultimoNodo = line.substring(0, line.indexOf("[")-1); //actualizo ultimo nodo para quedarme con el ultimo
-                                System.out.println("ultimoNodo: " + ultimoNodo);
+                                if (line.contains("style")) //quito el nodo inicio y fin (color rojo y azul)
+                                {
+                                    dotSubgrafo += funcion + line.substring(0, line.indexOf("[")-1)  + "[label=\"\"];\n"; //nombre + linea
+                                    ultimoNodo = line.substring(0, line.indexOf("[")-1); //actualizo ultimo nodo para quedarme con el ultimo
+                                }
+                                else if (line.contains("[l")) //si es una linea de instanciar nodo
+                                {
+                                    dotSubgrafo += funcion + line  + "\n"; //nombre + linea
+                                    
+                                    ultimoNodo = line.substring(0, line.indexOf("[")-1); //actualizo ultimo nodo para quedarme con el ultimo
+                                    System.out.println("ultimoNodo: " + ultimoNodo);
+                                }
+                                else //si es una linea de relacion
+                                {
+                                    dotSubgrafo += funcion + line.substring(0, line.indexOf("-")+2) + funcion + line.substring(line.indexOf(">")+1, line.length()) + "\n"; //nombre + nodo-> + nombre + nodo (dir);
+                                }
                             }
-                            else //si es una linea de relacion
+                            else
                             {
-                                dotSubgrafo += funcion + line.substring(0, line.indexOf("-")+2) + funcion + line.substring(line.indexOf(">")+1, line.length()) + "\n"; //nombre + nodo-> + nombre + nodo (dir);
+                                if (line.contains("[l")) //si es una linea de instanciar nodo
+                                {
+                                    dotSubgrafo += funcion + line  + "\n"; //nombre + linea
+                                    
+                                    ultimoNodo = line.substring(0, line.indexOf("[")-1); //actualizo ultimo nodo para quedarme con el ultimo
+                                    System.out.println("ultimoNodo: " + ultimoNodo);
+                                }
+                                else //si es una linea de relacion
+                                {
+                                    dotSubgrafo += funcion + line.substring(0, line.indexOf("-")+2) + funcion + line.substring(line.indexOf(">")+1, line.length()) + "\n"; //nombre + nodo-> + nombre + nodo (dir);
+                                }
                             }
                         }
                     }
@@ -211,7 +233,7 @@ public class UnionGrafos
             if (!grafosCreados.contains(funciones[i])) //solo se crean si no estan repetidos
             {
                 grafosCreados.add((String) funciones[i]);
-                ClaseAuxiliar aux = crearSubgrafo(ultimosNodos, (String) funciones[i]);
+                ClaseAuxiliar aux = crearSubgrafo(ultimosNodos, (String) funciones[i], funcionInicial);
                 dotSubgrafo = aux.getDot();
                 ultimosNodos = aux.getUltimosNodos();
                 dot += dotSubgrafo; //añado el subgrafo  
@@ -222,7 +244,7 @@ public class UnionGrafos
             {
                 System.out.println("ENTRA CRE");
                 grafosCreados.add(fLlamada);
-                ClaseAuxiliar aux = crearSubgrafo(ultimosNodos, fLlamada);
+                ClaseAuxiliar aux = crearSubgrafo(ultimosNodos, fLlamada, funcionInicial);
                 dotSubgrafo = aux.getDot();
                 ultimosNodos = aux.getUltimosNodos();
                 dot += dotSubgrafo; //añado el subgrafo  
