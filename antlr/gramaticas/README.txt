@@ -1,3 +1,7 @@
+Para la ejecución del programa:
+1º javac *.java
+2º java Ejecutable2 (archivo).prog (funcion principial, típicamente main) PL3
+
 CONSIDERACIONES PARA LOS PUNTOS FUNCION:
 
     - := ha sido considerado como operador.
