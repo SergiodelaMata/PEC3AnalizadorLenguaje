@@ -139,7 +139,7 @@ public class UnionGrafos
                 dotSubgrafo = "subgraph " + funcion + "\n{\n";
                 //dotAux = "";
                 nombreFile = "grafo" + funcion + ".dot";
-                funcionInicial = funcionInicial.substring(0, funcionInicial.indexOf("("));
+                //funcionInicial = funcionInicial.substring(0, funcionInicial.indexOf("("));
                 try
                 {
                     fr = new FileReader(nombreFile);
@@ -171,7 +171,7 @@ public class UnionGrafos
                                     dotSubgrafo += funcion + line  + "\n"; //nombre + linea
                                     
                                     ultimoNodo = line.substring(0, line.indexOf("[")-1); //actualizo ultimo nodo para quedarme con el ultimo
-                                    System.out.println("ultimoNodo: " + ultimoNodo);
+                                    //System.out.println("ultimoNodo: " + ultimoNodo);
                                 }
                                 else //si es una linea de relacion
                                 {
@@ -239,7 +239,6 @@ public class UnionGrafos
                 dot += dotSubgrafo; //añado el subgrafo  
             }
             String fLlamada = (String) funcionesLlamadas.get(funciones[i]).keySet().toArray()[i]; //cogo el nombre de la funcion llamada
-            System.out.println("NOMBRE FLLAMADA: " + fLlamada);
             if (!grafosCreados.contains(fLlamada))
             {
                 System.out.println("ENTRA CRE");

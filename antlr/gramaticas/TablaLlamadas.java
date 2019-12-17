@@ -62,13 +62,16 @@ public class TablaLlamadas
         }
     }
 
-    public Boolean isValida(String funcion) //comprueba si una funcion (nombrefuncion(parametros))esta en el programa
+    public Boolean isValida(String funcion) //comprueba si una funcion esta en el programa
     {
         boolean isValida = false;
         Object[] keys = symbolTable.keySet().toArray();
+        String key;
         for (int i=0; i<keys.length; i++)
         {
-            if (keys[i].equals(funcion))
+            key = (String) keys[i];
+            key = key.substring(0, key.indexOf("("));
+            if (key.equals(funcion))
             {
                 isValida = true;
             }
@@ -108,7 +111,7 @@ public class TablaLlamadas
             }
             System.out.println();
         }
-        dot += "0->" + (getPosicion(nodos, funcionInicio) + 1) + ";\n";
+        dot += "0->" + (getPosicion(nodos, funcionInicio + "()") + 1) + ";\n";
         Enumeration e3 = symbolTable.keys();
         while (e3.hasMoreElements()) //se crean las relaciones
         {
