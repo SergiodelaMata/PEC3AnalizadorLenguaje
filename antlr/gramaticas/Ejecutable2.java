@@ -6,7 +6,6 @@ import org.antlr.v4.runtime.tree.*;
 public class Ejecutable2{
     public static void main(String[] args) throws Exception {
         File file = File.getInstance();
-        //TablaSimbolos tabla_simbolos = new TablaSimbolos();
         int total_puntos;
         String inputFile = null;
         String nombreFunPrin = ""; //nombre()
@@ -49,7 +48,6 @@ public class Ejecutable2{
             System.out.println("Visitando árbol de complejidad");
             file.getTablaSimbolosComplejidad().printHashMap();
 
-            //file.getUnionGrafos().setLlamadasReales(file.getTablaLlamadas().getTabla());
             file.getUnionGrafos().setFuncionesLlamadas(file.getFuncionLlamada().getHash());
             file.getUnionGrafos().crearGrafo(nombreFunPrin);
             file.getUnionGrafos().printTODO();

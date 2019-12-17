@@ -10,7 +10,7 @@ public class Funcion
     private long numFunctionCall;
     private long numSimpleOperators;
     private long numEfectiveLines;
-    private long numFunctionPoints; //puntosTotales
+    private long numFunctionPoints; 
     private long complejidad;
 
     public Funcion()
@@ -22,7 +22,7 @@ public class Funcion
         this.numFunctionCall = 0;
         this.numSimpleOperators = 0;
         this.numEfectiveLines = 0;
-        this.numFunctionPoints = 0; //puntosTotales
+        this.numFunctionPoints = 0;
         this.complejidad = 0;
     }
 

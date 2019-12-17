@@ -15,18 +15,7 @@ public class PilaComplejidad
   {
     int number = this.stack.get(stack.size()-1);
     this.stack.remove(stack.size()-1);
-    /*System.out.println("Salgo de la pila: " + number);
-    System.out.println("Tamaño de la pila: " + stack.size());
-    System.out.println("Pila: ");
-    for(int i = 0; i < stack.size()-1; i++)
-    {
-      if(i != 0)
-      {
-        System.out.print(", ");
-      }
-      System.out.print(stack.get(i));
-    }
-    System.out.println("");*/
+    
     return number;
   }
 
@@ -37,19 +26,7 @@ public class PilaComplejidad
 
   public void push(int number)
   {
-    //System.out.println("Entro en la pila: " + number);
-    //System.out.println("Tamaño de la pila: " + stack.size());
-    this.stack.add(number);
-    //System.out.println("Pila: ");
-    /*for(int i = 0; i < stack.size(); i++)
-    {
-      if(i != 0)
-      {
-        System.out.print(", ");
-      }
-      System.out.print(stack.get(i));
-    }
-    System.out.println("");*/
+    this.stack.add(number);    
   }
 
   public int size()
