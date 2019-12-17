@@ -4,6 +4,7 @@ import java.util.*;
 public class Funcion
 {
     private String name;
+    private String nameWithoutReturnType;
     private long numParameters;
     private long numDeclaraciones;
     private long numFunctionCall;
@@ -15,6 +16,7 @@ public class Funcion
     public Funcion()
     {
         this.name = "";
+        this.nameWithoutReturnType = "";
         this.numParameters = 0;
         this.numDeclaraciones = 0;
         this.numFunctionCall = 0;
@@ -59,6 +61,18 @@ public class Funcion
         this.name = name;
     }
 
+    private void setNameWithoutReturnType(String name)
+    {
+      int counter = 0;
+      String nombre = "";
+      while(counter < name.length() && name.charAt(counter) != ':')
+      {
+        nombre += name.charAt(counter);
+        counter++;
+      }
+      this.nameWithoutReturnType = nombre;
+    }
+
     public void concatenateName(String name)
     {
       this.name += name;
@@ -66,7 +80,13 @@ public class Funcion
 
     public String getName()
     {
-        return this.name;
+      return this.name;
+    }
+
+    public String getNameWithoutReturnType()
+    {
+      setNameWithoutReturnType(getName());
+      return this.nameWithoutReturnType;
     }
 
     public void setFunctionPoints(long points)
@@ -121,5 +141,3 @@ public class Funcion
         System.out.println("Nombre: " + this.complejidad);
     }
 }
-
-

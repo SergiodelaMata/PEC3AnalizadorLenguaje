@@ -1,8 +1,0 @@
-//main()
-//lenguaje.prog
-digraph FuncionMain {
-
-    Inicio -> 1 -> 2 -> Fin;
-    Inicio [shape=Mdiamond];
-    Fin [shape=Msquare];
-}

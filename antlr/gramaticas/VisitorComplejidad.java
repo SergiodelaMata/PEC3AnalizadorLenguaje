@@ -34,20 +34,10 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
             {
                 symbolTable = new TablaSimbolosComplejidadFuncion();
                 visit(listaCrearFuncion.get(i));
-                //System.out.println(completeNameFunction);
-                //System.out.println(nameFunction);
-                //System.out.println(numParametersFunction);
-                System.out.println("fñjdsalkjfañlkdsfjañlkdsjfñalkjfñlksadjñflkajdsñflkjdsñlkdsjfañlkdsjñalkjfdña");
-                for(int j = 0; j < listNumberNode.size(); j++)
-                {
-                  if(j%10 == 0)
-                  {
-                    System.out.println("");
-                  }
-                  System.out.print(listNumberNode.get(j) + " ");
-                }
-                System.out.println("");
                 symbolTable.setListNode(listNumberNode);
+                symbolTable.setFunctionName(nameFunction);
+                symbolTable.setNumberParameters(numParametersFunction);
+
                 file.getTablaSimbolosComplejidad().putFunctionSymbolTable(symbolTable);
                 this.completeNameFunction = "";         //Para tener el nombre completo de la función con los nombres de sus parámetros
                 this.nameFunction = "";                 //Función sin parámetros
@@ -105,7 +95,7 @@ public class VisitorComplejidad extends Pl2compilerParserBaseVisitor
         }
         completeNameFunction += ")";
         System.out.println(completeNameFunction);
-        symbolTable.setFunctionName(completeNameFunction);
+        symbolTable.setCompleteFunctionName(completeNameFunction);
         return 0;
     }
     @Override

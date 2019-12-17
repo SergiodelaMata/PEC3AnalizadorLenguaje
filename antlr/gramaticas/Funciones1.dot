@@ -1,6 +1,0 @@
-//lenguaje.prog
-digraph Funciones1 {
-
-	main -> prueba;
-	
-}

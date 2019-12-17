@@ -13,7 +13,7 @@ public class TablaSimbolosComplejidad
 
     public void putFunctionSymbolTable(TablaSimbolosComplejidadFuncion tablaSimbolosComplejidadFuncion)
     {
-        symbolTable.put(tablaSimbolosComplejidadFuncion.getFunctionName(), tablaSimbolosComplejidadFuncion);
+        symbolTable.put(tablaSimbolosComplejidadFuncion.getCompleteFunctionName(), tablaSimbolosComplejidadFuncion);
     }
 
     public TablaSimbolosComplejidadFuncion getTable(int position)
@@ -25,7 +25,6 @@ public class TablaSimbolosComplejidad
         {
             counter++;
             enumeration.nextElement();
-            //System.out.println("AAAAAAAAAAAAAA " + enumeration.nextElement());
         }
         if(counter == position)
         {
@@ -34,12 +33,24 @@ public class TablaSimbolosComplejidad
         return tablaSimbolos;
     }
 
+    public TablaSimbolosComplejidadFuncion getTable(String nameFunction)
+    {
+        Enumeration enumeration = symbolTable.keys();
+        TablaSimbolosComplejidadFuncion tablaSimbolos = new TablaSimbolosComplejidadFuncion();
+        String keyNameFunction = "";
+        while(enumeration.hasMoreElements() && !nameFunction.equals(keyNameFunction))
+        {
+            keyNameFunction = enumeration.nextElement().toString();
+        }
+        return symbolTable.get(keyNameFunction);
+    }
+
     public void crearGrafo(int posicion)
     {
         Object[] nombresFunciones = symbolTable.keySet().toArray();
         String nombreFuncion = (String) nombresFunciones[posicion];
         nombreFuncion = nombreFuncion.substring(9, nombreFuncion.indexOf("("));
-        System.out.println("NOMBRE: " + nombreFuncion);
+        //System.out.println("NOMBRE: " + nombreFuncion);
         String dot = printHashMapFunction(posicion);
         try
         {
@@ -59,7 +70,7 @@ public class TablaSimbolosComplejidad
         String dot = "digraph Grafo\n{\n";
         TablaSimbolosComplejidadFuncion tablaSimbolos = new TablaSimbolosComplejidadFuncion();
         tablaSimbolos = getTable(position);
-        System.out.println(tablaSimbolos.getFunctionName());
+        System.out.println(tablaSimbolos.getCompleteFunctionName());
         Enumeration enumeration = symbolTable.keys();
         ArrayList<Integer> listNumNodes = new ArrayList<Integer>();
         ArrayList<Integer> listaNodos = tablaSimbolos.getListNode();
@@ -81,26 +92,13 @@ public class TablaSimbolosComplejidad
         for(int i = 0; i < tablaSimbolos.size(); i++)
         {
             listNumNodes = tablaSimbolos.get(i);
-            //System.out.println ("YEAH " + i);
             if(listNumNodes != null)
             {
               for(int j = 0; j < listNumNodes.size(); j++)
               {
                   System.out.println(i + " -> " + listNumNodes.get(j));
                   dot += i + "->" + listNumNodes.get(j) + ";\n";
-                  /*if (i<listNumNodes.get(j)) //flecha normal
-                  {
-                    
-                  }
-                  else //flecha en sentido contrario
-                  {
-                    dot += i + "->" + listNumNodes.get(j) + " [dir=\"back\"];\n";
-                  }*/
               }
-            }
-            else
-            {
-              System.out.println(i + " no tiene hijos.");
             }
         }
         dot += "}";
@@ -120,7 +118,7 @@ public class TablaSimbolosComplejidad
 
 
     //Sumar la complejidad de todas las funciones, para obtener la total
-    public int complejidadTodasFunciones (){
+    public int complejidadTodasFunciones(){
 
         int complejidadTotal = 0;
         int complejidadAux = 0;
@@ -128,11 +126,14 @@ public class TablaSimbolosComplejidad
 
         for(int i=0; i<symbolTable.size(); i++){
             aux=getTable(i);
-            complejidadAux = aux.calcularComplejidadCiclomaticaFuncion(); 
-            complejidadTotal += complejidadAux;         
+            complejidadTotal += aux.calcularComplejidadCiclomaticaFuncion();
         }
-
         return complejidadTotal;
     }
 
+    public int getComplejidadFuncion(String name){
+        TablaSimbolosComplejidadFuncion aux = getTable(name);//Cuidado con el constructor de esta clase
+        int complejidad = aux.calcularComplejidadCiclomaticaFuncion();
+        return complejidad;
+    }
 }

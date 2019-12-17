@@ -11,24 +11,26 @@ public class PagWeb
     }
 
     public void createHtml()
-    {  
+    {
         String html = "";
         html += "<!DOCTYPE html><head><title>Practica 3 Procesadores del Lenguaje</title></head><body>";
         //html += "<h1>Practica 3 Procesadores del Lenguaje</h1>";
-        
+
         File file = File.getInstance();
         TablaSimbolos tablaSimbolos = file.getTablaSimbolos();
-        
+        TablaSimbolosComplejidad tablaSimbolosComplejidad = file.getTablaSimbolosComplejidad();
+
         long puntosFuncion = 0;
         long variablesDeclaradas = 0;
         long lineasEfectivas = 0;
         long numParametros = 0;
         long numLlamadas = 0;
-        long complejidad = 0;
+        long complejidad = tablaSimbolosComplejidad.complejidadTodasFunciones();
 
         ArrayList<Funcion> funciones = new ArrayList<Funcion>();
         for (Funcion funcion : tablaSimbolos.getTable().values()) //recorre la tabla de simbolos
         {
+            funcion.setComplejidad(tablaSimbolosComplejidad.getComplejidadFuncion(funcion.getNameWithoutReturnType()));
             funciones.add(funcion);
         }
         for (int i=0; i<funciones.size(); i++)
@@ -65,7 +67,7 @@ public class PagWeb
         html += "<li>Número de parámetros esperados: <strong>" + numParametros + "</strong></li>";
         html += "<li>Número de llamadas a funciones: <strong>" + numLlamadas + "</strong></li>";
         html += "</ul></li>";
-        html += "<li>Grafo de complejidad ciclomática: <p><img src=\"grafoCompleto.svg\"width=\"800\"height=\"250\"><p></li>";//añadir grafo                
+        html += "<li>Grafo de complejidad ciclomática: <p><img src=\"grafoCompleto.svg\"width=\"800\"height=\"250\"><p></li>";//añadir grafo
         html += "<li>Grafo de llamadas a funciones: <p><img src=\"grafoLlamadas.svg\"width=\"800\"height=\"250\"><p></li>";
 
 
