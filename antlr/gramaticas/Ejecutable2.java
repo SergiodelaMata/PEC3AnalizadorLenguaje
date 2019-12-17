@@ -50,9 +50,7 @@ public class Ejecutable2{
 
             file.getUnionGrafos().setFuncionesLlamadas(file.getFuncionLlamada().getHash());
             file.getUnionGrafos().crearGrafo(nombreFunPrin);
-            //file.getUnionGrafos().printTODO();
             System.out.println();           
-            //file.getFuncionLlamada().printTODO();
 
             PagWeb pag = new PagWeb(nombreHtml);
             pag.createHtml();

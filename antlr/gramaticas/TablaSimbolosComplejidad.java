@@ -36,7 +36,6 @@ public class TablaSimbolosComplejidad
     public TablaSimbolosComplejidadFuncion getTable(String nameFunction)
     {
         Enumeration enumeration = symbolTable.keys();
-        TablaSimbolosComplejidadFuncion tablaSimbolos = new TablaSimbolosComplejidadFuncion();
         String keyNameFunction = "";
         while(enumeration.hasMoreElements() && !nameFunction.equals(keyNameFunction))
         {
@@ -50,7 +49,6 @@ public class TablaSimbolosComplejidad
         Object[] nombresFunciones = symbolTable.keySet().toArray();
         String nombreFuncion = (String) nombresFunciones[posicion];
         nombreFuncion = nombreFuncion.substring(9, nombreFuncion.indexOf("("));
-        //System.out.println("NOMBRE: " + nombreFuncion);
         String dot = printHashMapFunction(posicion);
         try
         {
@@ -71,7 +69,6 @@ public class TablaSimbolosComplejidad
         TablaSimbolosComplejidadFuncion tablaSimbolos = new TablaSimbolosComplejidadFuncion();
         tablaSimbolos = getTable(position);
         System.out.println(tablaSimbolos.getCompleteFunctionName());
-        Enumeration enumeration = symbolTable.keys();
         ArrayList<Integer> listNumNodes = new ArrayList<Integer>();
         ArrayList<Integer> listaNodos = tablaSimbolos.getListNode();
         for (int i=0; i<listaNodos.size(); i++)
@@ -106,7 +103,6 @@ public class TablaSimbolosComplejidad
 
     public void printHashMap()
     {
-      //System.out.println(symbolTable.size());
         for(int i = 0; i < symbolTable.size(); i++)
         {
             printHashMapFunction(i);
@@ -119,7 +115,6 @@ public class TablaSimbolosComplejidad
     public int complejidadTodasFunciones(){
 
         int complejidadTotal = 0;
-        int complejidadAux = 0;
         TablaSimbolosComplejidadFuncion aux = new TablaSimbolosComplejidadFuncion();//Cuidado con el constructor de esta clase
 
         for(int i=0; i<symbolTable.size(); i++){

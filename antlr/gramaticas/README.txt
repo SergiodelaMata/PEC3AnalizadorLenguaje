@@ -1,6 +1,9 @@
 Para la ejecución del programa:
 1º javac *.java
-2º java Ejecutable2 (archivo).prog (funcion principial, típicamente main) PL3
+2º java Ejecutable2 fichero.prog nombreFuncionPrincipal nombreArchivoHtml
+
+
+Entregamos el programa compilado y ejecutado con los archivos generados al ejecutar lenguaje.prog
 
 CONSIDERACIONES PARA LOS PUNTOS FUNCION:
 
@@ -21,6 +24,8 @@ CONSIDERACIONES PARA LOS PUNTOS FUNCION:
     -If y while: las condiciones de la cabecera se consideran puntos interiores, y por lo tanto, también 
     se elevan al cuadrado.
 
+GRAFOS:
+    -Los grafos se han realizado por lineas de codigo, no por bloques.
 
 GRAFO PROGRAMA:
     -Para el grafo completo del programa solo se consideran las funciones creadas en el .prog a la hora 
