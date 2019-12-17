@@ -3,6 +3,13 @@ import java.io.*;
 
 public class PagWeb
 {
+    private String nombreHtml;
+
+    public PagWeb(String nombreHtml)
+    {
+        this.nombreHtml = nombreHtml + ".html";
+    }
+
     public void createHtml()
     {  
         String html = "";
@@ -65,7 +72,7 @@ public class PagWeb
         html += "</ul></body></html>";
         try
         {
-            FileWriter filewriter = new FileWriter("PL3.html"); //archivo donde se va a crear
+            FileWriter filewriter = new FileWriter(nombreHtml); //archivo donde se va a crear
             PrintWriter printw = new PrintWriter(filewriter);
             printw.println(html);
             printw.close();
