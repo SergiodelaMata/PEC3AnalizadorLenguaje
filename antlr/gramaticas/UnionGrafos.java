@@ -370,7 +370,7 @@ public class UnionGrafos
                     {
                         relacionIda = (String) funciones[i] + nodos.get(k) + "->" + funcionLlamada + "0;"; //desde el nodo k (nodo llamada) de la funcion hasta  el nodo 0 de la funcion llamada
                         //relacionIda = funciones[i] + "0->" + funcionLlamada + k; //k=nodo desde el que se llama
-                        relacionVuelta = funcionLlamada + ultimosNodos.get(funcionLlamada) + "->" + funciones[i] + k + ";"; //desde el ultimo nodo de la funcion llamada hasta el nodo k (nodo llamada) de la funcion llamante
+                        relacionVuelta = funcionLlamada + ultimosNodos.get(funcionLlamada) + "->" + funciones[i] + nodos.get(k) + ";"; //desde el ultimo nodo de la funcion llamada hasta el nodo k (nodo llamada) de la funcion llamante
                         //relacionVuelta = funcionLlamada + k + "->" + funciones[i] + ultimosNodos.get(funciones[i]);
                         dot += relacionIda  + "\n";
                         dot += relacionVuelta  + "\n";
