@@ -1,3 +1,4 @@
+Defensa Ejercicio 01
 Después de la línea 21 tendría que terminar con un enddo (fallo en el for)
 21: enddo
 
@@ -10,4 +11,9 @@ Añadimos tipo de dato booleano (cambiamos en el Parser)
 
 Línea 113 eliminarmos el punto y coma (;) es decir:
 function imprimirconintro(cadena c):void; pasa a ser function imprimirconintro(cadena c):void
+
+Defensa Ejercicio 02
+Línea 62 function imprimirconintro(cadena c):void; quitar el punto y coma function imprimirconintro(cadena c):void
+
+Problam con el if
 
