@@ -1,0 +1,7 @@
+Después de la línea 21 tendría que terminar con un enddo (fallo en el for)
+
+En las funciones que haya return cambiamos por devolver
+
+Añadimos tipo de dato  booleano
+
+Línea 113 eliminarmos el punto y coma (;)
