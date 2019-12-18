@@ -110,7 +110,7 @@ begin
     imprimirconintro("FIN DE RESULTADOS DE LAS CADENAS");
 end
 
-function imprimirconintro(cadena c):void;
+function imprimirconintro(cadena c):void
 begin   
     imprimir(c+"\n");
 end
