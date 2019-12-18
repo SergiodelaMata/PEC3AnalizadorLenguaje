@@ -1,0 +1,81 @@
+/** Ejercio GII P3**/
+
+
+
+function Pin(numero p1):numero
+begin
+    imprimirconintro("Pin: " + p1);
+    if (p1>0) then 
+        Pon(p1-1);
+        Pin(p1-1);
+    endif
+    return p1;
+end
+
+function Pon(numero p1):numero
+begin
+    if (p1>0) then 
+        Pin(p1-1);
+        Pon(p1-1);
+    endif
+    imprimirconintro("Pon: " + p1);
+    return p1;
+end
+
+
+function Pin(cadena c1):cadena
+begin
+    imprimirconintro("Pin: " + c1);
+    if (cadenaLongitud(c1)>0) then 
+        cadena nuevacadena := cadenaIzquierda(c1,cadenaLongitud(c1)-1);
+        Pon(nuevacadena);
+        Pin(nuevacadena);
+    endif
+    return c1;
+end
+
+function Pon(cadena c1):cadena
+begin
+
+    if (cadenaLongitud(c1)>0) then 
+        cadena nuevacadena := cadenaDerecha(c1,cadenaLongitud(c1)-1);
+        Pin(nuevacadena);
+        Pon(nuevacadena);
+    endif
+    imprimirconintro("Pon: " + c1);
+    return c1;
+end
+
+function deVuelta(cadena c1):cadena
+begin
+    if (cadenaLongitud(c1)>1)
+        return cadenaDerecha(c1,1) + deVuelta(cadenaIzquierda(cadenaLongitud(c1)-1));
+    else
+        return c1;
+    endif
+end
+
+
+function imprimirconintro(cadena c):void;
+begin   
+    imprimir(c+"\n");
+end
+
+function domain():void
+begin
+    imprimirconintro("PROGRAMA PRINCIPAL EJ3:");
+
+    Pin(37);
+    Pon("Hola mundo cruel");
+
+    imprimirconintro(deVuelta("En un lugar de La Mancha de cuyo nombre no quiero acordarme, vivía el ingenioso Hidalgo Don Alonso Quijano, como Don Quijote conocido..."));
+    imprimirconintro(deVuelta(deVuelta("En un lugar de La Mancha de cuyo nombre no quiero acordarme, vivía el ingenioso Hidalgo Don Alonso Quijano, como Don Quijote conocido...")));
+
+
+    imprimirconintro("FIN DEL PROGRAMA PRINCIPAL EJ3");
+end
+
+function main():void
+begin
+    imprimirconintro("No debería llamarse");
+end
