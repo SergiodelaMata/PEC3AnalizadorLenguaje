@@ -1,0 +1,77 @@
+/** Ejercio GII P2**/
+
+
+
+function F1(numero p1):numero
+begin
+    
+    imprimirconintro("F1: " + p1);
+    if (p1>0) then 
+        F1(p1-1);
+    endif
+    return p1;
+end
+
+function F2(numero p1):numero
+begin
+    if (p1>0) then 
+        F2(p1-1);
+    endif
+    imprimirconintro("F2: " + p1);
+    return p1;
+end
+
+function F3(numero p1):numero
+begin   
+    if (p1>0)
+        imprimirconintro("F3" + F3(p1-1));
+    endif
+    return p1;
+end
+
+
+function F4(numero p1):numero
+begin
+    numero beginer,ender,paso;
+    beginer:=42;
+    ender:=53;
+    paso:=10
+    for case from 5 to 1 step -1 do
+        begin
+            F1(case);
+            for caso from beginer to 45 do
+                for casa from 43 to ender step paso do
+                    begin
+                        F3(casa);
+                        numero cepo:=49
+                        while(cepo<50)
+                        begin
+                            imprimirconintro("case " + case + "caso " + caso + "casa " + casa);
+                            cepo:=cepo+1;
+                        end
+                    end
+                enddo
+            enddo
+        end
+    enddo
+    return p1-1;
+end
+
+
+
+function imprimirconintro(cadena c):void;
+begin   
+    imprimir(c+"\n");
+end
+
+function main():void
+begin
+    imprimirconintro("PROGRAMA PRINCIPAL EJ2:");
+
+    F1(5);
+    F2(5);
+    F3(5);
+    F4(5);
+
+    imprimirconintro("FIN DEL PROGRAMA PRINCIPAL EJ2");
+end
