@@ -9,7 +9,7 @@ begin
     if (p1>0) then 
         F1(p1-1);
     endif
-    return p1;
+    devolver(p1);
 end
 
 function F2(numero p1):numero
@@ -18,7 +18,7 @@ begin
         F2(p1-1);
     endif
     imprimirconintro("F2: " + p1);
-    return p1;
+    devolver(p1);
 end
 
 function F3(numero p1):numero
@@ -26,7 +26,7 @@ begin
     if (p1>0)
         imprimirconintro("F3" + F3(p1-1));
     endif
-    return p1;
+    devolver(p1);
 end
 
 
@@ -54,7 +54,7 @@ begin
             enddo
         end
     enddo
-    return p1-1;
+    devolver(p1-1);
 end
 
 
