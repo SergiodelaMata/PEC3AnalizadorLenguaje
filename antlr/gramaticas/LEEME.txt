@@ -1,7 +1,13 @@
 Después de la línea 21 tendría que terminar con un enddo (fallo en el for)
+21: enddo
 
-En las funciones que haya return cambiamos por devolver
+En las funciones que haya return cambiamos por devolver. Por ejemplo: 68: 
+68: return 1; pasa a ser devolver(1);
+72: return c1 + c2; pasa a ser devolver(c1 + c2);
+77: return (n1>n2); pasa a ser devolver(n1>n2);
 
-Añadimos tipo de dato  booleano
+Añadimos tipo de dato booleano (cambiamos en el Parser)
 
-Línea 113 eliminarmos el punto y coma (;)
+Línea 113 eliminarmos el punto y coma (;) es decir:
+function imprimirconintro(cadena c):void; pasa a ser function imprimirconintro(cadena c):void
+
