@@ -4,12 +4,14 @@
 
 function Pin(numero p1):numero
 begin
-    imprimirconintro("Pin: " + p1);
+	cadena cad:= "Pin: " + p1;
+    imprimirconintro(cad);
     if (p1>0) then 
-        Pon(p1-1);
-        Pin(p1-1);
+		numero entero:= p1-1;
+        Pon(entero);
+        Pin(entero);
     endif
-    return p1;
+    devolver(p1);
 end
 
 function Pon(numero p1):numero
@@ -19,46 +21,52 @@ begin
         Pon(p1-1);
     endif
     imprimirconintro("Pon: " + p1);
-    return p1;
+    devolver(p1);
 end
 
 
 function Pin(cadena c1):cadena
 begin
-    imprimirconintro("Pin: " + c1);
+	cadena cad:= "Pin: " + c1;
+    imprimirconintro(cad);
     if (cadenaLongitud(c1)>0) then 
-        cadena nuevacadena := cadenaIzquierda(c1,cadenaLongitud(c1)-1);
+		cad := cadenaLongitud(c1)-1;
+        cadena nuevacadena := cadenaIzquierda(c1,cad);
         Pon(nuevacadena);
         Pin(nuevacadena);
     endif
-    return c1;
+    devolver(c1);
 end
 
 function Pon(cadena c1):cadena
 begin
-
+	cadena cad:= cadenaLongitud(c1)-1;
     if (cadenaLongitud(c1)>0) then 
-        cadena nuevacadena := cadenaDerecha(c1,cadenaLongitud(c1)-1);
+        cadena nuevacadena := cadenaDerecha(c1,cad);
         Pin(nuevacadena);
         Pon(nuevacadena);
     endif
-    imprimirconintro("Pon: " + c1);
-    return c1;
+	cad:= "Pon: " + c1;
+    imprimirconintro(cad);
+    devolver(c1);
 end
 
 function deVuelta(cadena c1):cadena
 begin
     if (cadenaLongitud(c1)>1)
-        return cadenaDerecha(c1,1) + deVuelta(cadenaIzquierda(cadenaLongitud(c1)-1));
+		cadena cad1:= cadenaLongitud(c1)-1;
+		cadena cad:= cadenaDerecha(c1,1) + deVuelta(cadenaIzquierda(cad1));
+        devolver(cad);
     else
-        return c1;
+        devolver(c1);
     endif
 end
 
 
-function imprimirconintro(cadena c):void;
+function imprimirconintro(cadena c):void
 begin   
-    imprimir(c+"\n");
+	cadena cad:= c+"\n";
+    imprimir(cad);
 end
 
 function domain():void
