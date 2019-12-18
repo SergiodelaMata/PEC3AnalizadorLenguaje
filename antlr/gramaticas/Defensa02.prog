@@ -59,7 +59,7 @@ end
 
 
 
-function imprimirconintro(cadena c):void;
+function imprimirconintro(cadena c):void
 begin   
     imprimir(c+"\n");
 end
