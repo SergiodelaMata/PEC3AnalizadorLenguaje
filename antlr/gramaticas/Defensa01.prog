@@ -1,0 +1,138 @@
+/** Ejercio GII P1**/
+
+function PruebaIf():void
+begin
+    imprimirconintro("Inicio de la prueba IF: ");
+    if (true) then  
+        imprimir ("Condicion Verdadera");
+    else
+        imprimir ("Condicion Falsa");
+    endif
+    imprimirconintro("Fin de la prueba del IF");
+end
+
+
+
+function PruebaFor():void
+begin
+    for contador from 1 to 10 do
+    begin
+        imprimirconintro("Bucle FOR interación: "+contador);
+    end
+end
+
+
+function PruebaWhile():void
+begin
+    numero contador:=0;
+    numero multiplicador:=1;
+    imprimirconintro("Inicio de la prueba WHILE: ");
+    while (contador<10)
+    begin
+        contador:=contador+1;
+        multiplicador:=contador*multiplicador;
+        imprimirconintro("Iteración " + contador + " multiplicador: "+multiplicador);
+    end
+    imprimirconintro("FIN de la prueba WHILE");
+end
+
+
+function PruebaTransitiva():void
+begin
+    imprimirconintro("Llamada a función PruebaTransitiva realizada.");
+    PruebaTransitivaIntermedia();
+    imprimirconintro("Salida de función PruebaTransitiva.");
+end
+
+function PruebaTransitivaIntermedia():void
+begin
+    imprimirconintro("Llamada a función PruebaTransitivaIntermedia realizada.");
+    PruebaTransitivaFinal();
+    imprimirconintro("Salida de función PruebaTransitivaIntermedia.");
+end
+
+function PruebaTransitivaFinal():void
+begin
+    imprimirconintro("Llamada a función PruebaTransitivaFinal completada.");
+end
+
+
+function PruebaParametros(numero p1,cadena p2):void
+begin
+    imprimirconintro("Recepción de parámetros"+p1+p2);
+end
+
+function PruebaDevolucion():numero
+begin
+    return 1;
+end
+
+function PruebaConcatenacion(cadena c1, cadena c2):cadena
+begin
+    return c1+c2;
+end
+
+function  PruebaLogica(numero n1, numero n2):booleano
+begin
+    return (n1>n2);
+end
+
+function PruebaFuncionesCadena(cadena c1, cadena c2):void
+begin
+    // funciones para Cadenas:
+    cadena ejemplo:="Esta es la cadena de ejemplo";
+    numero posicion;
+    posicion := cadenaDonde(ejemplo,"cadena");  //posicion tendrá el número 11 (base 0)
+    cadena cadenaConEspacios:="   Esto tiene espacios  ";
+    cadena cadenaSinEspacios:=cadenaSinEspacios(cadenaConEspacios); //contendrá "Esto tiene espacios";
+
+    cadena cadenaASustituir:="Voy a cambiar esta cadena";
+    cadena cadenaCambiada:=cadenaSustituida(cadenaASustituir,"cambiar","mantener"); //contendrá "Voy a mantener esta cadena"
+
+    cadena cadenaACortar:="vamos a cortar | en un punto de la cadena";
+    cadena cadenaI:= cadenaIzquierda(cadenaACortar,14); //Contendrá "vamos a cortar "
+    cadena cadenaD:= cadenaDerecha(cadenaACortar,16); //Contendrá " en un punto de la cadena"
+    cadena cadenaC:= cadenaDentro(cadenaACortar,15,1); //Contendrá "|"
+    numero longitud:= cadenaLongitud("Hola"); //Contendrá 4
+
+    imprimirconintro("RESULTADOS DE LAS CADENAS");
+    imprimirconintro(posicion);
+    imprimirconintro(cadenaConEspacios);
+    imprimirconintro(cadenaSinEspacios);
+    imprimirconintro(cadenaASustituir);
+    imprimirconintro(cadenaCambiada);
+    imprimirconintro(cadenaACortar);
+    imprimirconintro(cadenaI);
+    imprimirconintro(cadenaD);
+    imprimirconintro(cadenaC);
+    imprimirconintro(longitud);
+    imprimirconintro("FIN DE RESULTADOS DE LAS CADENAS");
+end
+
+function imprimirconintro(cadena c):void;
+begin   
+    imprimir(c+"\n");
+end
+
+function main():void
+begin
+    imprimirconintro("PROGRAMA PRINCIPAL EJ1:");
+    PruebaIf();
+    PruebaFor();
+    PruebaWhile();
+    PruebaTransitiva();
+    imprimirconintro("Reprobando transitiva desde la mitad");
+    PruebaTransitivaIntermedia();
+    numero paramx:=33;
+    PruebaParametros(10,paramx);
+    imprimirconintro("Prueba de devolución con valor: " + PruebaDevolucion());
+    imprimirconintro("Prueba de PruebaConcatenacion: " + PruebaConcatenacion());
+    if(PruebaLogica(paramx,50)) then
+        imprimirconintro(paramx + " es mayor que " + 50);
+    else
+        imprimirconintro(paramx + " NO es mayor que " + 50);
+    endif
+    cadena probando:="probando";
+    PruebaFuncionesCadena("estamos",probando);
+    imprimirconintro("FIN DEL PROGRAMA PRINCIPAL");
+end
