@@ -1,0 +1,47 @@
+digraph Llamadas
+{
+0 [label=""style=filled, fillcolor=red];
+1 [label="main()"];
+2 [label="domain()"];
+3 [label="Pon(p1)"];
+4 [label="deVuelta(c1)"];
+5 [label="Pin(c1)"];
+6 [label="Pin(p1)"];
+7 [label="imprimirconintro(c)"];
+8 [label="Pon(c1)"];
+9 [label="cadenaDerecha()"];
+10 [label="cadenaIzquierda()"];
+11 [label="cadenaLongitud()"];
+12 [label="devolver()"];
+13 [label="imprimir()"];
+0->2;
+1->7;
+2->7;
+2->6;
+2->8;
+2->7;
+2->4;
+2->7;
+2->4;
+2->4;
+2->7;
+8->6;
+8->8;
+4->9;
+4->4;
+4->10;
+4->11;
+4->11;
+4->12;
+6->10;
+6->7;
+6->11;
+6->11;
+6->8;
+6->6;
+6->7;
+6->8;
+6->6;
+7->13;
+8->11;
+}

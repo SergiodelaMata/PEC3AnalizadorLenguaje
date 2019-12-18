@@ -1,0 +1,22 @@
+digraph Grafo
+{
+0 [label=""style=filled, fillcolor=red]
+1 [label=""];
+2 [label=""];
+3 [label=""];
+4 [label=""];
+5 [label=""];
+6 [label=""];
+7 [label=""];
+8 [label=""];
+9  [label=""style=filled, fillcolor=blue];
+0->1;
+1->2;
+1->6;
+2->3;
+2->4;
+4->5;
+5->7;
+6->5;
+8->9;
+}

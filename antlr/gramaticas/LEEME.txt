@@ -12,8 +12,18 @@ Añadimos tipo de dato booleano (cambiamos en el Parser)
 Línea 113 eliminarmos el punto y coma (;) es decir:
 function imprimirconintro(cadena c):void; pasa a ser function imprimirconintro(cadena c):void
 
+
 Defensa Ejercicio 02
 Línea 62 function imprimirconintro(cadena c):void; quitar el punto y coma function imprimirconintro(cadena c):void
 
 Problam con el if
+
+
+Defensa Ejercicio 03
+Mismo cambios en las funciones que haya return cambiamos por devolver
+
+Problam con el if
+
+Cambiadas las concatenaciones (+ -) para asignarlas antes de usarlas
+
 

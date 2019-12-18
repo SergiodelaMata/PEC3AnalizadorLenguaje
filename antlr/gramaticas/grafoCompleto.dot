@@ -1,0 +1,138 @@
+digraph Grafo
+{
+subgraph Pin
+{
+Pin0[label=""];
+Pin1 [label=""];
+Pin2 [label=""];
+Pin3 [label=""];
+Pin4 [label=""];
+Pin5 [label=""];
+Pin6 [label=""];
+Pin7 [label=""];
+Pin8 [label=""];
+Pin9 [label=""];
+Pin10 [label=""];
+Pin11 [label=""];
+Pin12 [label=""];
+Pin0->Pin1;
+Pin1->Pin2;
+Pin2->Pin3;
+Pin3->Pin4;
+Pin3->Pin8;
+Pin4->Pin5;
+Pin4->Pin6;
+Pin6->Pin7;
+Pin7->Pin9;
+Pin8->Pin7;
+Pin9->Pin10;
+Pin10->Pin11;
+Pin11->Pin12;
+}
+subgraph imprimirconintro
+{
+imprimirconintro0[label=""];
+imprimirconintro1 [label=""];
+imprimirconintro2 [label=""];
+imprimirconintro3 [label=""];
+imprimirconintro0->imprimirconintro1;
+imprimirconintro1->imprimirconintro2;
+imprimirconintro2->imprimirconintro3;
+}
+subgraph Pon
+{
+Pon0[label=""];
+Pon1 [label=""];
+Pon2 [label=""];
+Pon3 [label=""];
+Pon4 [label=""];
+Pon5 [label=""];
+Pon6 [label=""];
+Pon7 [label=""];
+Pon0->Pon1;
+Pon1->Pon2;
+Pon1->Pon3;
+Pon1->Pon4;
+Pon2->Pon5;
+Pon4->Pon2;
+Pon5->Pon6;
+Pon6->Pon7;
+}
+subgraph domain
+{
+domain0 [label=""style=filled, fillcolor=red]
+domain1 [label=""];
+domain2 [label=""];
+domain3 [label=""];
+domain4 [label=""];
+domain5 [label=""];
+domain6 [label=""];
+domain7 [label=""];
+domain8 [label=""];
+domain9 [label=""];
+domain10 [label=""];
+domain11  [label=""style=filled, fillcolor=blue];
+domain0->domain1;
+domain1->domain2;
+domain2->domain3;
+domain3->domain4;
+domain4->domain5;
+domain4->domain6;
+domain6->domain7;
+domain6->domain9;
+domain6->domain10;
+domain10->domain11;
+}
+subgraph deVuelta
+{
+deVuelta0[label=""];
+deVuelta1 [label=""];
+deVuelta2 [label=""];
+deVuelta3 [label=""];
+deVuelta4 [label=""];
+deVuelta5 [label=""];
+deVuelta6 [label=""];
+deVuelta7 [label=""];
+deVuelta8 [label=""];
+deVuelta9 [label=""];
+deVuelta0->deVuelta1;
+deVuelta1->deVuelta2;
+deVuelta1->deVuelta6;
+deVuelta2->deVuelta3;
+deVuelta2->deVuelta4;
+deVuelta4->deVuelta5;
+deVuelta5->deVuelta7;
+deVuelta6->deVuelta5;
+deVuelta8->deVuelta9;
+}
+subgraph main
+{
+main0[label=""];
+main1 [label=""];
+main2 [label=""];
+main0->main1;
+main1->main2;
+}
+Pin2->imprimirconintro0;
+imprimirconintro3 ->Pin2;
+Pin2->imprimirconintro0;
+imprimirconintro3 ->Pin2;
+Pin0->Pin12 
+Pin1->Pin12 
+Pin0->Pin12 
+Pin1->Pin12 
+domain0->domain11 
+domain1->domain11 
+domain2->domain11 
+domain3->domain11 
+domain0->domain11 
+domain0->domain11 
+domain0->domain11 
+domain1->domain11 
+domain2->domain11 
+domain3->domain11 
+main0->main2 
+Pon0->Pon7 
+Pon0->Pon7 
+deVuelta0->deVuelta9 
+}
