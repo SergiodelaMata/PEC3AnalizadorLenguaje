@@ -2,9 +2,6 @@ Para la ejecución del programa:
 1º javac *.java
 2º java Ejecutable2 fichero.prog nombreFuncionPrincipal nombreArchivoHtml
 
-
-Entregamos el programa compilado y ejecutado con los archivos generados al ejecutar lenguaje.prog
-
 CONSIDERACIONES PARA LOS PUNTOS FUNCION:
 
     - := ha sido considerado como operador.
