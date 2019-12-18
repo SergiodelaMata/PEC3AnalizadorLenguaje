@@ -58,6 +58,7 @@ DIGITO: ('-')?[0-9]+;
 FLOTANTE: DIGITO+ PUNTO DIGITO+;
 NEWLINE : [\t\r\n]+ ->skip;
 ARRAY: ID'['DIGITO']';
+BOOLEANO: 'booleano';
 ID: [a-zA-Z0-9_]+;
 NOMBREPAQUETE : ID (PUNTO ID)*;
 CADENA: '"' (ESC|.)*? '"' {setText(getText().substring(1, getText().length()-1).replaceAll("\\\\(.)", "$1"));};
