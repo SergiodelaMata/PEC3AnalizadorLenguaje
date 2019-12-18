@@ -19,6 +19,7 @@ begin
     begin
         imprimirconintro("Bucle FOR interación: "+contador);
     end
+	enddo
 end
 
 
@@ -64,17 +65,17 @@ end
 
 function PruebaDevolucion():numero
 begin
-    return 1;
+    devolver(1);
 end
 
 function PruebaConcatenacion(cadena c1, cadena c2):cadena
 begin
-    return c1+c2;
+    devolver(c1+c2);
 end
 
 function  PruebaLogica(numero n1, numero n2):booleano
 begin
-    return (n1>n2);
+    devolver(n1>n2);
 end
 
 function PruebaFuncionesCadena(cadena c1, cadena c2):void
